@@ -4,6 +4,7 @@
  */
 package com.nicovilab.profeconecta.view;
 
+import com.nicovilab.profeconecta.view.extraSwingComponents.TextPrompt;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import java.awt.Font;
@@ -11,9 +12,6 @@ import com.nicovilab.profeconecta.view.gradientComponents.ButtonGradient;
 import com.nicovilab.profeconecta.view.gradientComponents.JPanelGradient;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
-import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
-import net.sourceforge.jdatepicker.impl.UtilDateModel;
 /**
  *
  * @author Nico

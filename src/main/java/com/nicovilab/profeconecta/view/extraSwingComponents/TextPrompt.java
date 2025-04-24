@@ -1,4 +1,4 @@
-package com.nicovilab.profeconecta.view;
+package com.nicovilab.profeconecta.view.extraSwingComponents;
 
 import java.awt.*;
 import java.awt.event.*;

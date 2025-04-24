@@ -4,7 +4,7 @@
  */
 package com.nicovilab.profeconecta.view.userPanel;
 
-import com.nicovilab.profeconecta.view.TextPrompt;
+import com.nicovilab.profeconecta.view.extraSwingComponents.TextPrompt;
 import com.nicovilab.profeconecta.view.gradientComponents.ButtonGradient;
 import com.nicovilab.profeconecta.view.gradientComponents.JPanelGradient;
 import java.awt.Color;
