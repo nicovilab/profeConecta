@@ -1,37 +1,34 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.nicovilab.profeconecta.view;
 
-import com.nicovilab.profeconecta.view.extraSwingComponents.TextPrompt;
-
-import java.awt.*;
-import javax.swing.border.LineBorder;
-
 import com.nicovilab.profeconecta.view.gradientComponents.ButtonGradient;
 import com.nicovilab.profeconecta.view.gradientComponents.JPanelGradient;
-
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 import lombok.Getter;
+
 /**
  *
  * @author Nico
  */
 @Getter
-public class MainJFrame extends javax.swing.JFrame {
+public class LoginPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form MainJFrame
+     * Creates new form LoginPanel
      */
-    public MainJFrame() {
+    public LoginPanel(MainJFrame parent) {
         initComponents();
-        setupCardLayout();
+        changeWindowFocusOnLaunch();
+        hoverEffectButtonManipulation(signUpButton, Color.BLACK,new Color(37, 116, 169));
+        hoverEffectButtonManipulation(signInButton, Color.BLACK,new Color(37, 116, 169));
         
         setVisible(true);
-        setLocationRelativeTo(null); // Centrar la ventana
 
     }
 
@@ -44,8 +41,6 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        leftPanel = new JPanelGradient(new Color(52, 143, 80), new Color(86, 180, 211));
-        appLogo = new javax.swing.JLabel();
         rightPanel = new JPanelGradient(new Color(230, 243, 250), new Color(255,255,255));
         mainLabel = new javax.swing.JLabel();
         emailTextField = new javax.swing.JTextField();
@@ -55,28 +50,8 @@ public class MainJFrame extends javax.swing.JFrame {
         signInButton = new ButtonGradient();
         mainLabel2 = new javax.swing.JLabel();
         passwordTextField = new javax.swing.JTextField();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
-
-        appLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profeConecta225px.png"))); // NOI18N
-
-        javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
-        leftPanel.setLayout(leftPanelLayout);
-        leftPanelLayout.setHorizontalGroup(
-            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(appLogo)
-                .addContainerGap())
-        );
-        leftPanelLayout.setVerticalGroup(
-            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leftPanelLayout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addComponent(appLogo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        leftPanel = new JPanelGradient(new Color(52, 143, 80), new Color(86, 180, 211));
+        appLogo = new javax.swing.JLabel();
 
         rightPanel.setBackground(new java.awt.Color(235, 235, 235));
         rightPanel.setPreferredSize(new java.awt.Dimension(600, 0));
@@ -85,9 +60,6 @@ public class MainJFrame extends javax.swing.JFrame {
         mainLabel.setText("Bienvenido a ProfeConecta");
 
         emailTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        TextPrompt placeholderEmail = new TextPrompt("Correo electrónico", emailTextField);
-        placeholderEmail.changeAlpha(0.75f);
-        placeholderEmail.changeStyle(Font.ITALIC);
         emailTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(37, 116, 169), 2));
         emailTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         emailTextField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -122,7 +94,6 @@ public class MainJFrame extends javax.swing.JFrame {
         signInButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         signInButton.setText("Iniciar sesión");
         signInButton.setBorder(new LineBorder(Color.BLACK, 1, true));
-        signInButton.setContentAreaFilled(false);
         signInButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         signInButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,9 +105,6 @@ public class MainJFrame extends javax.swing.JFrame {
         mainLabel2.setText("Inicia sesión para continuar");
 
         passwordTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        TextPrompt placeholderPassword = new TextPrompt("Contraseña", passwordTextField);
-        placeholderPassword.changeAlpha(0.75f);
-        placeholderPassword.changeStyle(Font.ITALIC);
         passwordTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(37, 116, 169), 2));
         passwordTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         passwordTextField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -200,11 +168,30 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(signUpButton)
                 .addGap(18, 18, 18)
                 .addComponent(signInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        appLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profeConecta225px.png"))); // NOI18N
+
+        javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
+        leftPanel.setLayout(leftPanelLayout);
+        leftPanelLayout.setHorizontalGroup(
+            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(appLogo)
+                .addContainerGap())
+        );
+        leftPanelLayout.setVerticalGroup(
+            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftPanelLayout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(appLogo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -214,29 +201,27 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
             .addComponent(leftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void emailTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTextFieldFocusGained
+
+    }//GEN-LAST:event_emailTextFieldFocusGained
+
+    private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_emailTextFieldActionPerformed
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_signUpButtonActionPerformed
 
-    private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_emailTextFieldActionPerformed
-
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_signInButtonActionPerformed
-
-    private void emailTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTextFieldFocusGained
-
-    }//GEN-LAST:event_emailTextFieldFocusGained
 
     private void passwordTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordTextFieldFocusGained
         // TODO add your handling code here:
@@ -246,40 +231,31 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordTextFieldActionPerformed
 
-    private CardLayout cardLayout;
-    private JPanel contentPanel;
+    public void addSignInButtonActionListener(ActionListener al) {
+        this.signInButton.addActionListener(al);
+    }  
     
+    public void addSignUpButtonActionListener(ActionListener al) {
+        this.signUpButton.addActionListener(al);
+    } 
     
-    //Declarar variables de los paneles de las vistas
-    public SignUpPanel signUpPanel;
-    public LoginPanel loginPanel;
-    
-     private void setupCardLayout() {
-        // 1. Crear el panel contenedor con CardLayout
-        cardLayout = new CardLayout();
-        contentPanel = new JPanel(cardLayout);
-
-        signUpPanel = new SignUpPanel(this);
-        loginPanel = new LoginPanel(this);
-        
-        contentPanel.add(loginPanel, "login");
-        contentPanel.add(signUpPanel, "signup");
-        
-        setContentPane(contentPanel);
-        
-        cardLayout.show(contentPanel, "login");
-        
-        //Ajustar el tamaño del frame según los componentes
-        pack();
+    public void changeWindowFocusOnLaunch() {
+        leftPanel.requestFocusInWindow();
     }
     
-    // Método para cambiar entre paneles
-    public void showPanel(String panelName) {
-        cardLayout.show(contentPanel, panelName);
+    private void hoverEffectButtonManipulation(JButton button, Color color, Color hoverColor) {
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setForeground(hoverColor);
+            }
+            
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setForeground(color);
+            }
+        });
     }
-
-    
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel appLogo;
@@ -293,8 +269,5 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel rightPanel;
     private javax.swing.JButton signInButton;
     private javax.swing.JButton signUpButton;
-
-
     // End of variables declaration//GEN-END:variables
-
 }
