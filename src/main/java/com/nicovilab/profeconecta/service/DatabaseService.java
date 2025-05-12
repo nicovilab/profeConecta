@@ -33,7 +33,7 @@ public class DatabaseService {
         }
     }
     
-    public boolean loginSuccessful(String email, String password) {
+    public boolean loginSuccessful(String email, char[] password) {
         PreparedStatement preparedStatement = createQuery("SELECT * FROM USUARIO WHERE email = ?",
                 email);
 
@@ -43,7 +43,7 @@ public class DatabaseService {
             List<Usuario> result = resultSetMapper.map(resultSet, Usuario.class);
             
             if(result.size() == 1) {
-               BCrypt.Result verification = BCrypt.verifyer().verify(password.toCharArray(), 
+               BCrypt.Result verification = BCrypt.verifyer().verify(password, 
                        result.get(0).getContrasena().toCharArray());
                return verification.verified;
             }
@@ -55,16 +55,16 @@ public class DatabaseService {
     public boolean registerSuccessful(String name, String surname, String email, String password) {
         PreparedStatement preparedStatement = createQuery("INSERT INTO USUARIO (nombre, apellidos, email, contrasena) VALUES (?, ?, ?, ?)",
                 name, surname, email, password);
-        
+
         try {
-            boolean resultSet = preparedStatement.execute();
-            return resultSet;
+            preparedStatement.execute();
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
-        return false;
+        return true;
     }
-    
+
     private ResultSet executeQuery(PreparedStatement query) {
         try {
             return query.executeQuery();

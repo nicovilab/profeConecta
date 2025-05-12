@@ -15,11 +15,10 @@ public class LoginService {
 
     DatabaseService databaseService;
 
-    public boolean loginSuccessful(String username, String password) {
+    public boolean loginSuccessful(String username, char[] password) {
         databaseService = new DatabaseService();
 
-        String hashedPassword = BCrypt.withDefaults().hashToString(12, password.toCharArray());
-        return databaseService.loginSuccessful(username, hashedPassword);
+        return databaseService.loginSuccessful(username, password);
     }
     
     public boolean registerSuccessful(String name, String surname, String email, char[] password) {

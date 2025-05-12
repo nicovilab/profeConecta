@@ -19,7 +19,6 @@ public class ProfeConecta {
         System.out.println("Hello World!");
         new DatabaseService();
         MainJFrame mainView = new MainJFrame();
-
         LoginController loginController = new LoginController(mainView, mainView.getLoginPanel());
         SignUpController signUpController = new SignUpController(mainView, mainView.getSignUpPanel());
     }

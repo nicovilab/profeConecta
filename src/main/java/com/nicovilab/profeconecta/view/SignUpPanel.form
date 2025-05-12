@@ -30,7 +30,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="rightPanel" alignment="0" pref="470" max="32767" attributes="0"/>
+          <Component id="rightPanel" alignment="0" pref="488" max="32767" attributes="0"/>
           <Component id="leftPanel" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
@@ -88,48 +88,58 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
+                  <Component id="mainLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="emailLogo" min="-2" pref="32" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="emailTextField" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="surnameLogo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="surnameTextField" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="nameLogo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="nameTextField" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="passwordLogo" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="confirmPasswordLogo" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="emailLogo" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="emailTextField" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="surnameLogo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="surnameTextField" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="nameLogo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="nameTextField" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="passwordLogo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="confirmPasswordLogo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="confirmPasswordField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="passwordField" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="5" max="32767" attributes="0"/>
+                                  <Component id="signInButton" min="-2" pref="271" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="confirmPasswordField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="passwordField" max="32767" attributes="0"/>
-                          </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="5" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="registerButton" alignment="1" min="-2" pref="271" max="-2" attributes="0"/>
-                              <Component id="signInButton" alignment="1" min="-2" pref="271" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="registerButton" min="-2" pref="271" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
-                  <Component id="mainLabel" min="-2" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="informationLabel" min="-2" pref="418" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -165,9 +175,11 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="signInButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="registerButton" min="-2" pref="30" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="informationLabel" pref="46" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -257,7 +269,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="" postCode="JTextField nameTextField = new JTextField(10);&#xa;    TextPrompt namePlaceholder = new TextPrompt(&quot;Nombre&quot;, nameTextField);&#xa;    namePlaceholder.changeAlpha(0.75f);&#xa;    namePlaceholder.changeStyle(Font.ITALIC);"/>
+            <Property name="toolTipText" type="java.lang.String" value="" postCode="TextPrompt namePlaceholder = new TextPrompt(&quot;Nombre*&quot;, nameTextField);&#xa;    namePlaceholder.changeAlpha(0.75f);&#xa;    namePlaceholder.changeStyle(Font.ITALIC);"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder thickness="2">
@@ -282,7 +294,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="surnameTextField">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor" postCode="JTextField surnameTextField = new JTextField(10);&#xa;    TextPrompt surnamePlaceholder = new TextPrompt(&quot;Apellidos&quot;, surnameTextField);&#xa;    surnamePlaceholder.changeAlpha(0.75f);&#xa;    surnamePlaceholder.changeStyle(Font.ITALIC);">
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor" postCode="TextPrompt surnamePlaceholder = new TextPrompt(&quot;Apellidos*&quot;, surnameTextField);&#xa;    surnamePlaceholder.changeAlpha(0.75f);&#xa;    surnamePlaceholder.changeStyle(Font.ITALIC);">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -309,7 +321,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="emailTextField">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor" postCode="JTextField emailTextField = new JTextField(10);&#xa;    TextPrompt emailPlaceholder = new TextPrompt(&quot;Correo electr&#xf3;nico&quot;, emailTextField);&#xa;    emailPlaceholder.changeAlpha(0.75f);&#xa;    emailPlaceholder.changeStyle(Font.ITALIC);">
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor" postCode="TextPrompt emailPlaceholder = new TextPrompt(&quot;Correo electr&#xf3;nico*&quot;, emailTextField);&#xa;    emailPlaceholder.changeAlpha(0.75f);&#xa;    emailPlaceholder.changeStyle(Font.ITALIC);">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -336,7 +348,10 @@
         </Component>
         <Component class="javax.swing.JPasswordField" name="passwordField">
           <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="TextPrompt passwordPlaceholder = new TextPrompt(&quot;Contrase&#xf1;a&quot;, passwordField);&#xa;    passwordPlaceholder.changeAlpha(0.75f);&#xa;    passwordPlaceholder.changeStyle(Font.ITALIC);">
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="TextPrompt passwordPlaceholder = new TextPrompt(&quot;Contrase&#xf1;a*&quot;, passwordField);&#xa;    passwordPlaceholder.changeAlpha(0.75f);&#xa;    passwordPlaceholder.changeStyle(Font.ITALIC);">
               <Connection code="&quot;&quot;" type="code"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -350,7 +365,10 @@
         </Component>
         <Component class="javax.swing.JPasswordField" name="confirmPasswordField">
           <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="TextPrompt confirmPasswordPlaceholder = new TextPrompt(&quot;Repetir contrase&#xf1;a&quot;, confirmPasswordField);&#xa;    confirmPasswordPlaceholder.changeAlpha(0.75f);&#xa;    confirmPasswordPlaceholder.changeStyle(Font.ITALIC);">
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="TextPrompt confirmPasswordPlaceholder = new TextPrompt(&quot;Repetir contrase&#xf1;a*&quot;, confirmPasswordField);&#xa;    confirmPasswordPlaceholder.changeAlpha(0.75f);&#xa;    confirmPasswordPlaceholder.changeStyle(Font.ITALIC);">
               <Connection code="&quot;&quot;" type="code"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -370,6 +388,11 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/padlockLoginIcon32px.png"/>
             </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="informationLabel">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
         </Component>
       </SubComponents>

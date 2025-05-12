@@ -34,13 +34,16 @@ public class LoginController {
     private ActionListener getSignUpMenuActionListener(){
         return (ActionEvent e) -> {
             view.showPanel("signup");
+            loginPanel.clearAllTextFields();
         };
     }
     
     private ActionListener getSignInMenuActionListener(){
         return (ActionEvent e) -> {
-            if(loginService.loginSuccessful(loginPanel.getEmailTextField().getText(), loginPanel.getPasswordTextField().getText())){
+            if(loginService.loginSuccessful(loginPanel.getEmailTextField().getText(), loginPanel.getPasswordField().getPassword())){
             loginPanel.setBackground(Color.red);
+            }else{
+                loginPanel.setInformationTextField("Las credenciales no son válidas", Color.red);
             }
         };
     }
