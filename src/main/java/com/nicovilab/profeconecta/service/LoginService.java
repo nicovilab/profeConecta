@@ -4,14 +4,28 @@
  */
 package com.nicovilab.profeconecta.service;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+
+
 /**
  *
  * @author Nico
  */
 public class LoginService {
+
+    DatabaseService databaseService;
+
+    public boolean loginSuccessful(String username, String password) {
+        databaseService = new DatabaseService();
+
+        String hashedPassword = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+        return databaseService.loginSuccessful(username, hashedPassword);
+    }
     
-    public boolean loginSuccessful(String username, String password){
-       return username.equals("paco") && password.equals("123");
-           
+    public boolean registerSuccessful(String name, String surname, String email, char[] password) {
+        databaseService = new DatabaseService();
+
+        String hashedPassword = BCrypt.withDefaults().hashToString(12, password);
+        return databaseService.registerSuccessful(name, surname, email, hashedPassword);
     }
-    }
+}

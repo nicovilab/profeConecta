@@ -43,6 +43,17 @@
             <artifactId>mariadb-java-client</artifactId>
             <version>LATEST</version>
         </dependency>
+        <dependency>
+            <groupId>nl.jiankai</groupId>
+            <artifactId>resultset-mapper</artifactId>
+            <version>1.6.2</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>at.favre.lib</groupId>
+            <artifactId>bcrypt</artifactId>
+            <version>0.10.2</version>
+        </dependency>
     </dependencies>
     
     
