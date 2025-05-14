@@ -6,6 +6,7 @@ package com.nicovilab.profeconecta.service;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.nicovilab.profeconecta.model.Usuario;
+import com.nicovilab.profeconecta.model.VistaValoracion;
 import java.sql.*;
 import java.util.List;
 import java.util.Optional;
@@ -63,6 +64,18 @@ public class DatabaseService {
             return false;
         }
         return true;
+    }
+
+    public VistaValoracion getAverageRating(String userId) {
+        PreparedStatement preparedStatement = createQuery("SELECT valoracion_media, total_valoraciones FROM vista_valoracion_media_usuario WHERE usuario_valorado = ?", userId);
+
+        ResultSet resultSet = executeQuery(preparedStatement);
+
+        if (resultSet != null) {
+            VistaValoracion result = resultSetMapper.map(resultSet, VistaValoracion.class).getFirst();
+            return result;
+        }
+        return new VistaValoracion();
     }
 
     private ResultSet executeQuery(PreparedStatement query) {

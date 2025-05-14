@@ -247,7 +247,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registerButtonActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ButtonGradient()"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ButtonGradient(new Color(230, 243, 250), new Color(255,255,255))"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="passwordLogo">

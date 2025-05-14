@@ -17,36 +17,36 @@ import java.awt.event.ActionListener;
  * @author Nico
  */
 public class LoginController {
-    
+
     private final MainJFrame view;
     private final LoginService loginService;
     private final LoginPanel loginPanel;
-    
-    public LoginController(MainJFrame view, LoginPanel loginPanel){
+
+    public LoginController(MainJFrame view, LoginPanel loginPanel) {
         loginService = new LoginService();
         this.loginPanel = loginPanel;
         this.view = view;
         loginPanel.addSignInButtonActionListener(this.getSignInMenuActionListener());
         loginPanel.addSignUpButtonActionListener(this.getSignUpMenuActionListener());
-        
+
     }
-    
-    private ActionListener getSignUpMenuActionListener(){
+
+    private ActionListener getSignUpMenuActionListener() {
         return (ActionEvent e) -> {
             view.showPanel("signup");
             loginPanel.clearAllTextFields();
         };
     }
-    
-    private ActionListener getSignInMenuActionListener(){
+
+    private ActionListener getSignInMenuActionListener() {
         return (ActionEvent e) -> {
-            if(loginService.loginSuccessful(loginPanel.getEmailTextField().getText(), loginPanel.getPasswordField().getPassword())){
-            loginPanel.setBackground(Color.red);
-            }else{
+            if (loginService.loginSuccessful(loginPanel.getEmailTextField().getText(), loginPanel.getPasswordField().getPassword())) {
+                view.showPanel("userpanel");
+                loginPanel.clearAllTextFields();
+            } else {
                 loginPanel.setInformationTextField("Las credenciales no son válidas", Color.red);
             }
         };
     }
-   
 
 }

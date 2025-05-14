@@ -5,7 +5,9 @@
 package com.nicovilab.profeconecta;
 
 import com.nicovilab.profeconecta.controller.LoginController;
+import com.nicovilab.profeconecta.controller.ProfileController;
 import com.nicovilab.profeconecta.controller.SignUpController;
+import com.nicovilab.profeconecta.controller.UserPanelController;
 import com.nicovilab.profeconecta.service.DatabaseService;
 import com.nicovilab.profeconecta.view.MainJFrame;
 
@@ -21,5 +23,7 @@ public class ProfeConecta {
         MainJFrame mainView = new MainJFrame();
         LoginController loginController = new LoginController(mainView, mainView.getLoginPanel());
         SignUpController signUpController = new SignUpController(mainView, mainView.getSignUpPanel());
+        UserPanelController userPanelController = new UserPanelController(mainView, mainView.getUserPanel());
+        
     }
 }

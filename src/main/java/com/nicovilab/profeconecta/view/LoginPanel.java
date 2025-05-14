@@ -49,7 +49,7 @@ public class LoginPanel extends javax.swing.JPanel {
         signUpButton = new javax.swing.JButton();
         emailLogo = new javax.swing.JLabel();
         passwordLogo = new javax.swing.JLabel();
-        signInButton = new ButtonGradient();
+        signInButton = new ButtonGradient(new Color(230, 243, 250), new Color(255,255,255));
         mainLabel2 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
         emailTextField = new javax.swing.JTextField();
@@ -188,7 +188,7 @@ public class LoginPanel extends javax.swing.JPanel {
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addGap(126, 126, 126)
                 .addComponent(appLogo)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -202,7 +202,7 @@ public class LoginPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+            .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
             .addComponent(leftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents

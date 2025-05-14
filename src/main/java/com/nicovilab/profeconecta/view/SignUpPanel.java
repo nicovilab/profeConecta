@@ -50,7 +50,7 @@ public class SignUpPanel extends javax.swing.JPanel {
         signInButton = new javax.swing.JButton();
         nameLogo = new javax.swing.JLabel();
         surnameLogo = new javax.swing.JLabel();
-        registerButton = new ButtonGradient();
+        registerButton = new ButtonGradient(new Color(230, 243, 250), new Color(255,255,255));
         passwordLogo = new javax.swing.JLabel();
         emailLogo = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
