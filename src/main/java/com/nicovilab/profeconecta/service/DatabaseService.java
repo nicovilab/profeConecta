@@ -5,6 +5,7 @@
 package com.nicovilab.profeconecta.service;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.nicovilab.profeconecta.model.Direccion;
 import com.nicovilab.profeconecta.model.Usuario;
 import com.nicovilab.profeconecta.model.VistaValoracion;
 import java.sql.*;
@@ -34,24 +35,48 @@ public class DatabaseService {
         }
     }
     
-    public boolean loginSuccessful(String email, char[] password) {
+    public Usuario loginSuccessful(String email, char[] password) {
         PreparedStatement preparedStatement = createQuery("SELECT * FROM USUARIO WHERE email = ?",
                 email);
 
         ResultSet resultSet = executeQuery(preparedStatement);
-        
-        if(resultSet != null) {
+
+        //todo si el resultado de la verificaicon es correcta devuelvo el objeto entero de usuario
+        if (resultSet != null) {
             List<Usuario> result = resultSetMapper.map(resultSet, Usuario.class);
-            
-            if(result.size() == 1) {
-               BCrypt.Result verification = BCrypt.verifyer().verify(password, 
-                       result.get(0).getContrasena().toCharArray());
-               return verification.verified;
+
+            if (result.size() == 1) {
+                BCrypt.Result verification = BCrypt.verifyer().verify(password,
+                        result.get(0).getContrasena().toCharArray());
+                if (verification.verified) {
+                    return result.get(0);
+                }
             }
         }
-            
-        return false;
+
+        return null;
     }
+
+    public Direccion profileInfoSuccessful(String email) {
+        PreparedStatement preparedStatement = createQuery("SELECT d.* FROM DIRECCION d "
+                + "JOIN USUARIO u ON d.id_usuario = u.id_usuario "
+                + "WHERE u.email = ?",
+                email);
+
+        ResultSet resultSet = executeQuery(preparedStatement);
+
+        //todo si el resultado de la verificaicon es correcta devuelvo el objeto entero de usuario
+        if (resultSet != null) {
+            List<Direccion> result = resultSetMapper.map(resultSet, Direccion.class);
+
+            if (result.size() == 1) {
+                    return result.get(0);
+                }
+            }
+
+        return null;
+    }
+    
     
     public boolean registerSuccessful(String name, String surname, String email, String password) {
         PreparedStatement preparedStatement = createQuery("INSERT INTO USUARIO (nombre, apellidos, email, contrasena) VALUES (?, ?, ?, ?)",
@@ -65,6 +90,30 @@ public class DatabaseService {
         }
         return true;
     }
+
+    public boolean updateUserInfo(String name, String surname, String number, String province, String town, String address, String description, String email) {
+        PreparedStatement preparedStatementUsuario = createQuery("UPDATE USUARIO SET nombre = ?, apellidos = ?, telefono = ?, descripcion = ? WHERE email = ?",
+                name, surname, number, description, email);
+
+        PreparedStatement preparedStatementDireccion = createQuery(
+                "INSERT INTO DIRECCION (id_usuario, provincia, municipio, direccion) "
+                + "SELECT u.id_usuario, ?, ?, ? FROM USUARIO u WHERE u.email = ? "
+                + "ON DUPLICATE KEY UPDATE provincia = ?, municipio = ?, direccion = ?",
+                province, town, address, email, province, town, address
+        );
+
+        try {
+
+            preparedStatementUsuario.execute();
+            preparedStatementDireccion.execute();
+            connection.commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+    
 
     public VistaValoracion getAverageRating(String userId) {
         PreparedStatement preparedStatement = createQuery("SELECT valoracion_media, total_valoraciones FROM vista_valoracion_media_usuario WHERE usuario_valorado = ?", userId);

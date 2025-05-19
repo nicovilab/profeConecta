@@ -5,6 +5,7 @@
 package com.nicovilab.profeconecta.service;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.nicovilab.profeconecta.model.Usuario;
 
 
 /**
@@ -15,7 +16,7 @@ public class LoginService {
 
     DatabaseService databaseService;
 
-    public boolean loginSuccessful(String username, char[] password) {
+    public Usuario loginSuccessful(String username, char[] password) {
         databaseService = new DatabaseService();
 
         return databaseService.loginSuccessful(username, password);

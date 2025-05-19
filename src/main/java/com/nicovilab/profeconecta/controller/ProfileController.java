@@ -4,6 +4,8 @@
  */
 package com.nicovilab.profeconecta.controller;
 
+import com.nicovilab.profeconecta.model.Direccion;
+import com.nicovilab.profeconecta.model.Usuario;
 import com.nicovilab.profeconecta.model.VistaValoracion;
 import com.nicovilab.profeconecta.service.DatabaseService;
 import com.nicovilab.profeconecta.view.MainJFrame;
@@ -22,17 +24,28 @@ public class ProfileController {
 
     private final MainJFrame view;
     private final ProfilePanel profilePanel;
+    private final Usuario user;
+    private final Direccion direccion;
+    private final DatabaseService databaseService = new DatabaseService();
 
-    public ProfileController(MainJFrame view, ProfilePanel profilePanel) {
+    public ProfileController(MainJFrame view, ProfilePanel profilePanel, Usuario user, Direccion direccion) {
         this.view = view;
         this.profilePanel = profilePanel;
+        this.user = user;
+        this.direccion = direccion;
         profilePanel.addProfileButtonActionListener(this.getProfileButtonActionListener());
         profilePanel.addExitButtonActionListener(this.getExitButtonActionListener());
+        profilePanel.addEditButtonActionListener(this.getEditButtonActionListener());
+        profilePanel.addSaveButtonActionListener(this.getSaveButtonActionListener());
+        
         
         DatabaseService databaseService = new DatabaseService();
         VistaValoracion vistaValoracion = databaseService.getAverageRating("39");
         profilePanel.getRatingLabel().setText(vistaValoracion.getValoracionMedia() + " con " + vistaValoracion.getTotalValoraciones() + " valoraciones");
         setStarRating(vistaValoracion.getValoracionMedia().doubleValue());
+        
+        setUserInfo();
+        
     }
 
 
@@ -44,6 +57,32 @@ public class ProfileController {
 
         };
     }
+   
+    private ActionListener getEditButtonActionListener() {
+        return (ActionEvent e) -> {
+            profilePanel.enableFields(true);
+            profilePanel.enableEditButton(false);
+            profilePanel.enableSaveButton(true);
+        };
+    }
+
+    private ActionListener getSaveButtonActionListener() {
+        return (ActionEvent e) -> {
+            
+            databaseService.updateUserInfo(profilePanel.getNameTextField().getText(),
+                    profilePanel.getSurnameTextField().getText(),
+                    profilePanel.getSurnameTextField().getText(),
+                    profilePanel.getProvinceTextField().getText(),
+                    profilePanel.getTownTextField().getText(),
+                    profilePanel.getAddressTextField().getText(),
+                    profilePanel.getDescriptionTextArea().getText(),
+                    user.getEmail());
+            profilePanel.enableFields(false);
+            profilePanel.enableEditButton(true);
+            profilePanel.enableSaveButton(false);
+            
+        };
+    }
 
     private ActionListener getExitButtonActionListener() {
         return (ActionEvent e) -> {
@@ -51,7 +90,17 @@ public class ProfileController {
         };
     }
     
-
+    private void setUserInfo(){
+        profilePanel.setNameTextField(user.getNombre());
+        profilePanel.setSurnameTextField(user.getApellidos());
+        profilePanel.setNumberTextField(user.getTelefono());
+        profilePanel.setDescriptionTextField(user.getDescripcion());
+        profilePanel.setProvinceTextField(direccion.getProvincia());
+        profilePanel.setTownTextField(direccion.getMunicipio());
+        profilePanel.setAdressTextField(direccion.getDireccion());
+    }
+    
+    
     private void setStarRating(Double valoracionMedia) {
 
         int visibleStars = (int) Math.round(roundRating(valoracionMedia)* 2d);

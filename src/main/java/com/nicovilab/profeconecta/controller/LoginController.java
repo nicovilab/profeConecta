@@ -4,6 +4,7 @@
  */
 package com.nicovilab.profeconecta.controller;
 
+import com.nicovilab.profeconecta.model.Usuario;
 import com.nicovilab.profeconecta.service.LoginService;
 import com.nicovilab.profeconecta.view.LoginPanel;
 import com.nicovilab.profeconecta.view.MainJFrame;
@@ -39,14 +40,18 @@ public class LoginController {
     }
 
     private ActionListener getSignInMenuActionListener() {
-        return (ActionEvent e) -> {
-            if (loginService.loginSuccessful(loginPanel.getEmailTextField().getText(), loginPanel.getPasswordField().getPassword())) {
-                view.showPanel("userpanel");
-                loginPanel.clearAllTextFields();
-            } else {
-                loginPanel.setInformationTextField("Las credenciales no son válidas", Color.red);
-            }
-        };
-    }
+    return (ActionEvent e) -> {
+        Usuario usuarioAutenticado = loginService.loginSuccessful(loginPanel.getEmailTextField().getText(), 
+                                                                 loginPanel.getPasswordField().getPassword());
+        if (usuarioAutenticado != null) {
+            view.showPanel("userpanel");
+            loginPanel.clearAllTextFields();
+            UserPanelController userPanelController = new UserPanelController(view, view.getUserPanel(), usuarioAutenticado);
+            System.out.println(usuarioAutenticado);
+        } else {
+            loginPanel.setInformationTextField("Las credenciales no son válidas", Color.red);
+        }
+    };
+}
 
 }

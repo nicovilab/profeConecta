@@ -12,12 +12,14 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
  * @author Nico
  */
 @Getter
+@Setter
 public class ProfilePanel extends javax.swing.JPanel {
 
     /**
@@ -25,7 +27,8 @@ public class ProfilePanel extends javax.swing.JPanel {
      */
     public ProfilePanel(MainJFrame parent) {
         initComponents();
-        
+        enableFields(false);
+        enableSaveButton(false);
     }
 
     /**
@@ -37,10 +40,6 @@ public class ProfilePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nameTextField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jLabel8 = new javax.swing.JLabel();
         leftPanel = new JPanelGradient(new Color(52, 143, 80), new Color(86, 180, 211));
         appLogo = new javax.swing.JLabel();
         profileButton = new IntegratedButton("Mi perfil", true);
@@ -48,26 +47,26 @@ public class ProfilePanel extends javax.swing.JPanel {
         rightPanel = new JPanelGradient(new Color(230, 243, 250), new Color(255,255,255));
         imageAvatar = new com.nicovilab.profeconecta.view.extraSwingComponents.ImageAvatar();
         jButton2 = new CircularIntegratedButton();
-        nameTextField1 = new javax.swing.JTextField();
-        nameTextField2 = new javax.swing.JTextField();
-        nameTextField3 = new javax.swing.JTextField();
-        nameTextField4 = new javax.swing.JTextField();
-        nameTextField5 = new javax.swing.JTextField();
-        nameTextField6 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
+        nameTextField = new javax.swing.JTextField();
+        surnameTextField = new javax.swing.JTextField();
+        numberTextField = new javax.swing.JTextField();
+        provinceTextField = new javax.swing.JTextField();
+        townTextField = new javax.swing.JTextField();
+        addressTextField = new javax.swing.JTextField();
+        nameLabel = new javax.swing.JLabel();
+        surnameLabel = new javax.swing.JLabel();
+        telefonoLabel = new javax.swing.JLabel();
+        townLabel = new javax.swing.JLabel();
+        provinceLabel = new javax.swing.JLabel();
+        addressLabel = new javax.swing.JLabel();
+        mainSeparator = new javax.swing.JSeparator();
+        saveButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
+        opinionLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel10 = new javax.swing.JLabel();
+        descriptionScrollPane = new javax.swing.JScrollPane();
+        descriptionTextArea = new javax.swing.JTextArea();
+        descriptionLabel = new javax.swing.JLabel();
         star1 = new javax.swing.JLabel();
         star2 = new javax.swing.JLabel();
         star3 = new javax.swing.JLabel();
@@ -79,29 +78,6 @@ public class ProfilePanel extends javax.swing.JPanel {
         star9 = new javax.swing.JLabel();
         star10 = new javax.swing.JLabel();
         ratingLabel = new javax.swing.JLabel();
-
-        nameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nameTextField.setToolTipText("");
-        nameTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
-        nameTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        nameTextField.setMaximumSize(new java.awt.Dimension(60, 30));
-        nameTextField.setPreferredSize(new java.awt.Dimension(60, 30));
-        nameTextField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                nameTextFieldFocusGained(evt);
-            }
-        });
-        nameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTextFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("jLabel1");
-
-        jToggleButton1.setText("jToggleButton1");
-
-        jLabel8.setText("jLabel8");
 
         appLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profeConecta128px.png"))); // NOI18N
 
@@ -165,139 +141,139 @@ public class ProfilePanel extends javax.swing.JPanel {
         imageAvatar.add(jButton2);
         jButton2.setBounds(10, 0, 130, 130);
 
-        nameTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nameTextField1.setToolTipText("");
-        nameTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
-        nameTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        nameTextField1.setMaximumSize(new java.awt.Dimension(60, 30));
-        nameTextField1.setPreferredSize(new java.awt.Dimension(60, 30));
-        nameTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+        nameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nameTextField.setToolTipText("");
+        nameTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
+        nameTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        nameTextField.setMaximumSize(new java.awt.Dimension(60, 30));
+        nameTextField.setPreferredSize(new java.awt.Dimension(60, 30));
+        nameTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                nameTextField1FocusGained(evt);
+                nameTextFieldFocusGained(evt);
             }
         });
-        nameTextField1.addActionListener(new java.awt.event.ActionListener() {
+        nameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTextField1ActionPerformed(evt);
+                nameTextFieldActionPerformed(evt);
             }
         });
 
-        nameTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nameTextField2.setToolTipText("");
-        nameTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
-        nameTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        nameTextField2.setMaximumSize(new java.awt.Dimension(60, 30));
-        nameTextField2.setPreferredSize(new java.awt.Dimension(60, 30));
-        nameTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
+        surnameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        surnameTextField.setToolTipText("");
+        surnameTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
+        surnameTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        surnameTextField.setMaximumSize(new java.awt.Dimension(60, 30));
+        surnameTextField.setPreferredSize(new java.awt.Dimension(60, 30));
+        surnameTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                nameTextField2FocusGained(evt);
+                surnameTextFieldFocusGained(evt);
             }
         });
-        nameTextField2.addActionListener(new java.awt.event.ActionListener() {
+        surnameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTextField2ActionPerformed(evt);
+                surnameTextFieldActionPerformed(evt);
             }
         });
 
-        nameTextField3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nameTextField3.setToolTipText("");
-        nameTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
-        nameTextField3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        nameTextField3.setMaximumSize(new java.awt.Dimension(60, 30));
-        nameTextField3.setPreferredSize(new java.awt.Dimension(60, 30));
-        nameTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
+        numberTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        numberTextField.setToolTipText("");
+        numberTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
+        numberTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        numberTextField.setMaximumSize(new java.awt.Dimension(60, 30));
+        numberTextField.setPreferredSize(new java.awt.Dimension(60, 30));
+        numberTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                nameTextField3FocusGained(evt);
+                numberTextFieldFocusGained(evt);
             }
         });
-        nameTextField3.addActionListener(new java.awt.event.ActionListener() {
+        numberTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTextField3ActionPerformed(evt);
+                numberTextFieldActionPerformed(evt);
             }
         });
 
-        nameTextField4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nameTextField4.setToolTipText("");
-        nameTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
-        nameTextField4.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        nameTextField4.setMaximumSize(new java.awt.Dimension(60, 30));
-        nameTextField4.setPreferredSize(new java.awt.Dimension(60, 30));
-        nameTextField4.addFocusListener(new java.awt.event.FocusAdapter() {
+        provinceTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        provinceTextField.setToolTipText("");
+        provinceTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
+        provinceTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        provinceTextField.setMaximumSize(new java.awt.Dimension(60, 30));
+        provinceTextField.setPreferredSize(new java.awt.Dimension(60, 30));
+        provinceTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                nameTextField4FocusGained(evt);
+                provinceTextFieldFocusGained(evt);
             }
         });
-        nameTextField4.addActionListener(new java.awt.event.ActionListener() {
+        provinceTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTextField4ActionPerformed(evt);
+                provinceTextFieldActionPerformed(evt);
             }
         });
 
-        nameTextField5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nameTextField5.setToolTipText("");
-        nameTextField5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
-        nameTextField5.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        nameTextField5.setMaximumSize(new java.awt.Dimension(60, 30));
-        nameTextField5.setPreferredSize(new java.awt.Dimension(60, 30));
-        nameTextField5.addFocusListener(new java.awt.event.FocusAdapter() {
+        townTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        townTextField.setToolTipText("");
+        townTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
+        townTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        townTextField.setMaximumSize(new java.awt.Dimension(60, 30));
+        townTextField.setPreferredSize(new java.awt.Dimension(60, 30));
+        townTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                nameTextField5FocusGained(evt);
+                townTextFieldFocusGained(evt);
             }
         });
-        nameTextField5.addActionListener(new java.awt.event.ActionListener() {
+        townTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTextField5ActionPerformed(evt);
+                townTextFieldActionPerformed(evt);
             }
         });
 
-        nameTextField6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nameTextField6.setToolTipText("");
-        nameTextField6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
-        nameTextField6.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        nameTextField6.setMaximumSize(new java.awt.Dimension(60, 30));
-        nameTextField6.setPreferredSize(new java.awt.Dimension(60, 30));
-        nameTextField6.addFocusListener(new java.awt.event.FocusAdapter() {
+        addressTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addressTextField.setToolTipText("");
+        addressTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
+        addressTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        addressTextField.setMaximumSize(new java.awt.Dimension(60, 30));
+        addressTextField.setPreferredSize(new java.awt.Dimension(60, 30));
+        addressTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                nameTextField6FocusGained(evt);
+                addressTextFieldFocusGained(evt);
             }
         });
-        nameTextField6.addActionListener(new java.awt.event.ActionListener() {
+        addressTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTextField6ActionPerformed(evt);
+                addressTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Nombre");
+        nameLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        nameLabel.setText("Nombre");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setText("Apellidos");
+        surnameLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        surnameLabel.setText("Apellidos");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setText("Teléfono");
+        telefonoLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        telefonoLabel.setText("Teléfono");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setText("Municipio");
+        townLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        townLabel.setText("Municipio");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setText("Provincia");
+        provinceLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        provinceLabel.setText("Provincia");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setText("Dirección");
+        addressLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        addressLabel.setText("Dirección");
 
-        jButton1.setText("Guardar");
+        saveButton.setText("Guardar");
 
-        jButton3.setText("Editar");
+        editButton.setText("Editar");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jLabel9.setText("Opiniones");
+        opinionLabel.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        opinionLabel.setText("Opiniones");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        descriptionTextArea.setColumns(20);
+        descriptionTextArea.setRows(5);
+        descriptionScrollPane.setViewportView(descriptionTextArea);
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel10.setText("Descripción");
+        descriptionLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        descriptionLabel.setText("Descripción");
 
         star1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/starHalf1.png"))); // NOI18N
 
@@ -334,45 +310,45 @@ public class ProfilePanel extends javax.swing.JPanel {
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(imageAvatar, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(jLabel10)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(descriptionLabel)
+                            .addComponent(descriptionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(rightPanelLayout.createSequentialGroup()
-                                    .addComponent(nameTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(numberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(nameTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(provinceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(rightPanelLayout.createSequentialGroup()
                                     .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(nameTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel4))
+                                        .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nameLabel)
+                                        .addComponent(telefonoLabel))
                                     .addGap(18, 18, 18)
                                     .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel3)
-                                        .addComponent(nameTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(provinceLabel)
+                                        .addComponent(surnameLabel)
+                                        .addComponent(surnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(rightPanelLayout.createSequentialGroup()
                                     .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(nameTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addComponent(townTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(townLabel, javax.swing.GroupLayout.Alignment.LEADING))
                                     .addGap(18, 18, 18)
                                     .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(nameTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel7))))
+                                        .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(addressLabel))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(saveButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3))))
+                                .addComponent(editButton))))
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jSeparator1))
+                        .addComponent(mainSeparator))
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel9)
+                        .addComponent(opinionLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(star1)
                         .addGap(0, 0, 0)
@@ -395,7 +371,7 @@ public class ProfilePanel extends javax.swing.JPanel {
                         .addComponent(star10)
                         .addGap(18, 18, 18)
                         .addComponent(ratingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 50, Short.MAX_VALUE))
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1)))
@@ -408,45 +384,45 @@ public class ProfilePanel extends javax.swing.JPanel {
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(nameLabel)
+                            .addComponent(surnameLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nameTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(surnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6))
+                            .addComponent(telefonoLabel)
+                            .addComponent(provinceLabel))
                         .addGap(5, 5, 5)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nameTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(numberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(provinceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7))
+                            .addComponent(townLabel)
+                            .addComponent(addressLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nameTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(townTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton1)))
+                            .addComponent(editButton)
+                            .addComponent(saveButton)))
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addComponent(descriptionLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(descriptionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(mainSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel9)
+                            .addComponent(opinionLabel)
                             .addComponent(star1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(star2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(star3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -457,7 +433,7 @@ public class ProfilePanel extends javax.swing.JPanel {
                             .addComponent(star10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ratingLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(209, 209, 209)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(star5)
@@ -498,96 +474,124 @@ public class ProfilePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameTextFieldActionPerformed
 
-    private void nameTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTextField1FocusGained
-
-    }//GEN-LAST:event_nameTextField1FocusGained
-
-    private void nameTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextField1ActionPerformed
+    private void surnameTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_surnameTextFieldFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextField1ActionPerformed
+    }//GEN-LAST:event_surnameTextFieldFocusGained
 
-    private void nameTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTextField2FocusGained
+    private void surnameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surnameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextField2FocusGained
+    }//GEN-LAST:event_surnameTextFieldActionPerformed
 
-    private void nameTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextField2ActionPerformed
+    private void numberTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numberTextFieldFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextField2ActionPerformed
+    }//GEN-LAST:event_numberTextFieldFocusGained
 
-    private void nameTextField3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTextField3FocusGained
+    private void numberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextField3FocusGained
+    }//GEN-LAST:event_numberTextFieldActionPerformed
 
-    private void nameTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextField3ActionPerformed
+    private void provinceTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_provinceTextFieldFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextField3ActionPerformed
+    }//GEN-LAST:event_provinceTextFieldFocusGained
 
-    private void nameTextField4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTextField4FocusGained
+    private void provinceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provinceTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextField4FocusGained
+    }//GEN-LAST:event_provinceTextFieldActionPerformed
 
-    private void nameTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextField4ActionPerformed
+    private void townTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_townTextFieldFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextField4ActionPerformed
+    }//GEN-LAST:event_townTextFieldFocusGained
 
-    private void nameTextField5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTextField5FocusGained
+    private void townTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_townTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextField5FocusGained
+    }//GEN-LAST:event_townTextFieldActionPerformed
 
-    private void nameTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextField5ActionPerformed
+    private void addressTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_addressTextFieldFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextField5ActionPerformed
+    }//GEN-LAST:event_addressTextFieldFocusGained
 
-    private void nameTextField6FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTextField6FocusGained
+    private void addressTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextField6FocusGained
-
-    private void nameTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextField6ActionPerformed
+    }//GEN-LAST:event_addressTextFieldActionPerformed
     
     public void addProfileButtonActionListener(ActionListener al) {
         this.profileButton.addActionListener(al);
+    }
+    
+    public void addEditButtonActionListener(ActionListener al) {
+        this.editButton.addActionListener(al);
+    }
+    public void addSaveButtonActionListener(ActionListener al) {
+        this.saveButton.addActionListener(al);
     }
 
     public void addExitButtonActionListener(ActionListener al) {
         this.exitButton.addActionListener(al);
     }
+    
+    public void setNameTextField(String text){
+        this.nameTextField.setText(text);
+    }
+    public void setSurnameTextField(String text){
+        this.surnameTextField.setText(text);
+    }
+    public void setNumberTextField(String text){
+        this.numberTextField.setText(text);
+    }
+    public void setProvinceTextField(String text){
+        this.provinceTextField.setText(text);
+    }
+    public void setTownTextField(String text){
+        this.townTextField.setText(text);
+    }
+    public void setAdressTextField(String text){
+        this.addressTextField.setText(text);
+    }
+    public void setDescriptionTextField(String text){
+        this.descriptionTextArea.setText(text);
+    }
    
+    public void enableFields(boolean enable){
+        this.nameTextField.setEnabled(enable);
+        this.surnameTextField.setEnabled(enable);
+        this.numberTextField.setEnabled(enable);
+        this.provinceTextField.setEnabled(enable);
+        this.townTextField.setEnabled(enable);
+        this.addressTextField.setEnabled(enable);
+        this.descriptionTextArea.setEnabled(enable);
+    }
+    
+    public void enableSaveButton(boolean enable){
+        this.saveButton.setEnabled(enable);
+    }
+    public void enableEditButton(boolean enable){
+        this.editButton.setEnabled(enable);
+    }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel addressLabel;
+    private javax.swing.JTextField addressTextField;
     private javax.swing.JLabel appLogo;
+    private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JScrollPane descriptionScrollPane;
+    private javax.swing.JTextArea descriptionTextArea;
+    private javax.swing.JButton editButton;
     private javax.swing.JButton exitButton;
     private com.nicovilab.profeconecta.view.extraSwingComponents.ImageAvatar imageAvatar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel leftPanel;
+    private javax.swing.JSeparator mainSeparator;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
-    private javax.swing.JTextField nameTextField1;
-    private javax.swing.JTextField nameTextField2;
-    private javax.swing.JTextField nameTextField3;
-    private javax.swing.JTextField nameTextField4;
-    private javax.swing.JTextField nameTextField5;
-    private javax.swing.JTextField nameTextField6;
+    private javax.swing.JTextField numberTextField;
+    private javax.swing.JLabel opinionLabel;
     private javax.swing.JButton profileButton;
+    private javax.swing.JLabel provinceLabel;
+    private javax.swing.JTextField provinceTextField;
     private javax.swing.JLabel ratingLabel;
     private javax.swing.JPanel rightPanel;
+    private javax.swing.JButton saveButton;
     private javax.swing.JLabel star1;
     private javax.swing.JLabel star10;
     private javax.swing.JLabel star2;
@@ -598,5 +602,10 @@ public class ProfilePanel extends javax.swing.JPanel {
     private javax.swing.JLabel star7;
     private javax.swing.JLabel star8;
     private javax.swing.JLabel star9;
+    private javax.swing.JLabel surnameLabel;
+    private javax.swing.JTextField surnameTextField;
+    private javax.swing.JLabel telefonoLabel;
+    private javax.swing.JLabel townLabel;
+    private javax.swing.JTextField townTextField;
     // End of variables declaration//GEN-END:variables
 }

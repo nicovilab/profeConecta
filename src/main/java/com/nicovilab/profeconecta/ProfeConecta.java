@@ -23,7 +23,7 @@ public class ProfeConecta {
         MainJFrame mainView = new MainJFrame();
         LoginController loginController = new LoginController(mainView, mainView.getLoginPanel());
         SignUpController signUpController = new SignUpController(mainView, mainView.getSignUpPanel());
-        UserPanelController userPanelController = new UserPanelController(mainView, mainView.getUserPanel());
+        
         
     }
 }

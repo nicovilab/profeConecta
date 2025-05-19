@@ -47,7 +47,7 @@ public class SignUpController {
             char[] password = signUpPanel.getPasswordField().getPassword();
             char[] confirmPassword = signUpPanel.getConfirmPasswordField().getPassword();
 
-            if (validarRegistro(name, surname, email, password, confirmPassword)) {
+            if (validateRegister(name, surname, email, password, confirmPassword)) {
                 if (loginService.registerSuccessful(name, surname, email, password)) {
                     signUpPanel.setInformationTextField("Se ha registrado el usuario correctamente. Redirigiendo al login", Color.GREEN);
                     delayedViewChanged();
@@ -59,7 +59,7 @@ public class SignUpController {
         };
     }
 
-    public boolean validarRegistro(String name, String surname, String email, char[] password, char[] confirmPassword) {
+    public boolean validateRegister(String name, String surname, String email, char[] password, char[] confirmPassword) {
         // Validar en el orden original de prioridades
         if (name.isEmpty()) {
             signUpPanel.setInformationTextField("El nombre es obligatorio", Color.RED);
