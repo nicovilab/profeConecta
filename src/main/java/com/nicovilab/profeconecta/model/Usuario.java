@@ -19,7 +19,7 @@ public class Usuario {
   private String email;
   private String contrasena;
   private String telefono;
-  private String fotoPerfil;
+  private byte[] fotoPerfil;
   private String descripcion;
   private Date fechaRegistro;
   private boolean esAdmin;

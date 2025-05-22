@@ -18,6 +18,6 @@ public class Direccion {
     private String municipio;
     private String codigoPostal;
     private String direccion;
-    private double latitud;
-    private double longitud;
+    private String latitud;
+    private String longitud;
 }

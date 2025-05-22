@@ -7,14 +7,30 @@ package com.nicovilab.profeconecta.controller;
 import com.nicovilab.profeconecta.model.Direccion;
 import com.nicovilab.profeconecta.model.Usuario;
 import com.nicovilab.profeconecta.model.VistaValoracion;
+import com.nicovilab.profeconecta.model.address.AutonomousCommunity;
+import com.nicovilab.profeconecta.model.address.Province;
+import com.nicovilab.profeconecta.model.address.Town;
 import com.nicovilab.profeconecta.service.DatabaseService;
+import com.nicovilab.profeconecta.service.ProfileService;
+import static com.nicovilab.profeconecta.utils.Utils.convertFileToBytes;
+import static com.nicovilab.profeconecta.utils.Utils.getAutonomousCommunitiesData;
 import com.nicovilab.profeconecta.view.MainJFrame;
 import com.nicovilab.profeconecta.view.ProfilePanel;
+import com.nicovilab.profeconecta.view.extraSwingComponents.ImageAvatar;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -24,37 +40,62 @@ public class ProfileController {
 
     private final MainJFrame view;
     private final ProfilePanel profilePanel;
-    private final Usuario user;
-    private final Direccion direccion;
-    private final DatabaseService databaseService = new DatabaseService();
+    private final DatabaseService databaseService;
+    private final ProfileService profileService;
+    private final List<AutonomousCommunity> autonomousCommunities;
+    
+    private final String userEmail;
 
-    public ProfileController(MainJFrame view, ProfilePanel profilePanel, Usuario user, Direccion direccion) {
+    public ProfileController(MainJFrame view, ProfilePanel profilePanel, Usuario user) {
         this.view = view;
         this.profilePanel = profilePanel;
-        this.user = user;
-        this.direccion = direccion;
+        this.userEmail = user.getEmail();
+        
+        databaseService = new DatabaseService();
+        profileService = new ProfileService();
+        
+        this.autonomousCommunities = getAutonomousCommunitiesData();
+        
+        populateAddressData(autonomousCommunities);
+        
         profilePanel.addProfileButtonActionListener(this.getProfileButtonActionListener());
         profilePanel.addExitButtonActionListener(this.getExitButtonActionListener());
         profilePanel.addEditButtonActionListener(this.getEditButtonActionListener());
         profilePanel.addSaveButtonActionListener(this.getSaveButtonActionListener());
+        profilePanel.addImageAvatarButtonActionListener(this.getImageAvatarButtonActionListener());
         
+        VistaValoracion vistaValoracion = databaseService.getAverageRating(String.valueOf(user.getIdUsuario()));
         
-        DatabaseService databaseService = new DatabaseService();
-        VistaValoracion vistaValoracion = databaseService.getAverageRating("39");
-        profilePanel.getRatingLabel().setText(vistaValoracion.getValoracionMedia() + " con " + vistaValoracion.getTotalValoraciones() + " valoraciones");
-        setStarRating(vistaValoracion.getValoracionMedia().doubleValue());
+        if(vistaValoracion != null) {
+            profilePanel.getRatingLabel().setText(vistaValoracion.getValoracionMedia() + " con " + vistaValoracion.getTotalValoraciones() + " valoraciones");
+            setStarRating(vistaValoracion.getValoracionMedia().doubleValue());
+        } else {
+            setStarRating(0D);
+        }
         
-        setUserInfo();
-        
+        setUserInfo(user, profileService.fetchUserAddress(user.getEmail()));
     }
-
-
     
-    
-
     private ActionListener getProfileButtonActionListener() {
         return (ActionEvent e) -> {
-
+            
+                
+        };
+    }
+   
+    private ActionListener getImageAvatarButtonActionListener() {
+        return (ActionEvent e) -> {
+          File selectedFile = selectImageFile();
+                if (selectedFile != null) {
+                    try {
+                        byte[] imageBytes = convertFileToBytes(selectedFile);
+                        
+                        databaseService.updateUserImage(imageBytes, userEmail);
+                        
+                    } catch (IOException ex) {
+                        Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }
         };
     }
    
@@ -69,14 +110,24 @@ public class ProfileController {
     private ActionListener getSaveButtonActionListener() {
         return (ActionEvent e) -> {
             
-            databaseService.updateUserInfo(profilePanel.getNameTextField().getText(),
+            String selectedTown = profilePanel.getTownComboBox().getItemAt(profilePanel.getTownComboBox().getSelectedIndex());
+
+            Town town = autonomousCommunities.stream()
+                    .flatMap(x -> x.getProvinces().stream())
+                    .flatMap(x -> x.getTowns().stream())
+                    .filter(y -> y.getLabel().equals(selectedTown))
+                    .findFirst()
+                    .orElse(null);
+            
+            databaseService.updateUserInfo(
+                    profilePanel.getNameTextField().getText(),
                     profilePanel.getSurnameTextField().getText(),
-                    profilePanel.getSurnameTextField().getText(),
-                    profilePanel.getProvinceTextField().getText(),
-                    profilePanel.getTownTextField().getText(),
+                    profilePanel.getNumberTextField().getText(),
+                    profilePanel.getProvinceComboBox().getItemAt(profilePanel.getProvinceComboBox().getSelectedIndex()),
+                    town,
                     profilePanel.getAddressTextField().getText(),
                     profilePanel.getDescriptionTextArea().getText(),
-                    user.getEmail());
+                    userEmail);
             profilePanel.enableFields(false);
             profilePanel.enableEditButton(true);
             profilePanel.enableSaveButton(false);
@@ -90,19 +141,21 @@ public class ProfileController {
         };
     }
     
-    private void setUserInfo(){
+    private void setUserInfo(Usuario user, Direccion address) {
         profilePanel.setNameTextField(user.getNombre());
         profilePanel.setSurnameTextField(user.getApellidos());
-        profilePanel.setNumberTextField(user.getTelefono());
-        profilePanel.setDescriptionTextField(user.getDescripcion());
-        profilePanel.setProvinceTextField(direccion.getProvincia());
-        profilePanel.setTownTextField(direccion.getMunicipio());
-        profilePanel.setAdressTextField(direccion.getDireccion());
+        profilePanel.setNumberTextField(user.getTelefono() == null ? null : user.getTelefono());
+        profilePanel.setDescriptionTextField(user.getDescripcion() == null ? null : user.getDescripcion());
+        if(address != null) {
+            profilePanel.setProvinceTextField(address.getProvincia() == null ? null : address.getProvincia());
+            profilePanel.setTownTextField(address.getMunicipio() == null ? null : address.getMunicipio());
+            profilePanel.setAdressTextField(address.getDireccion() == null ? null : address.getDireccion());
+        }
+        loadUserImage(user, profilePanel.getImageAvatar());
     }
-    
+
     
     private void setStarRating(Double valoracionMedia) {
-
         int visibleStars = (int) Math.round(roundRating(valoracionMedia)* 2d);
 
         for (int i = 1; i < 11; i++) {
@@ -132,6 +185,56 @@ public class ProfileController {
             return valoracionMedia;
         }
         return null;
+    }
+
+    private File selectImageFile() {
+        JFileChooser fileChooser = new JFileChooser();
+
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "Archivos de imagen", "jpg", "jpeg", "png");
+        fileChooser.setFileFilter(filter);
+
+        int result = fileChooser.showOpenDialog(null);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            return fileChooser.getSelectedFile();
+        }
+
+        return null;
+    }
+    
+    private void loadUserImage(Usuario user, ImageAvatar imageAvatar) {
+        if (user != null && user.getFotoPerfil() != null) {
+            ImageIcon icon = new ImageIcon(user.getFotoPerfil());
+
+            Image image = icon.getImage();
+            Image resizedImage = image.getScaledInstance(
+                    imageAvatar.getWidth(),
+                    imageAvatar.getHeight(),
+                    Image.SCALE_SMOOTH
+            );
+
+            imageAvatar.setIcon(new ImageIcon(resizedImage));
+        }
+    }
+
+    private void populateAddressData(List<AutonomousCommunity> autonomousCommunitiesData) {        
+        DefaultComboBoxModel<String> provinceModel = new DefaultComboBoxModel<>();
+        List<String> provinceNames = autonomousCommunitiesData.stream()
+                .flatMap(community -> community.getProvinces().stream())
+                .map(Province::getLabel)
+                .toList();
+        provinceModel.addAll(provinceNames);
+        profilePanel.getProvinceComboBox().setModel(provinceModel);
+
+        DefaultComboBoxModel<String> townModel = new DefaultComboBoxModel<>();
+        List<String> townNames = autonomousCommunitiesData.stream()
+                .flatMap(community -> community.getProvinces().stream())
+                .flatMap(province -> province.getTowns().stream())
+                .map(Town::getLabel)
+                .toList();
+        townModel.addAll(townNames);
+        profilePanel.getTownComboBox().setModel(townModel);
     }
 
 }

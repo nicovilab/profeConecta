@@ -13,7 +13,7 @@ import com.nicovilab.profeconecta.model.Direccion;
 public class ProfileService {
      DatabaseService databaseService;
 
-    public Direccion profileInfoSuccessful(String username) {
+    public Direccion fetchUserAddress(String username) {
         databaseService = new DatabaseService();
 
         return databaseService.profileInfoSuccessful(username);

@@ -4,7 +4,6 @@
  */
 package com.nicovilab.profeconecta.controller;
 
-import com.nicovilab.profeconecta.model.Direccion;
 import com.nicovilab.profeconecta.model.Usuario;
 import com.nicovilab.profeconecta.service.ProfileService;
 import com.nicovilab.profeconecta.view.MainJFrame;
@@ -21,10 +20,8 @@ public class UserPanelController {
     private final UserPanel userPanel;
     private final ProfileService profileService;
     private final Usuario user;
-    private final Direccion direccion;
     
     public UserPanelController(MainJFrame view, UserPanel userPanel, Usuario user){
-        direccion = new Direccion();
         profileService = new ProfileService();
         this.view = view;
         this.userPanel = userPanel;
@@ -35,10 +32,7 @@ public class UserPanelController {
     
     private ActionListener getProfileButtonActionListener() {
         return (ActionEvent e) -> {
-            
-            if(profileService.profileInfoSuccessful(user.getEmail()) != null){
-            ProfileController profileController = new ProfileController(view, view.getProfilePanel(), user, profileService.profileInfoSuccessful(user.getEmail()));
-            }
+            new ProfileController(view, view.getProfilePanel(), user);
             view.showPanel("profile");
             
         };

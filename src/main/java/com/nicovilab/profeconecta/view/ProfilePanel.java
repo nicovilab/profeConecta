@@ -46,12 +46,10 @@ public class ProfilePanel extends javax.swing.JPanel {
         exitButton = new IntegratedButton("Cerrar sesión", false);
         rightPanel = new JPanelGradient(new Color(230, 243, 250), new Color(255,255,255));
         imageAvatar = new com.nicovilab.profeconecta.view.extraSwingComponents.ImageAvatar();
-        jButton2 = new CircularIntegratedButton();
+        imageAvatarButton = new CircularIntegratedButton();
         nameTextField = new javax.swing.JTextField();
         surnameTextField = new javax.swing.JTextField();
         numberTextField = new javax.swing.JTextField();
-        provinceTextField = new javax.swing.JTextField();
-        townTextField = new javax.swing.JTextField();
         addressTextField = new javax.swing.JTextField();
         nameLabel = new javax.swing.JLabel();
         surnameLabel = new javax.swing.JLabel();
@@ -78,6 +76,8 @@ public class ProfilePanel extends javax.swing.JPanel {
         star9 = new javax.swing.JLabel();
         star10 = new javax.swing.JLabel();
         ratingLabel = new javax.swing.JLabel();
+        provinceComboBox = new javax.swing.JComboBox<>();
+        townComboBox = new javax.swing.JComboBox<>();
 
         appLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profeConecta128px.png"))); // NOI18N
 
@@ -135,11 +135,11 @@ public class ProfilePanel extends javax.swing.JPanel {
 
         imageAvatar.setBackground(new java.awt.Color(255, 255, 255));
         imageAvatar.setForeground(new java.awt.Color(255, 51, 0));
-        imageAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fotoStockPerfil.jpg"))); // NOI18N
+        imageAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/defaultAvatar.png"))); // NOI18N
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/uploadImage32px.png"))); // NOI18N
-        imageAvatar.add(jButton2);
-        jButton2.setBounds(10, 0, 130, 130);
+        imageAvatarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/uploadImage32px.png"))); // NOI18N
+        imageAvatar.add(imageAvatarButton);
+        imageAvatarButton.setBounds(10, 0, 130, 130);
 
         nameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         nameTextField.setToolTipText("");
@@ -189,40 +189,6 @@ public class ProfilePanel extends javax.swing.JPanel {
         numberTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 numberTextFieldActionPerformed(evt);
-            }
-        });
-
-        provinceTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        provinceTextField.setToolTipText("");
-        provinceTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
-        provinceTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        provinceTextField.setMaximumSize(new java.awt.Dimension(60, 30));
-        provinceTextField.setPreferredSize(new java.awt.Dimension(60, 30));
-        provinceTextField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                provinceTextFieldFocusGained(evt);
-            }
-        });
-        provinceTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                provinceTextFieldActionPerformed(evt);
-            }
-        });
-
-        townTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        townTextField.setToolTipText("");
-        townTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
-        townTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        townTextField.setMaximumSize(new java.awt.Dimension(60, 30));
-        townTextField.setPreferredSize(new java.awt.Dimension(60, 30));
-        townTextField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                townTextFieldFocusGained(evt);
-            }
-        });
-        townTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                townTextFieldActionPerformed(evt);
             }
         });
 
@@ -302,6 +268,10 @@ public class ProfilePanel extends javax.swing.JPanel {
 
         ratingLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        provinceComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        townComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
         rightPanelLayout.setHorizontalGroup(
@@ -314,13 +284,13 @@ public class ProfilePanel extends javax.swing.JPanel {
                             .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(descriptionLabel)
                             .addComponent(descriptionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(rightPanelLayout.createSequentialGroup()
                                     .addComponent(numberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(provinceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(provinceComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(rightPanelLayout.createSequentialGroup()
                                     .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,10 +302,14 @@ public class ProfilePanel extends javax.swing.JPanel {
                                         .addComponent(surnameLabel)
                                         .addComponent(surnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(rightPanelLayout.createSequentialGroup()
-                                    .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(townTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(townLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addGap(18, 18, 18)
+                                    .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(rightPanelLayout.createSequentialGroup()
+                                            .addComponent(townLabel)
+                                            .addGap(145, 145, 145))
+                                        .addGroup(rightPanelLayout.createSequentialGroup()
+                                            .addGap(1, 1, 1)
+                                            .addComponent(townComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGap(18, 18, 18)))
                                     .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(addressLabel))))
@@ -371,11 +345,11 @@ public class ProfilePanel extends javax.swing.JPanel {
                         .addComponent(star10)
                         .addGap(18, 18, 18)
                         .addComponent(ratingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 50, Short.MAX_VALUE))
+                        .addGap(0, 41, Short.MAX_VALUE))
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1)))
-                .addGap(107, 107, 107))
+                .addGap(116, 116, 116))
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,15 +371,15 @@ public class ProfilePanel extends javax.swing.JPanel {
                         .addGap(5, 5, 5)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(numberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(provinceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(provinceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(townLabel)
                             .addComponent(addressLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(townTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(townComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(editButton)
@@ -432,13 +406,10 @@ public class ProfilePanel extends javax.swing.JPanel {
                             .addComponent(star9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(star10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ratingLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(209, 209, 209)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                    .addGroup(rightPanelLayout.createSequentialGroup()
-                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(star5)
-                            .addComponent(star6))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(1, 1, 1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
+                    .addComponent(star5)
+                    .addComponent(star6))
                 .addContainerGap())
         );
 
@@ -490,22 +461,6 @@ public class ProfilePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_numberTextFieldActionPerformed
 
-    private void provinceTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_provinceTextFieldFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_provinceTextFieldFocusGained
-
-    private void provinceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provinceTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_provinceTextFieldActionPerformed
-
-    private void townTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_townTextFieldFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_townTextFieldFocusGained
-
-    private void townTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_townTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_townTextFieldActionPerformed
-
     private void addressTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_addressTextFieldFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_addressTextFieldFocusGained
@@ -528,6 +483,9 @@ public class ProfilePanel extends javax.swing.JPanel {
     public void addExitButtonActionListener(ActionListener al) {
         this.exitButton.addActionListener(al);
     }
+    public void addImageAvatarButtonActionListener(ActionListener al) {
+        this.imageAvatarButton.addActionListener(al);
+    }
     
     public void setNameTextField(String text){
         this.nameTextField.setText(text);
@@ -539,10 +497,10 @@ public class ProfilePanel extends javax.swing.JPanel {
         this.numberTextField.setText(text);
     }
     public void setProvinceTextField(String text){
-        this.provinceTextField.setText(text);
+        this.provinceComboBox.setSelectedItem(text);
     }
     public void setTownTextField(String text){
-        this.townTextField.setText(text);
+        this.townComboBox.setSelectedItem(text);
     }
     public void setAdressTextField(String text){
         this.addressTextField.setText(text);
@@ -555,8 +513,8 @@ public class ProfilePanel extends javax.swing.JPanel {
         this.nameTextField.setEnabled(enable);
         this.surnameTextField.setEnabled(enable);
         this.numberTextField.setEnabled(enable);
-        this.provinceTextField.setEnabled(enable);
-        this.townTextField.setEnabled(enable);
+        this.provinceComboBox.setEnabled(enable);
+        this.townComboBox.setEnabled(enable);
         this.addressTextField.setEnabled(enable);
         this.descriptionTextArea.setEnabled(enable);
     }
@@ -578,7 +536,7 @@ public class ProfilePanel extends javax.swing.JPanel {
     private javax.swing.JButton editButton;
     private javax.swing.JButton exitButton;
     private com.nicovilab.profeconecta.view.extraSwingComponents.ImageAvatar imageAvatar;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton imageAvatarButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JSeparator mainSeparator;
@@ -587,8 +545,8 @@ public class ProfilePanel extends javax.swing.JPanel {
     private javax.swing.JTextField numberTextField;
     private javax.swing.JLabel opinionLabel;
     private javax.swing.JButton profileButton;
+    private javax.swing.JComboBox<String> provinceComboBox;
     private javax.swing.JLabel provinceLabel;
-    private javax.swing.JTextField provinceTextField;
     private javax.swing.JLabel ratingLabel;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JButton saveButton;
@@ -605,7 +563,7 @@ public class ProfilePanel extends javax.swing.JPanel {
     private javax.swing.JLabel surnameLabel;
     private javax.swing.JTextField surnameTextField;
     private javax.swing.JLabel telefonoLabel;
+    private javax.swing.JComboBox<String> townComboBox;
     private javax.swing.JLabel townLabel;
-    private javax.swing.JTextField townTextField;
     // End of variables declaration//GEN-END:variables
 }

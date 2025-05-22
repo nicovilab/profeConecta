@@ -18,8 +18,8 @@ CREATE TABLE DIRECCION (
   municipio varchar(255),
   codigo_postal varchar(255),
   direccion varchar(255),
-  latitud decimal,
-  longitud decimal,
+  latitud varchar(12),
+  longitud varchar(12),
   FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario)
 );
 

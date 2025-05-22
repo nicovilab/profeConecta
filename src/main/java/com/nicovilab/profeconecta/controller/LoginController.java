@@ -44,9 +44,9 @@ public class LoginController {
         Usuario usuarioAutenticado = loginService.loginSuccessful(loginPanel.getEmailTextField().getText(), 
                                                                  loginPanel.getPasswordField().getPassword());
         if (usuarioAutenticado != null) {
+            new UserPanelController(view, view.getUserPanel(), usuarioAutenticado);
             view.showPanel("userpanel");
             loginPanel.clearAllTextFields();
-            UserPanelController userPanelController = new UserPanelController(view, view.getUserPanel(), usuarioAutenticado);
             System.out.println(usuarioAutenticado);
         } else {
             loginPanel.setInformationTextField("Las credenciales no son válidas", Color.red);
