@@ -137,7 +137,7 @@ public class DatabaseService {
         return true;
     }
     
-    public List<Usuario> findNearestUsers() {
+    public List<Usuario> findNearestUsers(int userId) {
         PreparedStatement preparedStatement = createQuery("""
                      SELECT 
                        u.id_usuario,
@@ -155,11 +155,11 @@ public class DatabaseService {
                        ) AS distancia_km
                      FROM USUARIO u
                      JOIN DIRECCION d ON u.id_usuario = d.id_usuario
-                     JOIN DIRECCION ref_d ON ref_d.id_usuario = 39
-                     WHERE u.id_usuario != 39
+                     JOIN DIRECCION ref_d ON ref_d.id_usuario = ?
+                     WHERE u.id_usuario != ?
                      HAVING distancia_km <= 50
                      ORDER BY distancia_km ASC;
-                     """);
+                     """, userId);
         
          ResultSet resultSet = executeQuery(preparedStatement);
 
@@ -203,6 +203,20 @@ public class DatabaseService {
         }
     }
     
+    private PreparedStatement createQuery(String query, int... params) {
+    try {
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        for (int i = 0; i < params.length; i++) {
+            preparedStatement.setInt(i + 1, params[i]);
+        }
+
+        return preparedStatement;
+    } catch (SQLException ex) {
+        throw new RuntimeException("Error preparando la consulta", ex);
+    }
+}
+
     private PreparedStatement createQuery(String query) {
         try {
             return connection.prepareStatement(query);

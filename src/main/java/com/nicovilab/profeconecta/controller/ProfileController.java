@@ -58,6 +58,8 @@ public class ProfileController {
         
         populateAddressData(autonomousCommunities);
         
+        addProvinceComboBoxListener();
+        
         profilePanel.addProfileButtonActionListener(this.getProfileButtonActionListener());
         profilePanel.addExitButtonActionListener(this.getExitButtonActionListener());
         profilePanel.addEditButtonActionListener(this.getEditButtonActionListener());
@@ -104,6 +106,7 @@ public class ProfileController {
             profilePanel.enableFields(true);
             profilePanel.enableEditButton(false);
             profilePanel.enableSaveButton(true);
+            profilePanel.enableTownCombobox(false);
         };
     }
 
@@ -236,5 +239,27 @@ public class ProfileController {
         townModel.addAll(townNames);
         profilePanel.getTownComboBox().setModel(townModel);
     }
+    
+    private void addProvinceComboBoxListener() {
+    profilePanel.getProvinceComboBox().addActionListener(e -> {
+        String selectedProvince = (String) profilePanel.getProvinceComboBox().getSelectedItem();
 
+        if (selectedProvince != null) {
+            profilePanel.enableTownCombobox(true);
+            List<Town> towns = autonomousCommunities.stream()
+                    .flatMap(c -> c.getProvinces().stream())
+                    .filter(p -> p.getLabel().equals(selectedProvince))
+                    .flatMap(p -> p.getTowns().stream())
+                    .toList();
+            
+
+            DefaultComboBoxModel<String> townModel = new DefaultComboBoxModel<>();
+            townModel.addAll(towns.stream()
+                    .map(Town::getLabel)
+                    .toList());
+            profilePanel.getTownComboBox().setModel(townModel);
+        }
+    });
+}
+    
 }

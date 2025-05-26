@@ -269,8 +269,11 @@ public class ProfilePanel extends javax.swing.JPanel {
         ratingLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         provinceComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        provinceComboBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
+        provinceComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         townComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        townComboBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
@@ -290,7 +293,7 @@ public class ProfilePanel extends javax.swing.JPanel {
                                 .addGroup(rightPanelLayout.createSequentialGroup()
                                     .addComponent(numberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(provinceComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(provinceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(rightPanelLayout.createSequentialGroup()
                                     .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,7 +311,7 @@ public class ProfilePanel extends javax.swing.JPanel {
                                             .addGap(145, 145, 145))
                                         .addGroup(rightPanelLayout.createSequentialGroup()
                                             .addGap(1, 1, 1)
-                                            .addComponent(townComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(townComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)))
                                     .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,7 +352,7 @@ public class ProfilePanel extends javax.swing.JPanel {
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1)))
-                .addGap(116, 116, 116))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -524,6 +527,9 @@ public class ProfilePanel extends javax.swing.JPanel {
     }
     public void enableEditButton(boolean enable){
         this.editButton.setEnabled(enable);
+    }
+    public void enableTownCombobox(boolean enable){
+        this.townComboBox.setEnabled(enable);
     }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

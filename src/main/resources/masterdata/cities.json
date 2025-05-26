@@ -278,7 +278,7 @@
           {
             "parent_code": "04",
             "code": "6",
-            "label": "Ejido, El"
+            "label": "El Ejido"
           },
           {
             "parent_code": "04",
@@ -325,7 +325,7 @@
           {
             "parent_code": "04",
             "code": "6",
-            "label": "Gallardos, Los"
+            "label": "Los Gallardos"
           },
           {
             "parent_code": "04",
@@ -442,7 +442,7 @@
           {
             "parent_code": "04",
             "code": "2",
-            "label": "Mojonera, La"
+            "label": "La Mojonera"
           },
           {
             "parent_code": "04",
@@ -643,7 +643,7 @@
           {
             "parent_code": "04",
             "code": "1",
-            "label": "Tres Villas, Las"
+            "label": "Las Tres Villas"
           },
           {
             "parent_code": "04",
@@ -781,7 +781,7 @@
           {
             "parent_code": "11",
             "code": "6",
-            "label": "Barrios, Los"
+            "label": "Los Barrios"
           },
           {
             "parent_code": "11",
@@ -807,7 +807,7 @@
           {
             "parent_code": "11",
             "code": "0",
-            "label": "Bosque, El"
+            "label": "El Bosque"
           },
           {
             "parent_code": "11",
@@ -854,7 +854,7 @@
           {
             "parent_code": "11",
             "code": "4",
-            "label": "Gastor, El"
+            "label": "El Gastor"
           },
           {
             "parent_code": "11",
@@ -880,7 +880,7 @@
           {
             "parent_code": "11",
             "code": "3",
-            "label": "Línea de la Concepción, La"
+            "label": "La Línea de la Concepción"
           },
           {
             "parent_code": "11",
@@ -913,7 +913,7 @@
           {
             "parent_code": "11",
             "code": "6",
-            "label": "Puerto de Santa María, El"
+            "label": "El Puerto de Santa María"
           },
           {
             "parent_code": "11",
@@ -1114,7 +1114,7 @@
           {
             "parent_code": "14",
             "code": "6",
-            "label": "Blázquez, Los"
+            "label": "Los Blázquez"
           },
           {
             "parent_code": "14",
@@ -1154,12 +1154,12 @@
           {
             "parent_code": "14",
             "code": "4",
-            "label": "Carlota, La"
+            "label": "La Carlota"
           },
           {
             "parent_code": "14",
             "code": "0",
-            "label": "Carpio, El"
+            "label": "El Carpio"
           },
           {
             "parent_code": "14",
@@ -1262,7 +1262,7 @@
           {
             "parent_code": "14",
             "code": "7",
-            "label": "Granjuela, La"
+            "label": "La Granjuela"
           },
           {
             "parent_code": "14",
@@ -1274,12 +1274,12 @@
           {
             "parent_code": "14",
             "code": "4",
-            "label": "Guijarrosa, La"
+            "label": "La Guijarrosa"
           },
           {
             "parent_code": "14",
             "code": "8",
-            "label": "Guijo, El"
+            "label": "El Guijo"
           },
           {
             "parent_code": "14",
@@ -1438,7 +1438,7 @@
           {
             "parent_code": "14",
             "code": "5",
-            "label": "Rambla, La"
+            "label": "La Rambla"
           },
           {
             "parent_code": "14",
@@ -1492,7 +1492,7 @@
           {
             "parent_code": "14",
             "code": "4",
-            "label": "Victoria, La"
+            "label": "La Victoria"
           },
           {
             "parent_code": "14",
@@ -1553,7 +1553,7 @@
           {
             "parent_code": "14",
             "code": "9",
-            "label": "Viso, El"
+            "label": "El Viso"
           },
           {
             "parent_code": "14",
@@ -1796,7 +1796,7 @@
           {
             "parent_code": "18",
             "code": "9",
-            "label": "Calahorra, La"
+            "label": "La Calahorra"
           },
           {
             "parent_code": "18",
@@ -2067,7 +2067,7 @@
           {
             "parent_code": "18",
             "code": "6",
-            "label": "Gabias, Las"
+            "label": "Las Gabias"
           },
           {
             "parent_code": "18",
@@ -2128,7 +2128,7 @@
           {
             "parent_code": "18",
             "code": "9",
-            "label": "Guájares, Los"
+            "label": "Los Guájares"
           },
           {
             "parent_code": "18",
@@ -2322,7 +2322,7 @@
           {
             "parent_code": "18",
             "code": "3",
-            "label": "Malahá, La"
+            "label": "La Malahá"
           },
           {
             "parent_code": "18",
@@ -2488,12 +2488,12 @@
           {
             "parent_code": "18",
             "code": "0",
-            "label": "Peza, La"
+            "label": "La Peza"
           },
           {
             "parent_code": "18",
             "code": "8",
-            "label": "Pinar, El"
+            "label": "El Pinar"
           },
           {
             "parent_code": "18",
@@ -2617,7 +2617,7 @@
           {
             "parent_code": "18",
             "code": "7",
-            "label": "Taha, La"
+            "label": "La Taha"
           },
           {
             "parent_code": "18",
@@ -2678,7 +2678,7 @@
           {
             "parent_code": "18",
             "code": "2",
-            "label": "Valle, El"
+            "label": "El Valle"
           },
           {
             "parent_code": "18",
@@ -2760,7 +2760,7 @@
           {
             "parent_code": "18",
             "code": "7",
-            "label": "Zubia, La"
+            "label": "La Zubia"
           },
           {
             "parent_code": "18",
@@ -2793,7 +2793,7 @@
           {
             "parent_code": "21",
             "code": "1",
-            "label": "Almendro, El"
+            "label": "El Almendro"
           },
           {
             "parent_code": "21",
@@ -2896,7 +2896,7 @@
           {
             "parent_code": "21",
             "code": "2",
-            "label": "Campillo, El"
+            "label": "El Campillo"
           },
           {
             "parent_code": "21",
@@ -2929,7 +2929,7 @@
           {
             "parent_code": "21",
             "code": "7",
-            "label": "Cerro de Andévalo, El"
+            "label": "El Cerro de Andévalo"
           },
           {
             "parent_code": "21",
@@ -3018,12 +3018,12 @@
           {
             "parent_code": "21",
             "code": "6",
-            "label": "Granada de Río-Tinto, La"
+            "label": "La Granada de Río-Tinto"
           },
           {
             "parent_code": "21",
             "code": "2",
-            "label": "Granado, El"
+            "label": "El Granado"
           },
           {
             "parent_code": "21",
@@ -3098,7 +3098,7 @@
           {
             "parent_code": "21",
             "code": "6",
-            "label": "Marines, Los"
+            "label": "Los Marines"
           },
           {
             "parent_code": "21",
@@ -3117,7 +3117,7 @@
           {
             "parent_code": "21",
             "code": "9",
-            "label": "Nava, La"
+            "label": "La Nava"
           },
           {
             "parent_code": "21",
@@ -3136,7 +3136,7 @@
           {
             "parent_code": "21",
             "code": "5",
-            "label": "Palma del Condado, La"
+            "label": "La Palma del Condado"
           },
           {
             "parent_code": "21",
@@ -3309,7 +3309,7 @@
           {
             "parent_code": "21",
             "code": "6",
-            "label": "Zarza-Perrunal, La"
+            "label": "La Zarza-Perrunal"
           },
           {
             "parent_code": "21",
@@ -3489,7 +3489,7 @@
           {
             "parent_code": "23",
             "code": "3",
-            "label": "Carolina, La"
+            "label": "La Carolina"
           },
           {
             "parent_code": "23",
@@ -3578,7 +3578,7 @@
           {
             "parent_code": "23",
             "code": "9",
-            "label": "Guardia de Jaén, La"
+            "label": "La Guardia de Jaén"
           },
           {
             "parent_code": "23",
@@ -3632,7 +3632,7 @@
           {
             "parent_code": "23",
             "code": "1",
-            "label": "Iruela, La"
+            "label": "La Iruela"
           },
           {
             "parent_code": "23",
@@ -3805,7 +3805,7 @@
           {
             "parent_code": "23",
             "code": "1",
-            "label": "Puerta de Segura, La"
+            "label": "La Puerta de Segura"
           },
           {
             "parent_code": "23",
@@ -3978,7 +3978,7 @@
           {
             "parent_code": "23",
             "code": "9",
-            "label": "Villares, Los"
+            "label": "Los Villares"
           },
           {
             "parent_code": "23",
@@ -4207,12 +4207,12 @@
           {
             "parent_code": "29",
             "code": "4",
-            "label": "Borge, El"
+            "label": "El Borge"
           },
           {
             "parent_code": "29",
             "code": "1",
-            "label": "Burgo, El"
+            "label": "El Burgo"
           },
           {
             "parent_code": "29",
@@ -4770,7 +4770,7 @@
           {
             "parent_code": "41",
             "code": "4",
-            "label": "Algaba, La"
+            "label": "La Algaba"
           },
           {
             "parent_code": "41",
@@ -4859,7 +4859,7 @@
           {
             "parent_code": "41",
             "code": "5",
-            "label": "Cabezas de San Juan, Las"
+            "label": "Las Cabezas de San Juan"
           },
           {
             "parent_code": "41",
@@ -4871,7 +4871,7 @@
           {
             "parent_code": "41",
             "code": "7",
-            "label": "Campana, La"
+            "label": "La Campana"
           },
           {
             "parent_code": "41",
@@ -4939,7 +4939,7 @@
           {
             "parent_code": "41",
             "code": "0",
-            "label": "Castillo de las Guardas, El"
+            "label": "El Castillo de las Guardas"
           },
           {
             "parent_code": "41",
@@ -4972,17 +4972,17 @@
           {
             "parent_code": "41",
             "code": "2",
-            "label": "Coronil, El"
+            "label": "El Coronil"
           },
           {
             "parent_code": "41",
             "code": "8",
-            "label": "Corrales, Los"
+            "label": "Los Corrales"
           },
           {
             "parent_code": "41",
             "code": "8",
-            "label": "Cuervo de Sevilla, El"
+            "label": "El Cuervo de Sevilla"
           },
           {
             "parent_code": "41",
@@ -5022,7 +5022,7 @@
           {
             "parent_code": "41",
             "code": "9",
-            "label": "Garrobo, El"
+            "label": "El Garrobo"
           },
           {
             "parent_code": "41",
@@ -5118,12 +5118,12 @@
           {
             "parent_code": "41",
             "code": "7",
-            "label": "Luisiana, La"
+            "label": "La Luisiana"
           },
           {
             "parent_code": "41",
             "code": "3",
-            "label": "Madroño, El"
+            "label": "El Madroño"
           },
           {
             "parent_code": "41",
@@ -5163,7 +5163,7 @@
           {
             "parent_code": "41",
             "code": "4",
-            "label": "Molares, Los"
+            "label": "Los Molares"
           },
           {
             "parent_code": "41",
@@ -5182,7 +5182,7 @@
           {
             "parent_code": "41",
             "code": "5",
-            "label": "Navas de la Concepción, Las"
+            "label": "Las Navas de la Concepción"
           },
           {
             "parent_code": "41",
@@ -5201,12 +5201,12 @@
           {
             "parent_code": "41",
             "code": "0",
-            "label": "Palacios y Villafranca, Los"
+            "label": "Los Palacios y Villafranca"
           },
           {
             "parent_code": "41",
             "code": "3",
-            "label": "Palmar de Troya, El"
+            "label": "El Palmar de Troya"
           },
           {
             "parent_code": "41",
@@ -5232,7 +5232,7 @@
           {
             "parent_code": "41",
             "code": "2",
-            "label": "Pedroso, El"
+            "label": "El Pedroso"
           },
           {
             "parent_code": "41",
@@ -5258,42 +5258,42 @@
           {
             "parent_code": "41",
             "code": "9",
-            "label": "Puebla de Cazalla, La"
+            "label": "La Puebla de Cazalla"
           },
           {
             "parent_code": "41",
             "code": "5",
-            "label": "Puebla de los Infantes, La"
+            "label": "La Puebla de los Infantes"
           },
           {
             "parent_code": "41",
             "code": "8",
-            "label": "Puebla del Río, La"
+            "label": "La Puebla del Río"
           },
           {
             "parent_code": "41",
             "code": "2",
-            "label": "Real de la Jara, El"
+            "label": "El Real de la Jara"
           },
           {
             "parent_code": "41",
             "code": "9",
-            "label": "Rinconada, La"
+            "label": "La Rinconada"
           },
           {
             "parent_code": "41",
             "code": "4",
-            "label": "Roda de Andalucía, La"
+            "label": "La Roda de Andalucía"
           },
           {
             "parent_code": "41",
             "code": "0",
-            "label": "Ronquillo, El"
+            "label": "El Ronquillo"
           },
           {
             "parent_code": "41",
             "code": "5",
-            "label": "Rubio, El"
+            "label": "El Rubio"
           },
           {
             "parent_code": "41",
@@ -5333,7 +5333,7 @@
           {
             "parent_code": "41",
             "code": "0",
-            "label": "Saucejo, El"
+            "label": "El Saucejo"
           },
           {
             "parent_code": "41",
@@ -5415,7 +5415,7 @@
           {
             "parent_code": "41",
             "code": "0",
-            "label": "Viso del Alcor, El"
+            "label": "El Viso del Alcor"
           }
         ]
       }
@@ -6078,7 +6078,7 @@
           {
             "parent_code": "22",
             "code": "3",
-            "label": "Fueva, La"
+            "label": "La Fueva"
           },
           {
             "parent_code": "22",
@@ -6090,7 +6090,7 @@
           {
             "parent_code": "22",
             "code": "1",
-            "label": "Grado, El"
+            "label": "El Grado"
           },
           {
             "parent_code": "22",
@@ -6368,7 +6368,7 @@
           {
             "parent_code": "22",
             "code": "0",
-            "label": "Peñas de Riglos, Las"
+            "label": "Las Peñas de Riglos"
           },
           {
             "parent_code": "22",
@@ -6436,7 +6436,7 @@
           {
             "parent_code": "22",
             "code": "5",
-            "label": "Puebla de Castro, La"
+            "label": "La Puebla de Castro"
           },
           {
             "parent_code": "22",
@@ -6462,7 +6462,7 @@
           {
             "parent_code": "22",
             "code": "8",
-            "label": "Pueyo de Araguás, El"
+            "label": "El Pueyo de Araguás"
           },
           {
             "parent_code": "22",
@@ -6649,7 +6649,7 @@
           {
             "parent_code": "22",
             "code": "2",
-            "label": "Sotonera, La"
+            "label": "La Sotonera"
           },
           {
             "parent_code": "22",
@@ -7235,7 +7235,7 @@
           {
             "parent_code": "44",
             "code": "9",
-            "label": "Cañada de Verich, La"
+            "label": "La Cañada de Verich"
           },
           {
             "parent_code": "44",
@@ -7275,7 +7275,7 @@
           {
             "parent_code": "44",
             "code": "0",
-            "label": "Castellar, El"
+            "label": "El Castellar"
           },
           {
             "parent_code": "44",
@@ -7322,12 +7322,12 @@
           {
             "parent_code": "44",
             "code": "5",
-            "label": "Cerollera, La"
+            "label": "La Cerollera"
           },
           {
             "parent_code": "44",
             "code": "8",
-            "label": "Codoñera, La"
+            "label": "La Codoñera"
           },
           {
             "parent_code": "44",
@@ -7367,7 +7367,7 @@
           {
             "parent_code": "44",
             "code": "9",
-            "label": "Cuba, La"
+            "label": "La Cuba"
           },
           {
             "parent_code": "44",
@@ -7386,7 +7386,7 @@
           {
             "parent_code": "44",
             "code": "8",
-            "label": "Cuervo, El"
+            "label": "El Cuervo"
           },
           {
             "parent_code": "44",
@@ -7475,7 +7475,7 @@
           {
             "parent_code": "44",
             "code": "5",
-            "label": "Fresneda, La"
+            "label": "La Fresneda"
           },
           {
             "parent_code": "44",
@@ -7543,7 +7543,7 @@
           {
             "parent_code": "44",
             "code": "3",
-            "label": "Ginebrosa, La"
+            "label": "La Ginebrosa"
           },
           {
             "parent_code": "44",
@@ -7583,7 +7583,7 @@
           {
             "parent_code": "44",
             "code": "3",
-            "label": "Hoz de la Vieja, La"
+            "label": "La Hoz de la Vieja"
           },
           {
             "parent_code": "44",
@@ -7595,7 +7595,7 @@
           {
             "parent_code": "44",
             "code": "9",
-            "label": "Iglesuela del Cid, La"
+            "label": "La Iglesuela del Cid"
           },
           {
             "parent_code": "44",
@@ -7712,7 +7712,7 @@
           {
             "parent_code": "44",
             "code": "5",
-            "label": "Mata de los Olmos, La"
+            "label": "La Mata de los Olmos"
           },
           {
             "parent_code": "44",
@@ -7878,7 +7878,7 @@
           {
             "parent_code": "44",
             "code": "7",
-            "label": "Olmos, Los"
+            "label": "Los Olmos"
           },
           {
             "parent_code": "44",
@@ -7911,7 +7911,7 @@
           {
             "parent_code": "44",
             "code": "0",
-            "label": "Parras de Castellote, Las"
+            "label": "Las Parras de Castellote"
           },
           {
             "parent_code": "44",
@@ -7958,12 +7958,12 @@
           {
             "parent_code": "44",
             "code": "3",
-            "label": "Pobo, El"
+            "label": "El Pobo"
           },
           {
             "parent_code": "44",
             "code": "2",
-            "label": "Portellada, La"
+            "label": "La Portellada"
           },
           {
             "parent_code": "44",
@@ -7982,12 +7982,12 @@
           {
             "parent_code": "44",
             "code": "2",
-            "label": "Puebla de Híjar, La"
+            "label": "La Puebla de Híjar"
           },
           {
             "parent_code": "44",
             "code": "7",
-            "label": "Puebla de Valverde, La"
+            "label": "La Puebla de Valverde"
           },
           {
             "parent_code": "44",
@@ -8349,7 +8349,7 @@
           {
             "parent_code": "44",
             "code": "9",
-            "label": "Vallecillo, El"
+            "label": "El Vallecillo"
           },
           {
             "parent_code": "44",
@@ -8452,7 +8452,7 @@
           {
             "parent_code": "44",
             "code": "1",
-            "label": "Zoma, La"
+            "label": "La Zoma"
           }
         ]
       },
@@ -8611,7 +8611,7 @@
           {
             "parent_code": "50",
             "code": "7",
-            "label": "Almolda, La"
+            "label": "La Almolda"
           },
           {
             "parent_code": "50",
@@ -8630,7 +8630,7 @@
           {
             "parent_code": "50",
             "code": "1",
-            "label": "Almunia de Doña Godina, La"
+            "label": "La Almunia de Doña Godina"
           },
           {
             "parent_code": "50",
@@ -8887,12 +8887,12 @@
           {
             "parent_code": "50",
             "code": "8",
-            "label": "Burgo de Ebro, El"
+            "label": "El Burgo de Ebro"
           },
           {
             "parent_code": "50",
             "code": "4",
-            "label": "Buste, El"
+            "label": "El Buste"
           },
           {
             "parent_code": "50",
@@ -9100,7 +9100,7 @@
           {
             "parent_code": "50",
             "code": "7",
-            "label": "Cuerlas, Las"
+            "label": "Las Cuerlas"
           },
           {
             "parent_code": "50",
@@ -9175,7 +9175,7 @@
           {
             "parent_code": "50",
             "code": "7",
-            "label": "Fayos, Los"
+            "label": "Los Fayos"
           },
           {
             "parent_code": "50",
@@ -9194,12 +9194,12 @@
           {
             "parent_code": "50",
             "code": "2",
-            "label": "Frago, El"
+            "label": "El Frago"
           },
           {
             "parent_code": "50",
             "code": "6",
-            "label": "Frasno, El"
+            "label": "El Frasno"
           },
           {
             "parent_code": "50",
@@ -9337,7 +9337,7 @@
           {
             "parent_code": "50",
             "code": "4",
-            "label": "Joyosa, La"
+            "label": "La Joyosa"
           },
           {
             "parent_code": "50",
@@ -9678,7 +9678,7 @@
           {
             "parent_code": "50",
             "code": "3",
-            "label": "Muela, La"
+            "label": "La Muela"
           },
           {
             "parent_code": "50",
@@ -9837,7 +9837,7 @@
           {
             "parent_code": "50",
             "code": "3",
-            "label": "Pedrosas, Las"
+            "label": "Las Pedrosas"
           },
           {
             "parent_code": "50",
@@ -9870,7 +9870,7 @@
           {
             "parent_code": "50",
             "code": "5",
-            "label": "Pintanos, Los"
+            "label": "Los Pintanos"
           },
           {
             "parent_code": "50",
@@ -9931,7 +9931,7 @@
           {
             "parent_code": "50",
             "code": "9",
-            "label": "Puebla de Alfindén, La"
+            "label": "La Puebla de Alfindén"
           },
           {
             "parent_code": "50",
@@ -10454,7 +10454,7 @@
           {
             "parent_code": "50",
             "code": "2",
-            "label": "Vilueña, La"
+            "label": "La Vilueña"
           },
           {
             "parent_code": "50",
@@ -10466,7 +10466,7 @@
           {
             "parent_code": "50",
             "code": "7",
-            "label": "Zaida, La"
+            "label": "La Zaida"
           },
           {
             "parent_code": "50",
@@ -10653,7 +10653,7 @@
           {
             "parent_code": "33",
             "code": "6",
-            "label": "Franco, El"
+            "label": "El Franco"
           },
           {
             "parent_code": "33",
@@ -10861,7 +10861,7 @@
           {
             "parent_code": "33",
             "code": "4",
-            "label": "Regueras, Las"
+            "label": "Las Regueras"
           },
           {
             "parent_code": "33",
@@ -11399,7 +11399,7 @@
       {
         "parent_code": "05",
         "code": "35",
-        "label": "Palmas, Las",
+        "label": "Las Palmas",
         "towns": [
           {
             "parent_code": "35",
@@ -11414,7 +11414,7 @@
           {
             "parent_code": "35",
             "code": "6",
-            "label": "Aldea de San Nicolás, La"
+            "label": "La Aldea de San Nicolás"
           },
           {
             "parent_code": "35",
@@ -11474,7 +11474,7 @@
           {
             "parent_code": "35",
             "code": "1",
-            "label": "Oliva, La"
+            "label": "La Oliva"
           },
           {
             "parent_code": "35",
@@ -11484,7 +11484,7 @@
           {
             "parent_code": "35",
             "code": "7",
-            "label": "Palmas de Gran Canaria, Las"
+            "label": "Las Palmas de Gran Canaria"
           },
           {
             "parent_code": "35",
@@ -11700,7 +11700,7 @@
           {
             "parent_code": "38",
             "code": "4",
-            "label": "Guancha, La"
+            "label": "La Guancha"
           },
           {
             "parent_code": "38",
@@ -11733,27 +11733,27 @@
           {
             "parent_code": "38",
             "code": "4",
-            "label": "Llanos de Aridane, Los"
+            "label": "Los Llanos de Aridane"
           },
           {
             "parent_code": "38",
             "code": "7",
-            "label": "Matanza de Acentejo, La"
+            "label": "La Matanza de Acentejo"
           },
           {
             "parent_code": "38",
             "code": "0",
-            "label": "Orotava, La"
+            "label": "La Orotava"
           },
           {
             "parent_code": "38",
             "code": "6",
-            "label": "Paso, El"
+            "label": "El Paso"
           },
           {
             "parent_code": "38",
             "code": "3",
-            "label": "Pinar de El Hierro, El"
+            "label": "El Pinar de El Hierro"
           },
           {
             "parent_code": "38",
@@ -11779,12 +11779,12 @@
           {
             "parent_code": "38",
             "code": "6",
-            "label": "Realejos, Los"
+            "label": "Los Realejos"
           },
           {
             "parent_code": "38",
             "code": "1",
-            "label": "Rosario, El"
+            "label": "El Rosario"
           },
           {
             "parent_code": "38",
@@ -11852,12 +11852,12 @@
           {
             "parent_code": "38",
             "code": "4",
-            "label": "Sauzal, El"
+            "label": "El Sauzal"
           },
           {
             "parent_code": "38",
             "code": "9",
-            "label": "Silos, Los"
+            "label": "Los Silos"
           },
           {
             "parent_code": "38",
@@ -11869,7 +11869,7 @@
           {
             "parent_code": "38",
             "code": "0",
-            "label": "Tanque, El"
+            "label": "El Tanque"
           },
           {
             "parent_code": "38",
@@ -11916,7 +11916,7 @@
           {
             "parent_code": "38",
             "code": "1",
-            "label": "Victoria de Acentejo, La"
+            "label": "La Victoria de Acentejo"
           },
           {
             "parent_code": "38",
@@ -11998,7 +11998,7 @@
           {
             "parent_code": "39",
             "code": "9",
-            "label": "Astillero, El"
+            "label": "El Astillero"
           },
           {
             "parent_code": "39",
@@ -12122,7 +12122,7 @@
           {
             "parent_code": "39",
             "code": "0",
-            "label": "Corrales de Buelna, Los"
+            "label": "Los Corrales de Buelna"
           },
           {
             "parent_code": "39",
@@ -12393,7 +12393,7 @@
           {
             "parent_code": "39",
             "code": "1",
-            "label": "Rozas de Valdearroyo, Las"
+            "label": "Las Rozas de Valdearroyo"
           },
           {
             "parent_code": "39",
@@ -12538,7 +12538,7 @@
           {
             "parent_code": "39",
             "code": "0",
-            "label": "Tojos, Los"
+            "label": "Los Tojos"
           },
           {
             "parent_code": "39",
@@ -12676,7 +12676,7 @@
           {
             "parent_code": "05",
             "code": "8",
-            "label": "Adrada, La"
+            "label": "La Adrada"
           },
           {
             "parent_code": "05",
@@ -12702,7 +12702,7 @@
           {
             "parent_code": "05",
             "code": "4",
-            "label": "Aldehuela, La"
+            "label": "La Aldehuela"
           },
           {
             "parent_code": "05",
@@ -12714,7 +12714,7 @@
           {
             "parent_code": "05",
             "code": "2",
-            "label": "Arenal, El"
+            "label": "El Arenal"
           },
           {
             "parent_code": "05",
@@ -12761,12 +12761,12 @@
           {
             "parent_code": "05",
             "code": "9",
-            "label": "Barco de Ávila, El"
+            "label": "El Barco de Ávila"
           },
           {
             "parent_code": "05",
             "code": "4",
-            "label": "Barraco, El"
+            "label": "El Barraco"
           },
           {
             "parent_code": "05",
@@ -12799,7 +12799,7 @@
           {
             "parent_code": "05",
             "code": "7",
-            "label": "Berlanas, Las"
+            "label": "Las Berlanas"
           },
           {
             "parent_code": "05",
@@ -12839,7 +12839,7 @@
           {
             "parent_code": "05",
             "code": "9",
-            "label": "Bohodón, El"
+            "label": "El Bohodón"
           },
           {
             "parent_code": "05",
@@ -12935,7 +12935,7 @@
           {
             "parent_code": "05",
             "code": "2",
-            "label": "Carrera, La"
+            "label": "La Carrera"
           },
           {
             "parent_code": "05",
@@ -13010,7 +13010,7 @@
           {
             "parent_code": "05",
             "code": "0",
-            "label": "Colilla, La"
+            "label": "La Colilla"
           },
           {
             "parent_code": "05",
@@ -13099,7 +13099,7 @@
           {
             "parent_code": "05",
             "code": "0",
-            "label": "Fresno, El"
+            "label": "El Fresno"
           },
           {
             "parent_code": "05",
@@ -13230,12 +13230,12 @@
           {
             "parent_code": "05",
             "code": "6",
-            "label": "Hija de Dios, La"
+            "label": "La Hija de Dios"
           },
           {
             "parent_code": "05",
             "code": "2",
-            "label": "Horcajada, La"
+            "label": "La Horcajada"
           },
           {
             "parent_code": "05",
@@ -13247,12 +13247,12 @@
           {
             "parent_code": "05",
             "code": "5",
-            "label": "Hornillo, El"
+            "label": "El Hornillo"
           },
           {
             "parent_code": "05",
             "code": "7",
-            "label": "Hoyo de Pinares, El"
+            "label": "El Hoyo de Pinares"
           },
           {
             "parent_code": "05",
@@ -13320,12 +13320,12 @@
           {
             "parent_code": "05",
             "code": "1",
-            "label": "Llanos de Tormes, Los"
+            "label": "Los Llanos de Tormes"
           },
           {
             "parent_code": "05",
             "code": "5",
-            "label": "Losar del Barco, El"
+            "label": "El Losar del Barco"
           },
           {
             "parent_code": "05",
@@ -13435,7 +13435,7 @@
           {
             "parent_code": "05",
             "code": "5",
-            "label": "Mirón, El"
+            "label": "El Mirón"
           },
           {
             "parent_code": "05",
@@ -13685,7 +13685,7 @@
           {
             "parent_code": "05",
             "code": "3",
-            "label": "Navas del Marqués, Las"
+            "label": "Las Navas del Marqués"
           },
           {
             "parent_code": "05",
@@ -13732,7 +13732,7 @@
           {
             "parent_code": "05",
             "code": "6",
-            "label": "Oso, El"
+            "label": "El Oso"
           },
           {
             "parent_code": "05",
@@ -13765,7 +13765,7 @@
           {
             "parent_code": "05",
             "code": "8",
-            "label": "Parral, El"
+            "label": "El Parral"
           },
           {
             "parent_code": "05",
@@ -14127,7 +14127,7 @@
           {
             "parent_code": "05",
             "code": "0",
-            "label": "Serrada, La"
+            "label": "La Serrada"
           },
           {
             "parent_code": "05",
@@ -14188,7 +14188,7 @@
           {
             "parent_code": "05",
             "code": "3",
-            "label": "Tiemblo, El"
+            "label": "El Tiemblo"
           },
           {
             "parent_code": "05",
@@ -14221,7 +14221,7 @@
           {
             "parent_code": "05",
             "code": "1",
-            "label": "Torre, La"
+            "label": "La Torre"
           },
           {
             "parent_code": "05",
@@ -14436,7 +14436,7 @@
           {
             "parent_code": "09",
             "code": "5",
-            "label": "Altos, Los"
+            "label": "Los Altos"
           },
           {
             "parent_code": "09",
@@ -14532,7 +14532,7 @@
           {
             "parent_code": "09",
             "code": "8",
-            "label": "Ausines, Los"
+            "label": "Los Ausines"
           },
           {
             "parent_code": "09",
@@ -14551,7 +14551,7 @@
           {
             "parent_code": "09",
             "code": "1",
-            "label": "Balbases, Los"
+            "label": "Los Balbases"
           },
           {
             "parent_code": "09",
@@ -14598,7 +14598,7 @@
           {
             "parent_code": "09",
             "code": "4",
-            "label": "Barrios de Bureba, Los"
+            "label": "Los Barrios de Bureba"
           },
           {
             "parent_code": "09",
@@ -15009,7 +15009,7 @@
           {
             "parent_code": "09",
             "code": "6",
-            "label": "Cueva de Roa, La"
+            "label": "La Cueva de Roa"
           },
           {
             "parent_code": "09",
@@ -15168,7 +15168,7 @@
           {
             "parent_code": "09",
             "code": "8",
-            "label": "Gallega, La"
+            "label": "La Gallega"
           },
           {
             "parent_code": "09",
@@ -15250,7 +15250,7 @@
           {
             "parent_code": "09",
             "code": "9",
-            "label": "Hormazas, Las"
+            "label": "Las Hormazas"
           },
           {
             "parent_code": "09",
@@ -15262,7 +15262,7 @@
           {
             "parent_code": "09",
             "code": "1",
-            "label": "Horra, La"
+            "label": "La Horra"
           },
           {
             "parent_code": "09",
@@ -15855,7 +15855,7 @@
           {
             "parent_code": "09",
             "code": "6",
-            "label": "Puebla de Arganzón, La"
+            "label": "La Puebla de Arganzón"
           },
           {
             "parent_code": "09",
@@ -15958,7 +15958,7 @@
           {
             "parent_code": "09",
             "code": "8",
-            "label": "Quintanillas, Las"
+            "label": "Las Quintanillas"
           },
           {
             "parent_code": "09",
@@ -16040,7 +16040,7 @@
           {
             "parent_code": "09",
             "code": "1",
-            "label": "Revilla y Ahedo, La"
+            "label": "La Revilla y Ahedo"
           },
           {
             "parent_code": "09",
@@ -16288,7 +16288,7 @@
           {
             "parent_code": "09",
             "code": "4",
-            "label": "Sequera de Haza, La"
+            "label": "La Sequera de Haza"
           },
           {
             "parent_code": "09",
@@ -16608,12 +16608,12 @@
           {
             "parent_code": "09",
             "code": "8",
-            "label": "Vid de Bureba, La"
+            "label": "La Vid de Bureba"
           },
           {
             "parent_code": "09",
             "code": "3",
-            "label": "Vid y Barrios, La"
+            "label": "La Vid y Barrios"
           },
           {
             "parent_code": "09",
@@ -16968,7 +16968,7 @@
           {
             "parent_code": "24",
             "code": "5",
-            "label": "Antigua, La"
+            "label": "La Antigua"
           },
           {
             "parent_code": "24",
@@ -17001,7 +17001,7 @@
           {
             "parent_code": "24",
             "code": "7",
-            "label": "Bañeza, La"
+            "label": "La Bañeza"
           },
           {
             "parent_code": "24",
@@ -17013,7 +17013,7 @@
           {
             "parent_code": "24",
             "code": "9",
-            "label": "Barrios de Luna, Los"
+            "label": "Los Barrios de Luna"
           },
           {
             "parent_code": "24",
@@ -17088,7 +17088,7 @@
           {
             "parent_code": "24",
             "code": "8",
-            "label": "Burgo Ranero, El"
+            "label": "El Burgo Ranero"
           },
           {
             "parent_code": "24",
@@ -17371,7 +17371,7 @@
           {
             "parent_code": "24",
             "code": "7",
-            "label": "Ercina, La"
+            "label": "La Ercina"
           },
           {
             "parent_code": "24",
@@ -17600,7 +17600,7 @@
           {
             "parent_code": "24",
             "code": "1",
-            "label": "Omañas, Las"
+            "label": "Las Omañas"
           },
           {
             "parent_code": "24",
@@ -17661,7 +17661,7 @@
           {
             "parent_code": "24",
             "code": "9",
-            "label": "Pola de Gordón, La"
+            "label": "La Pola de Gordón"
           },
           {
             "parent_code": "24",
@@ -17785,7 +17785,7 @@
           {
             "parent_code": "24",
             "code": "5",
-            "label": "Robla, La"
+            "label": "La Robla"
           },
           {
             "parent_code": "24",
@@ -18161,7 +18161,7 @@
           {
             "parent_code": "24",
             "code": "7",
-            "label": "Vecilla, La"
+            "label": "La Vecilla"
           },
           {
             "parent_code": "24",
@@ -19104,7 +19104,7 @@
           {
             "parent_code": "34",
             "code": "1",
-            "label": "Pernía, La"
+            "label": "La Pernía"
           },
           {
             "parent_code": "34",
@@ -19179,7 +19179,7 @@
           {
             "parent_code": "34",
             "code": "8",
-            "label": "Puebla de Valdavia, La"
+            "label": "La Puebla de Valdavia"
           },
           {
             "parent_code": "34",
@@ -19345,7 +19345,7 @@
           {
             "parent_code": "34",
             "code": "7",
-            "label": "Serna, La"
+            "label": "La Serna"
           },
           {
             "parent_code": "34",
@@ -19476,7 +19476,7 @@
           {
             "parent_code": "34",
             "code": "6",
-            "label": "Vid de Ojeda, La"
+            "label": "La Vid de Ojeda"
           },
           {
             "parent_code": "34",
@@ -19768,12 +19768,12 @@
           {
             "parent_code": "37",
             "code": "5",
-            "label": "Alameda de Gardón, La"
+            "label": "La Alameda de Gardón"
           },
           {
             "parent_code": "37",
             "code": "8",
-            "label": "Alamedilla, La"
+            "label": "La Alamedilla"
           },
           {
             "parent_code": "37",
@@ -19799,12 +19799,12 @@
           {
             "parent_code": "37",
             "code": "7",
-            "label": "Alberca, La"
+            "label": "La Alberca"
           },
           {
             "parent_code": "37",
             "code": "4",
-            "label": "Alberguería de Argañán, La"
+            "label": "La Alberguería de Argañán"
           },
           {
             "parent_code": "37",
@@ -19963,7 +19963,7 @@
           {
             "parent_code": "37",
             "code": "6",
-            "label": "Arco, El"
+            "label": "El Arco"
           },
           {
             "parent_code": "37",
@@ -19975,7 +19975,7 @@
           {
             "parent_code": "37",
             "code": "8",
-            "label": "Atalaya, La"
+            "label": "La Atalaya"
           },
           {
             "parent_code": "37",
@@ -20022,7 +20022,7 @@
           {
             "parent_code": "37",
             "code": "7",
-            "label": "Bastida, La"
+            "label": "La Bastida"
           },
           {
             "parent_code": "37",
@@ -20069,7 +20069,7 @@
           {
             "parent_code": "37",
             "code": "1",
-            "label": "Bodón, El"
+            "label": "El Bodón"
           },
           {
             "parent_code": "37",
@@ -20081,7 +20081,7 @@
           {
             "parent_code": "37",
             "code": "7",
-            "label": "Bouza, La"
+            "label": "La Bouza"
           },
           {
             "parent_code": "37",
@@ -20114,12 +20114,12 @@
           {
             "parent_code": "37",
             "code": "3",
-            "label": "Cabaco, El"
+            "label": "El Cabaco"
           },
           {
             "parent_code": "37",
             "code": "4",
-            "label": "Cabeza de Béjar, La"
+            "label": "La Cabeza de Béjar"
           },
           {
             "parent_code": "37",
@@ -20166,7 +20166,7 @@
           {
             "parent_code": "37",
             "code": "1",
-            "label": "Calzada de Béjar, La"
+            "label": "La Calzada de Béjar"
           },
           {
             "parent_code": "37",
@@ -20192,7 +20192,7 @@
           {
             "parent_code": "37",
             "code": "9",
-            "label": "Campo de Peñaranda, El"
+            "label": "El Campo de Peñaranda"
           },
           {
             "parent_code": "37",
@@ -20274,7 +20274,7 @@
           {
             "parent_code": "37",
             "code": "0",
-            "label": "Casas del Conde, Las"
+            "label": "Las Casas del Conde"
           },
           {
             "parent_code": "37",
@@ -20342,7 +20342,7 @@
           {
             "parent_code": "37",
             "code": "0",
-            "label": "Cerro, El"
+            "label": "El Cerro"
           },
           {
             "parent_code": "37",
@@ -20410,7 +20410,7 @@
           {
             "parent_code": "37",
             "code": "4",
-            "label": "Cubo de Don Sancho, El"
+            "label": "El Cubo de Don Sancho"
           },
           {
             "parent_code": "37",
@@ -20450,7 +20450,7 @@
           {
             "parent_code": "37",
             "code": "0",
-            "label": "Encina, La"
+            "label": "La Encina"
           },
           {
             "parent_code": "37",
@@ -20532,7 +20532,7 @@
           {
             "parent_code": "37",
             "code": "4",
-            "label": "Fregeneda, La"
+            "label": "La Fregeneda"
           },
           {
             "parent_code": "37",
@@ -20551,7 +20551,7 @@
           {
             "parent_code": "37",
             "code": "8",
-            "label": "Fuente de San Esteban, La"
+            "label": "La Fuente de San Esteban"
           },
           {
             "parent_code": "37",
@@ -20738,7 +20738,7 @@
           {
             "parent_code": "37",
             "code": "3",
-            "label": "Hoya, La"
+            "label": "La Hoya"
           },
           {
             "parent_code": "37",
@@ -20834,7 +20834,7 @@
           {
             "parent_code": "37",
             "code": "8",
-            "label": "Maíllo, El"
+            "label": "El Maíllo"
           },
           {
             "parent_code": "37",
@@ -20853,7 +20853,7 @@
           {
             "parent_code": "37",
             "code": "1",
-            "label": "Manzano, El"
+            "label": "El Manzano"
           },
           {
             "parent_code": "37",
@@ -20886,7 +20886,7 @@
           {
             "parent_code": "37",
             "code": "0",
-            "label": "Mata de Ledesma, La"
+            "label": "La Mata de Ledesma"
           },
           {
             "parent_code": "37",
@@ -20898,7 +20898,7 @@
           {
             "parent_code": "37",
             "code": "2",
-            "label": "Maya, La"
+            "label": "La Maya"
           },
           {
             "parent_code": "37",
@@ -20917,7 +20917,7 @@
           {
             "parent_code": "37",
             "code": "6",
-            "label": "Milano, El"
+            "label": "El Milano"
           },
           {
             "parent_code": "37",
@@ -21132,7 +21132,7 @@
           {
             "parent_code": "37",
             "code": "6",
-            "label": "Orbada, La"
+            "label": "La Orbada"
           },
           {
             "parent_code": "37",
@@ -21193,7 +21193,7 @@
           {
             "parent_code": "37",
             "code": "4",
-            "label": "Payo, El"
+            "label": "El Payo"
           },
           {
             "parent_code": "37",
@@ -21226,7 +21226,7 @@
           {
             "parent_code": "37",
             "code": "5",
-            "label": "Pedroso de la Armuña, El"
+            "label": "El Pedroso de la Armuña"
           },
           {
             "parent_code": "37",
@@ -21252,7 +21252,7 @@
           {
             "parent_code": "37",
             "code": "7",
-            "label": "Peña, La"
+            "label": "La Peña"
           },
           {
             "parent_code": "37",
@@ -21320,7 +21320,7 @@
           {
             "parent_code": "37",
             "code": "4",
-            "label": "Pino de Tormes, El"
+            "label": "El Pino de Tormes"
           },
           {
             "parent_code": "37",
@@ -21409,7 +21409,7 @@
           {
             "parent_code": "37",
             "code": "3",
-            "label": "Redonda, La"
+            "label": "La Redonda"
           },
           {
             "parent_code": "37",
@@ -21421,7 +21421,7 @@
           {
             "parent_code": "37",
             "code": "5",
-            "label": "Rinconada de la Sierra, La"
+            "label": "La Rinconada de la Sierra"
           },
           {
             "parent_code": "37",
@@ -21454,12 +21454,12 @@
           {
             "parent_code": "37",
             "code": "0",
-            "label": "Sagrada, La"
+            "label": "La Sagrada"
           },
           {
             "parent_code": "37",
             "code": "4",
-            "label": "Sahugo, El"
+            "label": "El Sahugo"
           },
           {
             "parent_code": "37",
@@ -21646,7 +21646,7 @@
           {
             "parent_code": "37",
             "code": "6",
-            "label": "Santos, Los"
+            "label": "Los Santos"
           },
           {
             "parent_code": "37",
@@ -21693,7 +21693,7 @@
           {
             "parent_code": "37",
             "code": "0",
-            "label": "Sierpe, La"
+            "label": "La Sierpe"
           },
           {
             "parent_code": "37",
@@ -21733,7 +21733,7 @@
           {
             "parent_code": "37",
             "code": "0",
-            "label": "Tala, La"
+            "label": "La Tala"
           },
           {
             "parent_code": "37",
@@ -21759,7 +21759,7 @@
           {
             "parent_code": "37",
             "code": "8",
-            "label": "Tejado, El"
+            "label": "El Tejado"
           },
           {
             "parent_code": "37",
@@ -21799,7 +21799,7 @@
           {
             "parent_code": "37",
             "code": "8",
-            "label": "Tornadizo, El"
+            "label": "El Tornadizo"
           },
           {
             "parent_code": "37",
@@ -21937,12 +21937,12 @@
           {
             "parent_code": "37",
             "code": "7",
-            "label": "Veguillas, Las"
+            "label": "Las Veguillas"
           },
           {
             "parent_code": "37",
             "code": "3",
-            "label": "Vellés, La"
+            "label": "La Vellés"
           },
           {
             "parent_code": "37",
@@ -21954,7 +21954,7 @@
           {
             "parent_code": "37",
             "code": "2",
-            "label": "Vídola, La"
+            "label": "La Vídola"
           },
           {
             "parent_code": "37",
@@ -22176,7 +22176,7 @@
           {
             "parent_code": "37",
             "code": "6",
-            "label": "Zarza de Pumareda, La"
+            "label": "La Zarza de Pumareda"
           },
           {
             "parent_code": "37",
@@ -22678,7 +22678,7 @@
           {
             "parent_code": "40",
             "code": "6",
-            "label": "Espinar, El"
+            "label": "El Espinar"
           },
           {
             "parent_code": "40",
@@ -22830,7 +22830,7 @@
           {
             "parent_code": "40",
             "code": "9",
-            "label": "Huertos, Los"
+            "label": "Los Huertos"
           },
           {
             "parent_code": "40",
@@ -22891,12 +22891,12 @@
           {
             "parent_code": "40",
             "code": "1",
-            "label": "Lastrilla, La"
+            "label": "La Lastrilla"
           },
           {
             "parent_code": "40",
             "code": "7",
-            "label": "Losa, La"
+            "label": "La Losa"
           },
           {
             "parent_code": "40",
@@ -22964,7 +22964,7 @@
           {
             "parent_code": "40",
             "code": "3",
-            "label": "Matilla, La"
+            "label": "La Matilla"
           },
           {
             "parent_code": "40",
@@ -23732,7 +23732,7 @@
           {
             "parent_code": "42",
             "code": "5",
-            "label": "Aldehuelas, Las"
+            "label": "Las Aldehuelas"
           },
           {
             "parent_code": "42",
@@ -24290,7 +24290,7 @@
           {
             "parent_code": "42",
             "code": "2",
-            "label": "Losilla, La"
+            "label": "La Losilla"
           },
           {
             "parent_code": "42",
@@ -24470,7 +24470,7 @@
           {
             "parent_code": "42",
             "code": "2",
-            "label": "Póveda de Soria, La"
+            "label": "La Póveda de Soria"
           },
           {
             "parent_code": "42",
@@ -24503,7 +24503,7 @@
           {
             "parent_code": "42",
             "code": "9",
-            "label": "Rábanos, Los"
+            "label": "Los Rábanos"
           },
           {
             "parent_code": "42",
@@ -24550,7 +24550,7 @@
           {
             "parent_code": "42",
             "code": "7",
-            "label": "Riba de Escalote, La"
+            "label": "La Riba de Escalote"
           },
           {
             "parent_code": "42",
@@ -24569,7 +24569,7 @@
           {
             "parent_code": "42",
             "code": "0",
-            "label": "Royo, El"
+            "label": "El Royo"
           },
           {
             "parent_code": "42",
@@ -24868,7 +24868,7 @@
           {
             "parent_code": "42",
             "code": "7",
-            "label": "Villares de Soria, Los"
+            "label": "Los Villares de Soria"
           },
           {
             "parent_code": "42",
@@ -25139,7 +25139,7 @@
           {
             "parent_code": "47",
             "code": "8",
-            "label": "Campillo, El"
+            "label": "El Campillo"
           },
           {
             "parent_code": "47",
@@ -25606,7 +25606,7 @@
           {
             "parent_code": "47",
             "code": "2",
-            "label": "Mudarra, La"
+            "label": "La Mudarra"
           },
           {
             "parent_code": "47",
@@ -25667,12 +25667,12 @@
           {
             "parent_code": "47",
             "code": "4",
-            "label": "Parrilla, La"
+            "label": "La Parrilla"
           },
           {
             "parent_code": "47",
             "code": "1",
-            "label": "Pedraja de Portillo, La"
+            "label": "La Pedraja de Portillo"
           },
           {
             "parent_code": "47",
@@ -25985,7 +25985,7 @@
           {
             "parent_code": "47",
             "code": "6",
-            "label": "Seca, La"
+            "label": "La Seca"
           },
           {
             "parent_code": "47",
@@ -26109,7 +26109,7 @@
           {
             "parent_code": "47",
             "code": "0",
-            "label": "Unión de Campos, La"
+            "label": "La Unión de Campos"
           },
           {
             "parent_code": "47",
@@ -26485,7 +26485,7 @@
           {
             "parent_code": "47",
             "code": "1",
-            "label": "Zarza, La"
+            "label": "La Zarza"
           }
         ]
       },
@@ -26651,7 +26651,7 @@
           {
             "parent_code": "49",
             "code": "5",
-            "label": "Bóveda de Toro, La"
+            "label": "La Bóveda de Toro"
           },
           {
             "parent_code": "49",
@@ -26866,7 +26866,7 @@
           {
             "parent_code": "49",
             "code": "6",
-            "label": "Cubo de Tierra del Vino, El"
+            "label": "El Cubo de Tierra del Vino"
           },
           {
             "parent_code": "49",
@@ -27081,7 +27081,7 @@
           {
             "parent_code": "49",
             "code": "3",
-            "label": "Hiniesta, La"
+            "label": "La Hiniesta"
           },
           {
             "parent_code": "49",
@@ -27128,7 +27128,7 @@
           {
             "parent_code": "49",
             "code": "7",
-            "label": "Maderal, El"
+            "label": "El Maderal"
           },
           {
             "parent_code": "49",
@@ -27413,7 +27413,7 @@
           {
             "parent_code": "49",
             "code": "6",
-            "label": "Pego, El"
+            "label": "El Pego"
           },
           {
             "parent_code": "49",
@@ -27446,7 +27446,7 @@
           {
             "parent_code": "49",
             "code": "1",
-            "label": "Perdigón, El"
+            "label": "El Perdigón"
           },
           {
             "parent_code": "49",
@@ -27493,7 +27493,7 @@
           {
             "parent_code": "49",
             "code": "5",
-            "label": "Piñero, El"
+            "label": "El Piñero"
           },
           {
             "parent_code": "49",
@@ -27848,7 +27848,7 @@
           {
             "parent_code": "49",
             "code": "0",
-            "label": "Torre del Valle, La"
+            "label": "La Torre del Valle"
           },
           {
             "parent_code": "49",
@@ -28315,7 +28315,7 @@
           {
             "parent_code": "02",
             "code": "3",
-            "label": "Ballestero, El"
+            "label": "El Ballestero"
           },
           {
             "parent_code": "02",
@@ -28355,7 +28355,7 @@
           {
             "parent_code": "02",
             "code": "4",
-            "label": "Bonillo, El"
+            "label": "El Bonillo"
           },
           {
             "parent_code": "02",
@@ -28465,7 +28465,7 @@
           {
             "parent_code": "02",
             "code": "2",
-            "label": "Gineta, La"
+            "label": "La Gineta"
           },
           {
             "parent_code": "02",
@@ -28484,7 +28484,7 @@
           {
             "parent_code": "02",
             "code": "7",
-            "label": "Herrera, La"
+            "label": "La Herrera"
           },
           {
             "parent_code": "02",
@@ -28685,7 +28685,7 @@
           {
             "parent_code": "02",
             "code": "8",
-            "label": "Recueja, La"
+            "label": "La Recueja"
           },
           {
             "parent_code": "02",
@@ -28704,7 +28704,7 @@
           {
             "parent_code": "02",
             "code": "3",
-            "label": "Roda, La"
+            "label": "La Roda"
           },
           {
             "parent_code": "02",
@@ -29094,7 +29094,7 @@
           {
             "parent_code": "13",
             "code": "9",
-            "label": "Cortijos, Los"
+            "label": "Los Cortijos"
           },
           {
             "parent_code": "13",
@@ -29183,7 +29183,7 @@
           {
             "parent_code": "13",
             "code": "5",
-            "label": "Labores, Las"
+            "label": "Las Labores"
           },
           {
             "parent_code": "13",
@@ -29307,7 +29307,7 @@
           {
             "parent_code": "13",
             "code": "8",
-            "label": "Pozuelos de Calatrava, Los"
+            "label": "Los Pozuelos de Calatrava"
           },
           {
             "parent_code": "13",
@@ -29347,7 +29347,7 @@
           {
             "parent_code": "13",
             "code": "4",
-            "label": "Robledo, El"
+            "label": "El Robledo"
           },
           {
             "parent_code": "13",
@@ -29408,7 +29408,7 @@
           {
             "parent_code": "13",
             "code": "5",
-            "label": "Solana, La"
+            "label": "La Solana"
           },
           {
             "parent_code": "13",
@@ -29553,7 +29553,7 @@
           {
             "parent_code": "16",
             "code": "9",
-            "label": "Acebrón, El"
+            "label": "El Acebrón"
           },
           {
             "parent_code": "16",
@@ -29586,7 +29586,7 @@
           {
             "parent_code": "16",
             "code": "2",
-            "label": "Alberca de Záncara, La"
+            "label": "La Alberca de Záncara"
           },
           {
             "parent_code": "16",
@@ -29640,7 +29640,7 @@
           {
             "parent_code": "16",
             "code": "1",
-            "label": "Almarcha, La"
+            "label": "La Almarcha"
           },
           {
             "parent_code": "16",
@@ -29862,7 +29862,7 @@
           {
             "parent_code": "16",
             "code": "3",
-            "label": "Cañavate, El"
+            "label": "El Cañavate"
           },
           {
             "parent_code": "16",
@@ -30028,7 +30028,7 @@
           {
             "parent_code": "16",
             "code": "5",
-            "label": "Cierva, La"
+            "label": "La Cierva"
           },
           {
             "parent_code": "16",
@@ -30068,7 +30068,7 @@
           {
             "parent_code": "16",
             "code": "6",
-            "label": "Frontera, La"
+            "label": "La Frontera"
           },
           {
             "parent_code": "16",
@@ -30157,22 +30157,22 @@
           {
             "parent_code": "16",
             "code": "9",
-            "label": "Herrumblar, El"
+            "label": "El Herrumblar"
           },
           {
             "parent_code": "16",
             "code": "2",
-            "label": "Hinojosa, La"
+            "label": "La Hinojosa"
           },
           {
             "parent_code": "16",
             "code": "6",
-            "label": "Hinojosos, Los"
+            "label": "Los Hinojosos"
           },
           {
             "parent_code": "16",
             "code": "3",
-            "label": "Hito, El"
+            "label": "El Hito"
           },
           {
             "parent_code": "16",
@@ -30289,7 +30289,7 @@
           {
             "parent_code": "16",
             "code": "9",
-            "label": "Majadas, Las"
+            "label": "Las Majadas"
           },
           {
             "parent_code": "16",
@@ -30308,7 +30308,7 @@
           {
             "parent_code": "16",
             "code": "5",
-            "label": "Mesas, Las"
+            "label": "Las Mesas"
           },
           {
             "parent_code": "16",
@@ -30474,37 +30474,37 @@
           {
             "parent_code": "16",
             "code": "7",
-            "label": "Parra de las Vegas, La"
+            "label": "La Parra de las Vegas"
           },
           {
             "parent_code": "16",
             "code": "3",
-            "label": "Pedernoso, El"
+            "label": "El Pedernoso"
           },
           {
             "parent_code": "16",
             "code": "8",
-            "label": "Pedroñeras, Las"
+            "label": "Las Pedroñeras"
           },
           {
             "parent_code": "16",
             "code": "1",
-            "label": "Peral, El"
+            "label": "El Peral"
           },
           {
             "parent_code": "16",
             "code": "4",
-            "label": "Peraleja, La"
+            "label": "La Peraleja"
           },
           {
             "parent_code": "16",
             "code": "0",
-            "label": "Pesquera, La"
+            "label": "La Pesquera"
           },
           {
             "parent_code": "16",
             "code": "6",
-            "label": "Picazo, El"
+            "label": "El Picazo"
           },
           {
             "parent_code": "16",
@@ -30572,7 +30572,7 @@
           {
             "parent_code": "16",
             "code": "7",
-            "label": "Pozuelo, El"
+            "label": "El Pozuelo"
           },
           {
             "parent_code": "16",
@@ -30584,7 +30584,7 @@
           {
             "parent_code": "16",
             "code": "8",
-            "label": "Provencio, El"
+            "label": "El Provencio"
           },
           {
             "parent_code": "16",
@@ -30841,7 +30841,7 @@
           {
             "parent_code": "16",
             "code": "7",
-            "label": "Valdecolmenas, Los"
+            "label": "Los Valdecolmenas"
           },
           {
             "parent_code": "16",
@@ -30881,7 +30881,7 @@
           {
             "parent_code": "16",
             "code": "6",
-            "label": "Valeras, Las"
+            "label": "Las Valeras"
           },
           {
             "parent_code": "16",
@@ -30893,7 +30893,7 @@
           {
             "parent_code": "16",
             "code": "9",
-            "label": "Valle de Altomira, El"
+            "label": "El Valle de Altomira"
           },
           {
             "parent_code": "16",
@@ -31472,7 +31472,7 @@
           {
             "parent_code": "19",
             "code": "3",
-            "label": "Bodera, La"
+            "label": "La Bodera"
           },
           {
             "parent_code": "19",
@@ -31554,7 +31554,7 @@
           {
             "parent_code": "19",
             "code": "4",
-            "label": "Cardoso de la Sierra, El"
+            "label": "El Cardoso de la Sierra"
           },
           {
             "parent_code": "19",
@@ -31566,7 +31566,7 @@
           {
             "parent_code": "19",
             "code": "4",
-            "label": "Casar, El"
+            "label": "El Casar"
           },
           {
             "parent_code": "19",
@@ -31746,7 +31746,7 @@
           {
             "parent_code": "19",
             "code": "3",
-            "label": "Cubillo de Uceda, El"
+            "label": "El Cubillo de Uceda"
           },
           {
             "parent_code": "19",
@@ -31982,7 +31982,7 @@
           {
             "parent_code": "19",
             "code": "2",
-            "label": "Huerce, La"
+            "label": "La Huerce"
           },
           {
             "parent_code": "19",
@@ -32029,7 +32029,7 @@
           {
             "parent_code": "19",
             "code": "3",
-            "label": "Inviernas, Las"
+            "label": "Las Inviernas"
           },
           {
             "parent_code": "19",
@@ -32202,7 +32202,7 @@
           {
             "parent_code": "19",
             "code": "6",
-            "label": "Mierla, La"
+            "label": "La Mierla"
           },
           {
             "parent_code": "19",
@@ -32221,7 +32221,7 @@
           {
             "parent_code": "19",
             "code": "0",
-            "label": "Miñosa, La"
+            "label": "La Miñosa"
           },
           {
             "parent_code": "19",
@@ -32303,7 +32303,7 @@
           {
             "parent_code": "19",
             "code": "7",
-            "label": "Navas de Jadraque, Las"
+            "label": "Las Navas de Jadraque"
           },
           {
             "parent_code": "19",
@@ -32322,7 +32322,7 @@
           {
             "parent_code": "19",
             "code": "0",
-            "label": "Olivar, El"
+            "label": "El Olivar"
           },
           {
             "parent_code": "19",
@@ -32334,12 +32334,12 @@
           {
             "parent_code": "19",
             "code": "2",
-            "label": "Olmeda de Jadraque, La"
+            "label": "La Olmeda de Jadraque"
           },
           {
             "parent_code": "19",
             "code": "8",
-            "label": "Ordial, El"
+            "label": "El Ordial"
           },
           {
             "parent_code": "19",
@@ -32386,7 +32386,7 @@
           {
             "parent_code": "19",
             "code": "6",
-            "label": "Pedregal, El"
+            "label": "El Pedregal"
           },
           {
             "parent_code": "19",
@@ -32447,7 +32447,7 @@
           {
             "parent_code": "19",
             "code": "8",
-            "label": "Pobo de Dueñas, El"
+            "label": "El Pobo de Dueñas"
           },
           {
             "parent_code": "19",
@@ -32515,7 +32515,7 @@
           {
             "parent_code": "19",
             "code": "6",
-            "label": "Recuenco, El"
+            "label": "El Recuenco"
           },
           {
             "parent_code": "19",
@@ -32702,7 +32702,7 @@
           {
             "parent_code": "19",
             "code": "7",
-            "label": "Sotillo, El"
+            "label": "El Sotillo"
           },
           {
             "parent_code": "19",
@@ -32763,7 +32763,7 @@
           {
             "parent_code": "19",
             "code": "1",
-            "label": "Toba, La"
+            "label": "La Toba"
           },
           {
             "parent_code": "19",
@@ -33125,7 +33125,7 @@
           {
             "parent_code": "19",
             "code": "5",
-            "label": "Yunta, La"
+            "label": "La Yunta"
           },
           {
             "parent_code": "19",
@@ -33382,7 +33382,7 @@
           {
             "parent_code": "45",
             "code": "0",
-            "label": "Campillo de la Jara, El"
+            "label": "El Campillo de la Jara"
           },
           {
             "parent_code": "45",
@@ -33408,7 +33408,7 @@
           {
             "parent_code": "45",
             "code": "7",
-            "label": "Carpio de Tajo, El"
+            "label": "El Carpio de Tajo"
           },
           {
             "parent_code": "45",
@@ -33427,7 +33427,7 @@
           {
             "parent_code": "45",
             "code": "0",
-            "label": "Casar de Escalona, El"
+            "label": "El Casar de Escalona"
           },
           {
             "parent_code": "45",
@@ -33474,7 +33474,7 @@
           {
             "parent_code": "45",
             "code": "1",
-            "label": "Cerralbos, Los"
+            "label": "Los Cerralbos"
           },
           {
             "parent_code": "45",
@@ -33591,7 +33591,7 @@
           {
             "parent_code": "45",
             "code": "1",
-            "label": "Estrella, La"
+            "label": "La Estrella"
           },
           {
             "parent_code": "45",
@@ -33631,12 +33631,12 @@
           {
             "parent_code": "45",
             "code": "0",
-            "label": "Guardia, La"
+            "label": "La Guardia"
           },
           {
             "parent_code": "45",
             "code": "5",
-            "label": "Herencias, Las"
+            "label": "Las Herencias"
           },
           {
             "parent_code": "45",
@@ -33683,7 +33683,7 @@
           {
             "parent_code": "45",
             "code": "7",
-            "label": "Iglesuela del Tiétar, La"
+            "label": "La Iglesuela del Tiétar"
           },
           {
             "parent_code": "45",
@@ -33793,7 +33793,7 @@
           {
             "parent_code": "45",
             "code": "5",
-            "label": "Mata, La"
+            "label": "La Mata"
           },
           {
             "parent_code": "45",
@@ -33882,7 +33882,7 @@
           {
             "parent_code": "45",
             "code": "8",
-            "label": "Nava de Ricomalillo, La"
+            "label": "La Nava de Ricomalillo"
           },
           {
             "parent_code": "45",
@@ -33908,12 +33908,12 @@
           {
             "parent_code": "45",
             "code": "7",
-            "label": "Navalmorales, Los"
+            "label": "Los Navalmorales"
           },
           {
             "parent_code": "45",
             "code": "3",
-            "label": "Navalucillos, Los"
+            "label": "Los Navalucillos"
           },
           {
             "parent_code": "45",
@@ -34065,22 +34065,22 @@
           {
             "parent_code": "45",
             "code": "7",
-            "label": "Puebla de Almoradiel, La"
+            "label": "La Puebla de Almoradiel"
           },
           {
             "parent_code": "45",
             "code": "0",
-            "label": "Puebla de Montalbán, La"
+            "label": "La Puebla de Montalbán"
           },
           {
             "parent_code": "45",
             "code": "6",
-            "label": "Pueblanueva, La"
+            "label": "La Pueblanueva"
           },
           {
             "parent_code": "45",
             "code": "2",
-            "label": "Puente del Arzobispo, El"
+            "label": "El Puente del Arzobispo"
           },
           {
             "parent_code": "45",
@@ -34120,7 +34120,7 @@
           {
             "parent_code": "45",
             "code": "2",
-            "label": "Real de San Vicente, El"
+            "label": "El Real de San Vicente"
           },
           {
             "parent_code": "45",
@@ -34153,7 +34153,7 @@
           {
             "parent_code": "45",
             "code": "3",
-            "label": "Romeral, El"
+            "label": "El Romeral"
           },
           {
             "parent_code": "45",
@@ -34284,7 +34284,7 @@
           {
             "parent_code": "45",
             "code": "9",
-            "label": "Toboso, El"
+            "label": "El Toboso"
           },
           {
             "parent_code": "45",
@@ -34303,7 +34303,7 @@
           {
             "parent_code": "45",
             "code": "9",
-            "label": "Torre de Esteban Hambrán, La"
+            "label": "La Torre de Esteban Hambrán"
           },
           {
             "parent_code": "45",
@@ -34378,22 +34378,22 @@
           {
             "parent_code": "45",
             "code": "2",
-            "label": "Ventas con Peña Aguilera, Las"
+            "label": "Las Ventas con Peña Aguilera"
           },
           {
             "parent_code": "45",
             "code": "8",
-            "label": "Ventas de Retamosa, Las"
+            "label": "Las Ventas de Retamosa"
           },
           {
             "parent_code": "45",
             "code": "3",
-            "label": "Ventas de San Julián, Las"
+            "label": "Las Ventas de San Julián"
           },
           {
             "parent_code": "45",
             "code": "9",
-            "label": "Villa de Don Fadrique, La"
+            "label": "La Villa de Don Fadrique"
           },
           {
             "parent_code": "45",
@@ -34489,12 +34489,12 @@
           {
             "parent_code": "45",
             "code": "2",
-            "label": "Viso de San Juan, El"
+            "label": "El Viso de San Juan"
           },
           {
             "parent_code": "45",
             "code": "6",
-            "label": "Yébenes, Los"
+            "label": "Los Yébenes"
           },
           {
             "parent_code": "45",
@@ -34726,12 +34726,12 @@
           {
             "parent_code": "08",
             "code": "3",
-            "label": "Bruc, El"
+            "label": "El Bruc"
           },
           {
             "parent_code": "08",
             "code": "6",
-            "label": "Brull, El"
+            "label": "El Brull"
           },
           {
             "parent_code": "08",
@@ -35188,7 +35188,7 @@
           {
             "parent_code": "08",
             "code": "5",
-            "label": "Garriga, La"
+            "label": "La Garriga"
           },
           {
             "parent_code": "08",
@@ -35221,7 +35221,7 @@
           {
             "parent_code": "08",
             "code": "5",
-            "label": "Granada, La"
+            "label": "La Granada"
           },
           {
             "parent_code": "08",
@@ -35285,12 +35285,12 @@
           {
             "parent_code": "08",
             "code": "3",
-            "label": "Llacuna, La"
+            "label": "La Llacuna"
           },
           {
             "parent_code": "08",
             "code": "6",
-            "label": "Llagosta, La"
+            "label": "La Llagosta"
           },
           {
             "parent_code": "08",
@@ -35382,7 +35382,7 @@
           {
             "parent_code": "08",
             "code": "9",
-            "label": "Masnou, El"
+            "label": "El Masnou"
           },
           {
             "parent_code": "08",
@@ -35541,7 +35541,7 @@
           {
             "parent_code": "08",
             "code": "4",
-            "label": "Nou de Berguedà, La"
+            "label": "La Nou de Berguedà"
           },
           {
             "parent_code": "08",
@@ -35651,12 +35651,12 @@
           {
             "parent_code": "08",
             "code": "8",
-            "label": "Palma de Cervelló, La"
+            "label": "La Palma de Cervelló"
           },
           {
             "parent_code": "08",
             "code": "0",
-            "label": "Papiol, El"
+            "label": "El Papiol"
           },
           {
             "parent_code": "08",
@@ -35689,17 +35689,17 @@
           {
             "parent_code": "08",
             "code": "0",
-            "label": "Pla del Penedès, El"
+            "label": "El Pla del Penedès"
           },
           {
             "parent_code": "08",
             "code": "3",
-            "label": "Pobla de Claramunt, La"
+            "label": "La Pobla de Claramunt"
           },
           {
             "parent_code": "08",
             "code": "6",
-            "label": "Pobla de Lillet, La"
+            "label": "La Pobla de Lillet"
           },
           {
             "parent_code": "08",
@@ -35711,7 +35711,7 @@
           {
             "parent_code": "08",
             "code": "5",
-            "label": "Pont de Vilomara i Rocafort, El"
+            "label": "El Pont de Vilomara i Rocafort"
           },
           {
             "parent_code": "08",
@@ -35723,7 +35723,7 @@
           {
             "parent_code": "08",
             "code": "1",
-            "label": "Prat de Llobregat, El"
+            "label": "El Prat de Llobregat"
           },
           {
             "parent_code": "08",
@@ -35775,7 +35775,7 @@
           {
             "parent_code": "08",
             "code": "0",
-            "label": "Quar, La"
+            "label": "La Quar"
           },
           {
             "parent_code": "08",
@@ -35801,7 +35801,7 @@
           {
             "parent_code": "08",
             "code": "0",
-            "label": "Roca del Vallès, La"
+            "label": "La Roca del Vallès"
           },
           {
             "parent_code": "08",
@@ -36485,7 +36485,7 @@
           {
             "parent_code": "08",
             "code": "1",
-            "label": "Torre de Claramunt, La"
+            "label": "La Torre de Claramunt"
           },
           {
             "parent_code": "08",
@@ -36796,7 +36796,7 @@
           {
             "parent_code": "17",
             "code": "1",
-            "label": "Bisbal d'Empordà, La"
+            "label": "La Bisbal d'Empordà"
           },
           {
             "parent_code": "17",
@@ -36974,7 +36974,7 @@
           {
             "parent_code": "17",
             "code": "9",
-            "label": "Cellera de Ter, La"
+            "label": "La Cellera de Ter"
           },
           {
             "parent_code": "17",
@@ -37082,7 +37082,7 @@
           {
             "parent_code": "17",
             "code": "9",
-            "label": "Far d'Empordà, El"
+            "label": "El Far d'Empordà"
           },
           {
             "parent_code": "17",
@@ -37227,7 +37227,7 @@
           {
             "parent_code": "17",
             "code": "5",
-            "label": "Jonquera, La"
+            "label": "La Jonquera"
           },
           {
             "parent_code": "17",
@@ -37496,7 +37496,7 @@
           {
             "parent_code": "17",
             "code": "6",
-            "label": "Pera, La"
+            "label": "La Pera"
           },
           {
             "parent_code": "17",
@@ -37541,7 +37541,7 @@
           {
             "parent_code": "17",
             "code": "4",
-            "label": "Port de la Selva, El"
+            "label": "El Port de la Selva"
           },
           {
             "parent_code": "17",
@@ -37880,7 +37880,7 @@
           {
             "parent_code": "17",
             "code": "6",
-            "label": "Selva de Mar, La"
+            "label": "La Selva de Mar"
           },
           {
             "parent_code": "17",
@@ -37927,7 +37927,7 @@
           {
             "parent_code": "17",
             "code": "9",
-            "label": "Tallada d'Empordà, La"
+            "label": "La Tallada d'Empordà"
           },
           {
             "parent_code": "17",
@@ -38009,17 +38009,17 @@
           {
             "parent_code": "17",
             "code": "4",
-            "label": "Vajol, La"
+            "label": "La Vajol"
           },
           {
             "parent_code": "17",
             "code": "2",
-            "label": "Vall de Bianya, La"
+            "label": "La Vall de Bianya"
           },
           {
             "parent_code": "17",
             "code": "6",
-            "label": "Vall d'en Bas, La"
+            "label": "La Vall d'en Bas"
           },
           {
             "parent_code": "17",
@@ -38429,7 +38429,7 @@
           {
             "parent_code": "25",
             "code": "6",
-            "label": "Baronia de Rialb, La"
+            "label": "La Baronia de Rialb"
           },
           {
             "parent_code": "25",
@@ -38647,7 +38647,7 @@
           {
             "parent_code": "25",
             "code": "6",
-            "label": "Cogul, El"
+            "label": "El Cogul"
           },
           {
             "parent_code": "25",
@@ -38659,7 +38659,7 @@
           {
             "parent_code": "25",
             "code": "6",
-            "label": "Coma i la Pedra, La"
+            "label": "La Coma i la Pedra"
           },
           {
             "parent_code": "25",
@@ -38739,7 +38739,7 @@
           {
             "parent_code": "25",
             "code": "5",
-            "label": "Floresta, La"
+            "label": "La Floresta"
           },
           {
             "parent_code": "25",
@@ -38758,7 +38758,7 @@
           {
             "parent_code": "25",
             "code": "2",
-            "label": "Fuliola, La"
+            "label": "La Fuliola"
           },
           {
             "parent_code": "25",
@@ -38798,12 +38798,12 @@
           {
             "parent_code": "25",
             "code": "8",
-            "label": "Granadella, La"
+            "label": "La Granadella"
           },
           {
             "parent_code": "25",
             "code": "3",
-            "label": "Granja d'Escarp, La"
+            "label": "La Granja d'Escarp"
           },
           {
             "parent_code": "25",
@@ -38836,7 +38836,7 @@
           {
             "parent_code": "25",
             "code": "1",
-            "label": "Guingueta d'Àneu, La"
+            "label": "La Guingueta d'Àneu"
           },
           {
             "parent_code": "25",
@@ -39023,7 +39023,7 @@
           {
             "parent_code": "25",
             "code": "4",
-            "label": "Molsosa, La"
+            "label": "La Molsosa"
           },
           {
             "parent_code": "25",
@@ -39155,7 +39155,7 @@
           {
             "parent_code": "25",
             "code": "1",
-            "label": "Palau d'Anglesola, El"
+            "label": "El Palau d'Anglesola"
           },
           {
             "parent_code": "25",
@@ -39193,27 +39193,27 @@
           {
             "parent_code": "25",
             "code": "9",
-            "label": "Poal, El"
+            "label": "El Poal"
           },
           {
             "parent_code": "25",
             "code": "2",
-            "label": "Pobla de Cérvoles, La"
+            "label": "La Pobla de Cérvoles"
           },
           {
             "parent_code": "25",
             "code": "3",
-            "label": "Pobla de Segur, La"
+            "label": "La Pobla de Segur"
           },
           {
             "parent_code": "25",
             "code": "6",
-            "label": "Pont de Bar, El"
+            "label": "El Pont de Bar"
           },
           {
             "parent_code": "25",
             "code": "4",
-            "label": "Pont de Suert, El"
+            "label": "El Pont de Suert"
           },
           {
             "parent_code": "25",
@@ -39225,7 +39225,7 @@
           {
             "parent_code": "25",
             "code": "9",
-            "label": "Portella, La"
+            "label": "La Portella"
           },
           {
             "parent_code": "25",
@@ -39398,7 +39398,7 @@
           {
             "parent_code": "25",
             "code": "2",
-            "label": "Sentiu de Sió, La"
+            "label": "La Sentiu de Sió"
           },
           {
             "parent_code": "25",
@@ -39410,7 +39410,7 @@
           {
             "parent_code": "25",
             "code": "8",
-            "label": "Seu d'Urgell, La"
+            "label": "La Seu d'Urgell"
           },
           {
             "parent_code": "25",
@@ -39422,7 +39422,7 @@
           {
             "parent_code": "25",
             "code": "9",
-            "label": "Soleràs, El"
+            "label": "El Soleràs"
           },
           {
             "parent_code": "25",
@@ -39544,7 +39544,7 @@
           {
             "parent_code": "25",
             "code": "1",
-            "label": "Torre de Cabdella, La"
+            "label": "La Torre de Cabdella"
           },
           {
             "parent_code": "25",
@@ -39605,7 +39605,7 @@
           {
             "parent_code": "25",
             "code": "2",
-            "label": "Vall de Boí, La"
+            "label": "La Vall de Boí"
           },
           {
             "parent_code": "25",
@@ -39641,7 +39641,7 @@
           {
             "parent_code": "25",
             "code": "7",
-            "label": "Vansa i Fórnols, La"
+            "label": "La Vansa i Fórnols"
           },
           {
             "parent_code": "25",
@@ -39723,7 +39723,7 @@
           {
             "parent_code": "25",
             "code": "7",
-            "label": "Vilosell, El"
+            "label": "El Vilosell"
           },
           {
             "parent_code": "25",
@@ -39924,12 +39924,12 @@
           {
             "parent_code": "43",
             "code": "1",
-            "label": "Bisbal de Falset, La"
+            "label": "La Bisbal de Falset"
           },
           {
             "parent_code": "43",
             "code": "7",
-            "label": "Bisbal del Penedès, La"
+            "label": "La Bisbal del Penedès"
           },
           {
             "parent_code": "43",
@@ -40009,7 +40009,7 @@
           {
             "parent_code": "43",
             "code": "6",
-            "label": "Canonja, La"
+            "label": "La Canonja"
           },
           {
             "parent_code": "43",
@@ -40042,7 +40042,7 @@
           {
             "parent_code": "43",
             "code": "0",
-            "label": "Catllar, El"
+            "label": "El Catllar"
           },
           {
             "parent_code": "43",
@@ -40122,17 +40122,17 @@
           {
             "parent_code": "43",
             "code": "8",
-            "label": "Fatarella, La"
+            "label": "La Fatarella"
           },
           {
             "parent_code": "43",
             "code": "4",
-            "label": "Febró, La"
+            "label": "La Febró"
           },
           {
             "parent_code": "43",
             "code": "0",
-            "label": "Figuera, La"
+            "label": "La Figuera"
           },
           {
             "parent_code": "43",
@@ -40165,7 +40165,7 @@
           {
             "parent_code": "43",
             "code": "5",
-            "label": "Galera, La"
+            "label": "La Galera"
           },
           {
             "parent_code": "43",
@@ -40222,7 +40222,7 @@
           {
             "parent_code": "43",
             "code": "7",
-            "label": "Lloar, El"
+            "label": "El Lloar"
           },
           {
             "parent_code": "43",
@@ -40276,7 +40276,7 @@
           {
             "parent_code": "43",
             "code": "3",
-            "label": "Masó, La"
+            "label": "La Masó"
           },
           {
             "parent_code": "43",
@@ -40288,12 +40288,12 @@
           {
             "parent_code": "43",
             "code": "5",
-            "label": "Masroig, El"
+            "label": "El Masroig"
           },
           {
             "parent_code": "43",
             "code": "1",
-            "label": "Milà, El"
+            "label": "El Milà"
           },
           {
             "parent_code": "43",
@@ -40305,7 +40305,7 @@
           {
             "parent_code": "43",
             "code": "9",
-            "label": "Molar, El"
+            "label": "El Molar"
           },
           {
             "parent_code": "43",
@@ -40331,7 +40331,7 @@
           {
             "parent_code": "43",
             "code": "1",
-            "label": "Montmell, El"
+            "label": "El Montmell"
           },
           {
             "parent_code": "43",
@@ -40364,17 +40364,17 @@
           {
             "parent_code": "43",
             "code": "7",
-            "label": "Morell, El"
+            "label": "El Morell"
           },
           {
             "parent_code": "43",
             "code": "0",
-            "label": "Morera de Montsant, La"
+            "label": "La Morera de Montsant"
           },
           {
             "parent_code": "43",
             "code": "6",
-            "label": "Nou de Gaià, La"
+            "label": "La Nou de Gaià"
           },
           {
             "parent_code": "43",
@@ -40391,7 +40391,7 @@
           {
             "parent_code": "43",
             "code": "5",
-            "label": "Palma d'Ebre, La"
+            "label": "La Palma d'Ebre"
           },
           {
             "parent_code": "43",
@@ -40417,7 +40417,7 @@
           {
             "parent_code": "43",
             "code": "2",
-            "label": "Perelló, El"
+            "label": "El Perelló"
           },
           {
             "parent_code": "43",
@@ -40427,7 +40427,7 @@
           {
             "parent_code": "43",
             "code": "8",
-            "label": "Pinell de Brai, El"
+            "label": "El Pinell de Brai"
           },
           {
             "parent_code": "43",
@@ -40439,22 +40439,22 @@
           {
             "parent_code": "43",
             "code": "0",
-            "label": "Pla de Santa Maria, El"
+            "label": "El Pla de Santa Maria"
           },
           {
             "parent_code": "43",
             "code": "3",
-            "label": "Pobla de Mafumet, La"
+            "label": "La Pobla de Mafumet"
           },
           {
             "parent_code": "43",
             "code": "7",
-            "label": "Pobla de Massaluca, La"
+            "label": "La Pobla de Massaluca"
           },
           {
             "parent_code": "43",
             "code": "4",
-            "label": "Pobla de Montornès, La"
+            "label": "La Pobla de Montornès"
           },
           {
             "parent_code": "43",
@@ -40466,7 +40466,7 @@
           {
             "parent_code": "43",
             "code": "5",
-            "label": "Pont d'Armentera, El"
+            "label": "El Pont d'Armentera"
           },
           {
             "parent_code": "43",
@@ -40548,7 +40548,7 @@
           {
             "parent_code": "43",
             "code": "8",
-            "label": "Riba, La"
+            "label": "La Riba"
           },
           {
             "parent_code": "43",
@@ -40560,7 +40560,7 @@
           {
             "parent_code": "43",
             "code": "4",
-            "label": "Riera de Gaià, La"
+            "label": "La Riera de Gaià"
           },
           {
             "parent_code": "43",
@@ -40614,7 +40614,7 @@
           {
             "parent_code": "43",
             "code": "6",
-            "label": "Rourell, El"
+            "label": "El Rourell"
           },
           {
             "parent_code": "43",
@@ -40687,12 +40687,12 @@
           {
             "parent_code": "43",
             "code": "4",
-            "label": "Secuita, La"
+            "label": "La Secuita"
           },
           {
             "parent_code": "43",
             "code": "7",
-            "label": "Selva del Camp, La"
+            "label": "La Selva del Camp"
           },
           {
             "parent_code": "43",
@@ -40704,7 +40704,7 @@
           {
             "parent_code": "43",
             "code": "5",
-            "label": "Sénia, La"
+            "label": "La Sénia"
           },
           {
             "parent_code": "43",
@@ -40737,12 +40737,12 @@
           {
             "parent_code": "43",
             "code": "5",
-            "label": "Torre de Fontaubella, La"
+            "label": "La Torre de Fontaubella"
           },
           {
             "parent_code": "43",
             "code": "0",
-            "label": "Torre de l'Espanyol, La"
+            "label": "La Torre de l'Espanyol"
           },
           {
             "parent_code": "43",
@@ -40817,7 +40817,7 @@
           {
             "parent_code": "43",
             "code": "4",
-            "label": "Vendrell, El"
+            "label": "El Vendrell"
           },
           {
             "parent_code": "43",
@@ -40892,12 +40892,12 @@
           {
             "parent_code": "43",
             "code": "2",
-            "label": "Vilella Alta, La"
+            "label": "La Vilella Alta"
           },
           {
             "parent_code": "43",
             "code": "7",
-            "label": "Vilella Baixa, La"
+            "label": "La Vilella Baixa"
           },
           {
             "parent_code": "43",
@@ -41374,7 +41374,7 @@
           {
             "parent_code": "03",
             "code": "7",
-            "label": "Montesinos, Los"
+            "label": "Los Montesinos"
           },
           {
             "parent_code": "03",
@@ -42186,7 +42186,7 @@
           {
             "parent_code": "12",
             "code": "3",
-            "label": "Toro, El"
+            "label": "El Toro"
           },
           {
             "parent_code": "12",
@@ -43658,7 +43658,7 @@
           {
             "parent_code": "46",
             "code": "8",
-            "label": "Yesa, La"
+            "label": "La Yesa"
           },
           {
             "parent_code": "46",
@@ -43710,7 +43710,7 @@
           {
             "parent_code": "06",
             "code": "5",
-            "label": "Albuera, La"
+            "label": "La Albuera"
           },
           {
             "parent_code": "06",
@@ -43897,7 +43897,7 @@
           {
             "parent_code": "06",
             "code": "5",
-            "label": "Carrascalejo, El"
+            "label": "El Carrascalejo"
           },
           {
             "parent_code": "06",
@@ -43937,7 +43937,7 @@
           {
             "parent_code": "06",
             "code": "8",
-            "label": "Codosera, La"
+            "label": "La Codosera"
           },
           {
             "parent_code": "06",
@@ -43949,7 +43949,7 @@
           {
             "parent_code": "06",
             "code": "7",
-            "label": "Coronada, La"
+            "label": "La Coronada"
           },
           {
             "parent_code": "06",
@@ -44073,7 +44073,7 @@
           {
             "parent_code": "06",
             "code": "9",
-            "label": "Garrovilla, La"
+            "label": "La Garrovilla"
           },
           {
             "parent_code": "06",
@@ -44097,7 +44097,7 @@
           {
             "parent_code": "06",
             "code": "3",
-            "label": "Haba, La"
+            "label": "La Haba"
           },
           {
             "parent_code": "06",
@@ -44165,7 +44165,7 @@
           {
             "parent_code": "06",
             "code": "1",
-            "label": "Lapa, La"
+            "label": "La Lapa"
           },
           {
             "parent_code": "06",
@@ -44289,12 +44289,12 @@
           {
             "parent_code": "06",
             "code": "6",
-            "label": "Morera, La"
+            "label": "La Morera"
           },
           {
             "parent_code": "06",
             "code": "0",
-            "label": "Nava de Santiago, La"
+            "label": "La Nava de Santiago"
           },
           {
             "parent_code": "06",
@@ -44355,7 +44355,7 @@
           {
             "parent_code": "06",
             "code": "4",
-            "label": "Parra, La"
+            "label": "La Parra"
           },
           {
             "parent_code": "06",
@@ -44472,7 +44472,7 @@
           {
             "parent_code": "06",
             "code": "2",
-            "label": "Roca de la Sierra, La"
+            "label": "La Roca de la Sierra"
           },
           {
             "parent_code": "06",
@@ -44526,7 +44526,7 @@
           {
             "parent_code": "06",
             "code": "6",
-            "label": "Santos de Maimona, Los"
+            "label": "Los Santos de Maimona"
           },
           {
             "parent_code": "06",
@@ -44797,7 +44797,7 @@
           {
             "parent_code": "06",
             "code": "7",
-            "label": "Zarza, La"
+            "label": "La Zarza"
           },
           {
             "parent_code": "06",
@@ -44900,7 +44900,7 @@
           {
             "parent_code": "10",
             "code": "4",
-            "label": "Aldea del Obispo, La"
+            "label": "La Aldea del Obispo"
           },
           {
             "parent_code": "10",
@@ -45297,7 +45297,7 @@
           {
             "parent_code": "10",
             "code": "9",
-            "label": "Cumbre, La"
+            "label": "La Cumbre"
           },
           {
             "parent_code": "10",
@@ -45358,7 +45358,7 @@
           {
             "parent_code": "10",
             "code": "4",
-            "label": "Garganta, La"
+            "label": "La Garganta"
           },
           {
             "parent_code": "10",
@@ -45398,12 +45398,12 @@
           {
             "parent_code": "10",
             "code": "7",
-            "label": "Gordo, El"
+            "label": "El Gordo"
           },
           {
             "parent_code": "10",
             "code": "0",
-            "label": "Granja, La"
+            "label": "La Granja"
           },
           {
             "parent_code": "10",
@@ -45805,7 +45805,7 @@
           {
             "parent_code": "10",
             "code": "2",
-            "label": "Pesga, La"
+            "label": "La Pesga"
           },
           {
             "parent_code": "10",
@@ -46104,7 +46104,7 @@
           {
             "parent_code": "10",
             "code": "3",
-            "label": "Torno, El"
+            "label": "El Torno"
           },
           {
             "parent_code": "10",
@@ -46370,7 +46370,7 @@
       {
         "parent_code": "12",
         "code": "15",
-        "label": "Coruña, A",
+        "label": "A Coruña",
         "towns": [
           {
             "parent_code": "15",
@@ -46405,7 +46405,7 @@
           {
             "parent_code": "15",
             "code": "9",
-            "label": "Baña, A"
+            "label": "A Baña"
           },
           {
             "parent_code": "15",
@@ -46460,7 +46460,7 @@
           {
             "parent_code": "15",
             "code": "3",
-            "label": "Capela, A"
+            "label": "A Capela"
           },
           {
             "parent_code": "15",
@@ -46520,7 +46520,7 @@
           {
             "parent_code": "15",
             "code": "8",
-            "label": "Coruña, A"
+            "label": "A Coruña"
           },
           {
             "parent_code": "15",
@@ -46570,7 +46570,7 @@
           {
             "parent_code": "15",
             "code": "3",
-            "label": "Laracha, A"
+            "label": "A Laracha"
           },
           {
             "parent_code": "15",
@@ -46700,12 +46700,12 @@
           {
             "parent_code": "15",
             "code": "0",
-            "label": "Pino, O"
+            "label": "O Pino"
           },
           {
             "parent_code": "15",
             "code": "6",
-            "label": "Pobra do Caramiñal, A"
+            "label": "A Pobra do Caramiñal"
           },
           {
             "parent_code": "15",
@@ -46720,7 +46720,7 @@
           {
             "parent_code": "15",
             "code": "9",
-            "label": "Pontes de García Rodríguez, As"
+            "label": "As Pontes de García Rodríguez"
           },
           {
             "parent_code": "15",
@@ -46775,7 +46775,7 @@
           {
             "parent_code": "15",
             "code": "4",
-            "label": "Somozas, As"
+            "label": "As Somozas"
           },
           {
             "parent_code": "15",
@@ -46959,7 +46959,7 @@
           {
             "parent_code": "27",
             "code": "2",
-            "label": "Corgo, O"
+            "label": "O Corgo"
           },
           {
             "parent_code": "27",
@@ -46978,7 +46978,7 @@
           {
             "parent_code": "27",
             "code": "0",
-            "label": "Fonsagrada, A"
+            "label": "A Fonsagrada"
           },
           {
             "parent_code": "27",
@@ -47011,7 +47011,7 @@
           {
             "parent_code": "27",
             "code": "0",
-            "label": "Incio, O"
+            "label": "O Incio"
           },
           {
             "parent_code": "27",
@@ -47086,7 +47086,7 @@
           {
             "parent_code": "27",
             "code": "0",
-            "label": "Nogais, As"
+            "label": "As Nogais"
           },
           {
             "parent_code": "27",
@@ -47126,12 +47126,12 @@
           {
             "parent_code": "27",
             "code": "1",
-            "label": "Páramo, O"
+            "label": "O Páramo"
           },
           {
             "parent_code": "27",
             "code": "6",
-            "label": "Pastoriza, A"
+            "label": "A Pastoriza"
           },
           {
             "parent_code": "27",
@@ -47143,7 +47143,7 @@
           {
             "parent_code": "27",
             "code": "8",
-            "label": "Pobra do Brollón, A"
+            "label": "A Pobra do Brollón"
           },
           {
             "parent_code": "27",
@@ -47155,7 +47155,7 @@
           {
             "parent_code": "27",
             "code": "4",
-            "label": "Pontenova, A"
+            "label": "A Pontenova"
           },
           {
             "parent_code": "27",
@@ -47223,7 +47223,7 @@
           {
             "parent_code": "27",
             "code": "1",
-            "label": "Saviñao, O"
+            "label": "O Saviñao"
           },
           {
             "parent_code": "27",
@@ -47256,12 +47256,12 @@
           {
             "parent_code": "27",
             "code": "6",
-            "label": "Valadouro, O"
+            "label": "O Valadouro"
           },
           {
             "parent_code": "27",
             "code": "1",
-            "label": "Vicedo, O"
+            "label": "O Vicedo"
           },
           {
             "parent_code": "27",
@@ -47315,7 +47315,7 @@
           {
             "parent_code": "32",
             "code": "4",
-            "label": "Arnoia, A"
+            "label": "A Arnoia"
           },
           {
             "parent_code": "32",
@@ -47355,7 +47355,7 @@
           {
             "parent_code": "32",
             "code": "0",
-            "label": "Barco de Valdeorras, O"
+            "label": "O Barco de Valdeorras"
           },
           {
             "parent_code": "32",
@@ -47374,7 +47374,7 @@
           {
             "parent_code": "32",
             "code": "6",
-            "label": "Blancos, Os"
+            "label": "Os Blancos"
           },
           {
             "parent_code": "32",
@@ -47386,12 +47386,12 @@
           {
             "parent_code": "32",
             "code": "7",
-            "label": "Bola, A"
+            "label": "A Bola"
           },
           {
             "parent_code": "32",
             "code": "0",
-            "label": "Bolo, O"
+            "label": "O Bolo"
           },
           {
             "parent_code": "32",
@@ -47417,7 +47417,7 @@
           {
             "parent_code": "32",
             "code": "8",
-            "label": "Carballiño, O"
+            "label": "O Carballiño"
           },
           {
             "parent_code": "32",
@@ -47513,12 +47513,12 @@
           {
             "parent_code": "32",
             "code": "3",
-            "label": "Gudiña, A"
+            "label": "A Gudiña"
           },
           {
             "parent_code": "32",
             "code": "6",
-            "label": "Irixo, O"
+            "label": "O Irixo"
           },
           {
             "parent_code": "32",
@@ -47586,12 +47586,12 @@
           {
             "parent_code": "32",
             "code": "3",
-            "label": "Merca, A"
+            "label": "A Merca"
           },
           {
             "parent_code": "32",
             "code": "9",
-            "label": "Mezquita, A"
+            "label": "A Mezquita"
           },
           {
             "parent_code": "32",
@@ -47659,12 +47659,12 @@
           {
             "parent_code": "32",
             "code": "6",
-            "label": "Pereiro de Aguiar, O"
+            "label": "O Pereiro de Aguiar"
           },
           {
             "parent_code": "32",
             "code": "9",
-            "label": "Peroxa, A"
+            "label": "A Peroxa"
           },
           {
             "parent_code": "32",
@@ -47683,7 +47683,7 @@
           {
             "parent_code": "32",
             "code": "1",
-            "label": "Pobra de Trives, A"
+            "label": "A Pobra de Trives"
           },
           {
             "parent_code": "32",
@@ -47744,7 +47744,7 @@
           {
             "parent_code": "32",
             "code": "3",
-            "label": "Rúa, A"
+            "label": "A Rúa"
           },
           {
             "parent_code": "32",
@@ -47805,7 +47805,7 @@
           {
             "parent_code": "32",
             "code": "9",
-            "label": "Teixeira, A"
+            "label": "A Teixeira"
           },
           {
             "parent_code": "32",
@@ -47824,7 +47824,7 @@
           {
             "parent_code": "32",
             "code": "7",
-            "label": "Veiga, A"
+            "label": "A Veiga"
           },
           {
             "parent_code": "32",
@@ -47983,7 +47983,7 @@
           {
             "parent_code": "36",
             "code": "7",
-            "label": "Cañiza, A"
+            "label": "A Cañiza"
           },
           {
             "parent_code": "36",
@@ -48030,7 +48030,7 @@
           {
             "parent_code": "36",
             "code": "6",
-            "label": "Estrada, A"
+            "label": "A Estrada"
           },
           {
             "parent_code": "36",
@@ -48056,17 +48056,17 @@
           {
             "parent_code": "36",
             "code": "1",
-            "label": "Grove, O"
+            "label": "O Grove"
           },
           {
             "parent_code": "36",
             "code": "7",
-            "label": "Guarda, A"
+            "label": "A Guarda"
           },
           {
             "parent_code": "36",
             "code": "1",
-            "label": "Illa de Arousa, A"
+            "label": "A Illa de Arousa"
           },
           {
             "parent_code": "36",
@@ -48078,7 +48078,7 @@
           {
             "parent_code": "36",
             "code": "5",
-            "label": "Lama, A"
+            "label": "A Lama"
           },
           {
             "parent_code": "36",
@@ -48139,7 +48139,7 @@
           {
             "parent_code": "36",
             "code": "0",
-            "label": "Neves, As"
+            "label": "As Neves"
           },
           {
             "parent_code": "36",
@@ -48200,7 +48200,7 @@
           {
             "parent_code": "36",
             "code": "1",
-            "label": "Porriño, O"
+            "label": "O Porriño"
           },
           {
             "parent_code": "36",
@@ -48233,7 +48233,7 @@
           {
             "parent_code": "36",
             "code": "6",
-            "label": "Rosal, O"
+            "label": "O Rosal"
           },
           {
             "parent_code": "36",
@@ -48343,7 +48343,7 @@
           {
             "parent_code": "28",
             "code": "4",
-            "label": "Acebeda, La"
+            "label": "La Acebeda"
           },
           {
             "parent_code": "28",
@@ -48362,7 +48362,7 @@
           {
             "parent_code": "28",
             "code": "0",
-            "label": "Álamo, El"
+            "label": "El Álamo"
           },
           {
             "parent_code": "28",
@@ -48444,7 +48444,7 @@
           {
             "parent_code": "28",
             "code": "4",
-            "label": "Atazar, El"
+            "label": "El Atazar"
           },
           {
             "parent_code": "28",
@@ -48470,7 +48470,7 @@
           {
             "parent_code": "28",
             "code": "0",
-            "label": "Berrueco, El"
+            "label": "El Berrueco"
           },
           {
             "parent_code": "28",
@@ -48489,7 +48489,7 @@
           {
             "parent_code": "28",
             "code": "1",
-            "label": "Boalo, El"
+            "label": "El Boalo"
           },
           {
             "parent_code": "28",
@@ -48536,7 +48536,7 @@
           {
             "parent_code": "28",
             "code": "1",
-            "label": "Cabrera, La"
+            "label": "La Cabrera"
           },
           {
             "parent_code": "28",
@@ -48702,7 +48702,7 @@
           {
             "parent_code": "28",
             "code": "9",
-            "label": "Escorial, El"
+            "label": "El Escorial"
           },
           {
             "parent_code": "28",
@@ -48805,7 +48805,7 @@
           {
             "parent_code": "28",
             "code": "8",
-            "label": "Hiruela, La"
+            "label": "La Hiruela"
           },
           {
             "parent_code": "28",
@@ -48915,12 +48915,12 @@
           {
             "parent_code": "28",
             "code": "9",
-            "label": "Molar, El"
+            "label": "El Molar"
           },
           {
             "parent_code": "28",
             "code": "5",
-            "label": "Molinos, Los"
+            "label": "Los Molinos"
           },
           {
             "parent_code": "28",
@@ -49184,7 +49184,7 @@
           {
             "parent_code": "28",
             "code": "7",
-            "label": "Rozas de Madrid, Las"
+            "label": "Las Rozas de Madrid"
           },
           {
             "parent_code": "28",
@@ -49252,12 +49252,12 @@
           {
             "parent_code": "28",
             "code": "5",
-            "label": "Santos de la Humosa, Los"
+            "label": "Los Santos de la Humosa"
           },
           {
             "parent_code": "28",
             "code": "1",
-            "label": "Serna del Monte, La"
+            "label": "La Serna del Monte"
           },
           {
             "parent_code": "28",
@@ -49458,7 +49458,7 @@
           {
             "parent_code": "28",
             "code": "4",
-            "label": "Vellón, El"
+            "label": "El Vellón"
           },
           {
             "parent_code": "28",
@@ -49617,7 +49617,7 @@
           {
             "parent_code": "30",
             "code": "7",
-            "label": "Alcázares, Los"
+            "label": "Los Alcázares"
           },
           {
             "parent_code": "30",
@@ -49853,7 +49853,7 @@
           {
             "parent_code": "30",
             "code": "9",
-            "label": "Torres de Cotillas, Las"
+            "label": "Las Torres de Cotillas"
           },
           {
             "parent_code": "30",
@@ -49872,7 +49872,7 @@
           {
             "parent_code": "30",
             "code": "3",
-            "label": "Unión, La"
+            "label": "La Unión"
           },
           {
             "parent_code": "30",
@@ -50101,7 +50101,7 @@
           {
             "parent_code": "31",
             "code": "1",
-            "label": "Arcos, Los"
+            "label": "Los Arcos"
           },
           {
             "parent_code": "31",
@@ -50370,7 +50370,7 @@
           {
             "parent_code": "31",
             "code": "5",
-            "label": "Busto, El"
+            "label": "El Busto"
           },
           {
             "parent_code": "31",
@@ -53577,13 +53577,13 @@
   },
   {
     "parent_code": "0",
-    "label": "Rioja, La",
+    "label": "La Rioja",
     "code": "17",
     "provinces": [
       {
         "parent_code": "17",
         "code": "26",
-        "label": "Rioja, La",
+        "label": "La Rioja",
         "towns": [
           {
             "parent_code": "26",
@@ -54173,12 +54173,12 @@
           {
             "parent_code": "26",
             "code": "2",
-            "label": "Rasillo de Cameros, El"
+            "label": "El Rasillo de Cameros"
           },
           {
             "parent_code": "26",
             "code": "8",
-            "label": "Redal, El"
+            "label": "El Redal"
           },
           {
             "parent_code": "26",
@@ -54393,7 +54393,7 @@
           {
             "parent_code": "26",
             "code": "9",
-            "label": "Villar de Arnedo, El"
+            "label": "El Villar de Arnedo"
           },
           {
             "parent_code": "26",
