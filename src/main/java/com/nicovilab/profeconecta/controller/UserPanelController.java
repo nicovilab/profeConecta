@@ -10,6 +10,9 @@ import com.nicovilab.profeconecta.view.MainJFrame;
 import com.nicovilab.profeconecta.view.UserPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,7 +35,11 @@ public class UserPanelController {
     
     private ActionListener getProfileButtonActionListener() {
         return (ActionEvent e) -> {
-            new ProfileController(view, view.getProfilePanel(), user);
+            try {
+                new ProfileController(view, view.getProfilePanel(), user);
+            } catch (SQLException ex) {
+                Logger.getLogger(UserPanelController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             view.showPanel("profile");
             
         };

@@ -6,23 +6,27 @@ package com.nicovilab.profeconecta.controller;
 
 import com.nicovilab.profeconecta.model.Direccion;
 import com.nicovilab.profeconecta.model.Usuario;
+import com.nicovilab.profeconecta.model.Valoracion;
 import com.nicovilab.profeconecta.model.VistaValoracion;
 import com.nicovilab.profeconecta.model.address.AutonomousCommunity;
 import com.nicovilab.profeconecta.model.address.Province;
 import com.nicovilab.profeconecta.model.address.Town;
 import com.nicovilab.profeconecta.service.DatabaseService;
 import com.nicovilab.profeconecta.service.ProfileService;
+import com.nicovilab.profeconecta.service.UserService;
 import static com.nicovilab.profeconecta.utils.Utils.convertFileToBytes;
 import static com.nicovilab.profeconecta.utils.Utils.getAutonomousCommunitiesData;
 import com.nicovilab.profeconecta.view.MainJFrame;
 import com.nicovilab.profeconecta.view.ProfilePanel;
 import com.nicovilab.profeconecta.view.extraSwingComponents.ImageAvatar;
+import com.nicovilab.profeconecta.view.reviews.ReviewsView;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +34,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -42,65 +47,69 @@ public class ProfileController {
     private final ProfilePanel profilePanel;
     private final DatabaseService databaseService;
     private final ProfileService profileService;
+    private final UserService userService;
+    private final ReviewsView reviewsView;
     private final List<AutonomousCommunity> autonomousCommunities;
-    
+
     private final String userEmail;
 
-    public ProfileController(MainJFrame view, ProfilePanel profilePanel, Usuario user) {
+    public ProfileController(MainJFrame view, ProfilePanel profilePanel, Usuario user) throws SQLException {
         this.view = view;
         this.profilePanel = profilePanel;
         this.userEmail = user.getEmail();
-        
+
         databaseService = new DatabaseService();
         profileService = new ProfileService();
-        
+        userService = new UserService();
+        reviewsView = new ReviewsView(userService);
+
         this.autonomousCommunities = getAutonomousCommunitiesData();
-        
+
         populateAddressData(autonomousCommunities);
-        
+
         addProvinceComboBoxListener();
-        
+
         profilePanel.addProfileButtonActionListener(this.getProfileButtonActionListener());
         profilePanel.addExitButtonActionListener(this.getExitButtonActionListener());
         profilePanel.addEditButtonActionListener(this.getEditButtonActionListener());
         profilePanel.addSaveButtonActionListener(this.getSaveButtonActionListener());
         profilePanel.addImageAvatarButtonActionListener(this.getImageAvatarButtonActionListener());
-        
+
         VistaValoracion vistaValoracion = databaseService.getAverageRating(String.valueOf(user.getIdUsuario()));
-        
-        if(vistaValoracion != null) {
+
+        if (vistaValoracion != null) {
             profilePanel.getRatingLabel().setText(vistaValoracion.getValoracionMedia() + " con " + vistaValoracion.getTotalValoraciones() + " valoraciones");
             setStarRating(vistaValoracion.getValoracionMedia().doubleValue());
         } else {
             setStarRating(0D);
         }
-        
+
         setUserInfo(user, profileService.fetchUserAddress(user.getEmail()));
+        cargarPerfilUsuario(user.getIdUsuario());
     }
-    
+
     private ActionListener getProfileButtonActionListener() {
         return (ActionEvent e) -> {
-            
-                
+
         };
     }
-   
+
     private ActionListener getImageAvatarButtonActionListener() {
         return (ActionEvent e) -> {
-          File selectedFile = selectImageFile();
-                if (selectedFile != null) {
-                    try {
-                        byte[] imageBytes = convertFileToBytes(selectedFile);
-                        
-                        databaseService.updateUserImage(imageBytes, userEmail);
-                        
-                    } catch (IOException ex) {
-                        Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            File selectedFile = selectImageFile();
+            if (selectedFile != null) {
+                try {
+                    byte[] imageBytes = convertFileToBytes(selectedFile);
+
+                    databaseService.updateUserImage(imageBytes, userEmail);
+
+                } catch (IOException ex) {
+                    Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         };
     }
-   
+
     private ActionListener getEditButtonActionListener() {
         return (ActionEvent e) -> {
             profilePanel.enableFields(true);
@@ -112,7 +121,7 @@ public class ProfileController {
 
     private ActionListener getSaveButtonActionListener() {
         return (ActionEvent e) -> {
-            
+
             String selectedTown = profilePanel.getTownComboBox().getItemAt(profilePanel.getTownComboBox().getSelectedIndex());
 
             Town town = autonomousCommunities.stream()
@@ -121,7 +130,7 @@ public class ProfileController {
                     .filter(y -> y.getLabel().equals(selectedTown))
                     .findFirst()
                     .orElse(null);
-            
+
             databaseService.updateUserInfo(
                     profilePanel.getNameTextField().getText(),
                     profilePanel.getSurnameTextField().getText(),
@@ -134,7 +143,7 @@ public class ProfileController {
             profilePanel.enableFields(false);
             profilePanel.enableEditButton(true);
             profilePanel.enableSaveButton(false);
-            
+
         };
     }
 
@@ -143,13 +152,13 @@ public class ProfileController {
             view.showPanel("login");
         };
     }
-    
+
     private void setUserInfo(Usuario user, Direccion address) {
         profilePanel.setNameTextField(user.getNombre());
         profilePanel.setSurnameTextField(user.getApellidos());
         profilePanel.setNumberTextField(user.getTelefono() == null ? null : user.getTelefono());
         profilePanel.setDescriptionTextField(user.getDescripcion() == null ? null : user.getDescripcion());
-        if(address != null) {
+        if (address != null) {
             profilePanel.setProvinceTextField(address.getProvincia() == null ? null : address.getProvincia());
             profilePanel.setTownTextField(address.getMunicipio() == null ? null : address.getMunicipio());
             profilePanel.setAdressTextField(address.getDireccion() == null ? null : address.getDireccion());
@@ -157,9 +166,8 @@ public class ProfileController {
         loadUserImage(user, profilePanel.getImageAvatar());
     }
 
-    
     private void setStarRating(Double valoracionMedia) {
-        int visibleStars = (int) Math.round(roundRating(valoracionMedia)* 2d);
+        int visibleStars = (int) Math.round(roundRating(valoracionMedia) * 2d);
 
         for (int i = 1; i < 11; i++) {
             boolean shouldBeVisible = i <= visibleStars;
@@ -178,8 +186,8 @@ public class ProfileController {
 
     private Double roundRating(Double valoracionMedia) {
         double floor = Math.floor(valoracionMedia);
-        int decimal = (int)((valoracionMedia - floor) * 10);
-        
+        int decimal = (int) ((valoracionMedia - floor) * 10);
+
         if (decimal >= 0 && decimal < 5) {
             return floor;
         } else if (decimal >= 6 && decimal < 9) {
@@ -205,7 +213,7 @@ public class ProfileController {
 
         return null;
     }
-    
+
     private void loadUserImage(Usuario user, ImageAvatar imageAvatar) {
         if (user != null && user.getFotoPerfil() != null) {
             ImageIcon icon = new ImageIcon(user.getFotoPerfil());
@@ -221,7 +229,7 @@ public class ProfileController {
         }
     }
 
-    private void populateAddressData(List<AutonomousCommunity> autonomousCommunitiesData) {        
+    private void populateAddressData(List<AutonomousCommunity> autonomousCommunitiesData) {
         DefaultComboBoxModel<String> provinceModel = new DefaultComboBoxModel<>();
         List<String> provinceNames = autonomousCommunitiesData.stream()
                 .flatMap(community -> community.getProvinces().stream())
@@ -239,27 +247,39 @@ public class ProfileController {
         townModel.addAll(townNames);
         profilePanel.getTownComboBox().setModel(townModel);
     }
-    
-    private void addProvinceComboBoxListener() {
-    profilePanel.getProvinceComboBox().addActionListener(e -> {
-        String selectedProvince = (String) profilePanel.getProvinceComboBox().getSelectedItem();
 
-        if (selectedProvince != null) {
-            profilePanel.enableTownCombobox(true);
-            List<Town> towns = autonomousCommunities.stream()
-                    .flatMap(c -> c.getProvinces().stream())
-                    .filter(p -> p.getLabel().equals(selectedProvince))
-                    .flatMap(p -> p.getTowns().stream())
-                    .toList();
-            
+    private void addProvinceComboBoxListener() {  //todo añadir las coordenadas a los ayuntamiento que faltan
+        profilePanel.getProvinceComboBox().addActionListener(e -> {
+            String selectedProvince = (String) profilePanel.getProvinceComboBox().getSelectedItem();
 
-            DefaultComboBoxModel<String> townModel = new DefaultComboBoxModel<>();
-            townModel.addAll(towns.stream()
-                    .map(Town::getLabel)
-                    .toList());
-            profilePanel.getTownComboBox().setModel(townModel);
+            if (selectedProvince != null) {
+                profilePanel.enableTownCombobox(true);
+                List<Town> towns = autonomousCommunities.stream()
+                        .flatMap(c -> c.getProvinces().stream())
+                        .filter(p -> p.getLabel().equals(selectedProvince))
+                        .flatMap(p -> p.getTowns().stream())
+                        .toList();
+
+                DefaultComboBoxModel<String> townModel = new DefaultComboBoxModel<>();
+                townModel.addAll(towns.stream()
+                        .map(Town::getLabel)
+                        .toList());
+                profilePanel.getTownComboBox().setModel(townModel);
+            }
+        });
+    }
+
+    public void cargarPerfilUsuario(int idUsuario) throws SQLException {
+        List<Valoracion> valoraciones = databaseService.getUserReviews(idUsuario);
+
+        
+        JPanel panelReseñas = reviewsView.createReviewsPanel(valoraciones);
+        System.out.println("Panel creado: " + (panelReseñas != null));
+        
+        if (valoraciones != null && !valoraciones.isEmpty()) {
+        profilePanel.getReviewsScrollPane().setViewportView(panelReseñas);
         }
-    });
-}
+        
+    }
     
 }

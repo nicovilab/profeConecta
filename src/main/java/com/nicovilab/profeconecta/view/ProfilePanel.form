@@ -170,16 +170,13 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="townLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="townLabel" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                                               <Component id="townComboBox" min="-2" pref="180" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="addressTextField" min="-2" pref="181" max="-2" attributes="0"/>
                                           <Component id="addressLabel" min="-2" max="-2" attributes="0"/>
@@ -226,7 +223,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Component id="reviewsScrollPane" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="116" max="32767" attributes="0"/>
@@ -300,7 +297,7 @@
                               <Component id="ratingLabel" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="242" max="32767" attributes="0"/>
+                          <Component id="reviewsScrollPane" pref="242" max="32767" attributes="0"/>
                       </Group>
                       <Component id="star5" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="star6" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -525,7 +522,7 @@
             <Property name="text" type="java.lang.String" value="Opiniones"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="reviewsScrollPane">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
         </Container>

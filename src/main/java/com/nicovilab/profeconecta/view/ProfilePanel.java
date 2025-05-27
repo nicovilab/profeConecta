@@ -7,9 +7,13 @@ package com.nicovilab.profeconecta.view;
 import com.nicovilab.profeconecta.view.gradientComponents.CircularIntegratedButton;
 import com.nicovilab.profeconecta.view.gradientComponents.IntegratedButton;
 import com.nicovilab.profeconecta.view.gradientComponents.JPanelGradient;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +25,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProfilePanel extends javax.swing.JPanel {
+
+    private JPanel reviewsContainer;
 
     /**
      * Creates new form ProfilePanel
@@ -61,7 +67,7 @@ public class ProfilePanel extends javax.swing.JPanel {
         saveButton = new javax.swing.JButton();
         editButton = new javax.swing.JButton();
         opinionLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        reviewsScrollPane = new javax.swing.JScrollPane();
         descriptionScrollPane = new javax.swing.JScrollPane();
         descriptionTextArea = new javax.swing.JTextArea();
         descriptionLabel = new javax.swing.JLabel();
@@ -306,13 +312,11 @@ public class ProfilePanel extends javax.swing.JPanel {
                                         .addComponent(surnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(rightPanelLayout.createSequentialGroup()
                                     .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(rightPanelLayout.createSequentialGroup()
-                                            .addComponent(townLabel)
-                                            .addGap(145, 145, 145))
+                                        .addComponent(townLabel)
                                         .addGroup(rightPanelLayout.createSequentialGroup()
                                             .addGap(1, 1, 1)
-                                            .addComponent(townComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)))
+                                            .addComponent(townComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(18, 18, 18)
                                     .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(addressLabel))))
@@ -351,7 +355,7 @@ public class ProfilePanel extends javax.swing.JPanel {
                         .addGap(0, 41, Short.MAX_VALUE))
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1)))
+                        .addComponent(reviewsScrollPane)))
                 .addContainerGap(116, Short.MAX_VALUE))
         );
         rightPanelLayout.setVerticalGroup(
@@ -410,7 +414,7 @@ public class ProfilePanel extends javax.swing.JPanel {
                             .addComponent(star10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ratingLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(1, 1, 1)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
+                        .addComponent(reviewsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
                     .addComponent(star5)
                     .addComponent(star6))
                 .addContainerGap())
@@ -471,14 +475,15 @@ public class ProfilePanel extends javax.swing.JPanel {
     private void addressTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addressTextFieldActionPerformed
-    
+
     public void addProfileButtonActionListener(ActionListener al) {
         this.profileButton.addActionListener(al);
     }
-    
+
     public void addEditButtonActionListener(ActionListener al) {
         this.editButton.addActionListener(al);
     }
+
     public void addSaveButtonActionListener(ActionListener al) {
         this.saveButton.addActionListener(al);
     }
@@ -486,33 +491,40 @@ public class ProfilePanel extends javax.swing.JPanel {
     public void addExitButtonActionListener(ActionListener al) {
         this.exitButton.addActionListener(al);
     }
+
     public void addImageAvatarButtonActionListener(ActionListener al) {
         this.imageAvatarButton.addActionListener(al);
     }
-    
-    public void setNameTextField(String text){
+
+    public void setNameTextField(String text) {
         this.nameTextField.setText(text);
     }
-    public void setSurnameTextField(String text){
+
+    public void setSurnameTextField(String text) {
         this.surnameTextField.setText(text);
     }
-    public void setNumberTextField(String text){
+
+    public void setNumberTextField(String text) {
         this.numberTextField.setText(text);
     }
-    public void setProvinceTextField(String text){
+
+    public void setProvinceTextField(String text) {
         this.provinceComboBox.setSelectedItem(text);
     }
-    public void setTownTextField(String text){
+
+    public void setTownTextField(String text) {
         this.townComboBox.setSelectedItem(text);
     }
-    public void setAdressTextField(String text){
+
+    public void setAdressTextField(String text) {
         this.addressTextField.setText(text);
     }
-    public void setDescriptionTextField(String text){
+
+    public void setDescriptionTextField(String text) {
         this.descriptionTextArea.setText(text);
     }
-   
-    public void enableFields(boolean enable){
+
+    public void enableFields(boolean enable) {
         this.nameTextField.setEnabled(enable);
         this.surnameTextField.setEnabled(enable);
         this.numberTextField.setEnabled(enable);
@@ -521,17 +533,31 @@ public class ProfilePanel extends javax.swing.JPanel {
         this.addressTextField.setEnabled(enable);
         this.descriptionTextArea.setEnabled(enable);
     }
-    
-    public void enableSaveButton(boolean enable){
+
+    public void enableSaveButton(boolean enable) {
         this.saveButton.setEnabled(enable);
     }
-    public void enableEditButton(boolean enable){
+
+    public void enableEditButton(boolean enable) {
         this.editButton.setEnabled(enable);
     }
-    public void enableTownCombobox(boolean enable){
+
+    public void enableTownCombobox(boolean enable) {
         this.townComboBox.setEnabled(enable);
     }
-   
+
+    public JScrollPane getReviewsScrollPane() {
+        refreshScrollPane();
+        return reviewsScrollPane;
+    }
+
+    private void refreshScrollPane() {
+
+        reviewsScrollPane.revalidate();
+        reviewsScrollPane.repaint();
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressLabel;
     private javax.swing.JTextField addressTextField;
@@ -543,7 +569,6 @@ public class ProfilePanel extends javax.swing.JPanel {
     private javax.swing.JButton exitButton;
     private com.nicovilab.profeconecta.view.extraSwingComponents.ImageAvatar imageAvatar;
     private javax.swing.JButton imageAvatarButton;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JSeparator mainSeparator;
     private javax.swing.JLabel nameLabel;
@@ -554,6 +579,7 @@ public class ProfilePanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> provinceComboBox;
     private javax.swing.JLabel provinceLabel;
     private javax.swing.JLabel ratingLabel;
+    private javax.swing.JScrollPane reviewsScrollPane;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JButton saveButton;
     private javax.swing.JLabel star1;

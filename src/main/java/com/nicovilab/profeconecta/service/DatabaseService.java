@@ -7,9 +7,11 @@ package com.nicovilab.profeconecta.service;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.nicovilab.profeconecta.model.Direccion;
 import com.nicovilab.profeconecta.model.Usuario;
+import com.nicovilab.profeconecta.model.Valoracion;
 import com.nicovilab.profeconecta.model.VistaValoracion;
 import com.nicovilab.profeconecta.model.address.Town;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,20 +23,21 @@ import nl.jiankai.mapper.ResultSetMapperFactory;
  * @author Nico
  */
 public class DatabaseService {
+
     private final Connection connection;
     private final ResultSetMapper resultSetMapper;
-   
+
     public DatabaseService() {
         try {
             connection = DriverManager.getConnection(
                     "jdbc:mariadb://localhost:3306/exmple-database",
                     "root", "my-secret-pw");
             resultSetMapper = ResultSetMapperFactory.getResultSetMapperLowerCaseUnderscore();
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             throw new RuntimeException();
         }
     }
-    
+
     public Usuario loginSuccessful(String email, char[] password) {
         PreparedStatement preparedStatement = createQuery("SELECT * FROM USUARIO WHERE email = ?",
                 email);
@@ -70,14 +73,13 @@ public class DatabaseService {
             List<Direccion> result = resultSetMapper.map(resultSet, Direccion.class);
 
             if (result.size() == 1) {
-                    return result.get(0);
-                }
+                return result.get(0);
             }
+        }
 
         return null;
     }
-    
-    
+
     public boolean registerSuccessful(String name, String surname, String email, String password) {
         PreparedStatement preparedStatement = createQuery("INSERT INTO USUARIO (nombre, apellidos, email, contrasena) VALUES (?, ?, ?, ?)",
                 name, surname, email, password);
@@ -94,13 +96,13 @@ public class DatabaseService {
     public boolean updateUserInfo(String name, String surname, String number, String province, Town town, String address, String description, String email) {
         PreparedStatement preparedStatementUsuario = createQuery("UPDATE USUARIO SET nombre = ?, apellidos = ?, telefono = ?, descripcion = ? WHERE email = ?",
                 name, surname, number, description, email);
-        
+
         PreparedStatement preparedStatementDireccion = createQuery("""
                 INSERT INTO DIRECCION (id_usuario, provincia, municipio, direccion, latitud, longitud)
                 SELECT u.id_usuario, ?, ?, ?, ?, ? FROM USUARIO u WHERE u.email = ?
                 ON DUPLICATE KEY UPDATE provincia = ?, municipio = ?, direccion = ?, latitud = ?, longitud = ?
                 """,
-                province, town.getLabel(), address, town.getLatitude(), town.getLongitude(), 
+                province, town.getLabel(), address, town.getLatitude(), town.getLongitude(),
                 email, province, town.getLabel(), address, town.getLatitude(), town.getLongitude()
         );
 
@@ -136,7 +138,29 @@ public class DatabaseService {
         }
         return true;
     }
-    
+
+    public Usuario getUserById(int userId) throws SQLException {
+        PreparedStatement preparedStatement = createQuery("SELECT id_usuario, nombre, apellidos, foto_perfil FROM USUARIO WHERE id_usuario = ?", userId);
+
+        ResultSet resultSet = executeQuery(preparedStatement);
+
+        if (resultSet.next()) {
+            Usuario usuario = new Usuario();
+            usuario.setIdUsuario(resultSet.getInt("id_usuario"));
+            usuario.setNombre(resultSet.getString("nombre"));
+            usuario.setApellidos(resultSet.getString("apellidos"));
+
+            Blob fotoBlob = resultSet.getBlob("foto_perfil");
+            if (fotoBlob != null) {
+                usuario.setFotoPerfil(fotoBlob.getBytes(1, (int) fotoBlob.length()));
+            }
+
+            return usuario;
+
+        }
+        return null;
+    }
+
     public List<Usuario> findNearestUsers(int userId) {
         PreparedStatement preparedStatement = createQuery("""
                      SELECT 
@@ -160,14 +184,43 @@ public class DatabaseService {
                      HAVING distancia_km <= 50
                      ORDER BY distancia_km ASC;
                      """, userId);
-        
-         ResultSet resultSet = executeQuery(preparedStatement);
+
+        ResultSet resultSet = executeQuery(preparedStatement);
 
         if (resultSet != null) {
             return resultSetMapper.map(resultSet, Usuario.class);
         }
 
         return null;
+    }
+
+    public List<Valoracion> getUserReviews(int idUsuario) throws SQLException {
+        List<Valoracion> valoraciones = new ArrayList<>();
+        PreparedStatement preparedStatement = createQuery("SELECT id_valoracion, usuario_valorador, comentario, puntuacion, fecha FROM VALORACION WHERE usuario_valorado = ?", idUsuario);
+
+        ResultSet resultSet = executeQuery(preparedStatement);
+int contador = 0;
+        while (resultSet != null && resultSet.next()) {
+            
+            Valoracion valoracion = new Valoracion();
+
+            valoracion.setIdValoracion(resultSet.getInt("id_valoracion"));
+            valoracion.setUsuarioValorado(idUsuario);
+            valoracion.setUsuarioValorador(resultSet.getInt("usuario_valorador"));
+            valoracion.setPuntuacion(resultSet.getInt("puntuacion"));
+            valoracion.setComentario(resultSet.getString("comentario"));
+
+            java.sql.Date sqlDate = resultSet.getDate("fecha");
+            if (sqlDate != null) {
+                valoracion.setFecha(new java.util.Date(sqlDate.getTime()));
+            }
+
+            valoraciones.add(valoracion);
+            contador++;
+            
+        }
+        System.out.println("contador encontrado: " + contador);
+        return valoraciones;
     }
 
     public VistaValoracion getAverageRating(String userId) {
@@ -202,20 +255,20 @@ public class DatabaseService {
             throw new RuntimeException();
         }
     }
-    
+
     private PreparedStatement createQuery(String query, int... params) {
-    try {
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-        for (int i = 0; i < params.length; i++) {
-            preparedStatement.setInt(i + 1, params[i]);
+            for (int i = 0; i < params.length; i++) {
+                preparedStatement.setInt(i + 1, params[i]);
+            }
+
+            return preparedStatement;
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error preparando la consulta", ex);
         }
-
-        return preparedStatement;
-    } catch (SQLException ex) {
-        throw new RuntimeException("Error preparando la consulta", ex);
     }
-}
 
     private PreparedStatement createQuery(String query) {
         try {
@@ -224,5 +277,5 @@ public class DatabaseService {
             throw new RuntimeException();
         }
     }
-    
+
 }
