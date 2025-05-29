@@ -74,6 +74,7 @@ public class ProfileController {
         profilePanel.addEditButtonActionListener(this.getEditButtonActionListener());
         profilePanel.addSaveButtonActionListener(this.getSaveButtonActionListener());
         profilePanel.addImageAvatarButtonActionListener(this.getImageAvatarButtonActionListener());
+        profilePanel.addAdButtonActionListener(this.getAdButtonActionListener());
 
         VistaValoracion vistaValoracion = databaseService.getAverageRating(String.valueOf(user.getIdUsuario()));
 
@@ -147,6 +148,12 @@ public class ProfileController {
         };
     }
 
+    private ActionListener getAdButtonActionListener() {
+        return (ActionEvent e) -> {
+            view.showPanel("userpanel");
+        };
+    }
+    
     private ActionListener getExitButtonActionListener() {
         return (ActionEvent e) -> {
             view.showPanel("login");
@@ -272,14 +279,13 @@ public class ProfileController {
     public void cargarPerfilUsuario(int idUsuario) throws SQLException {
         List<Valoracion> valoraciones = databaseService.getUserReviews(idUsuario);
 
-        
         JPanel panelReseñas = reviewsView.createReviewsPanel(valoraciones);
         System.out.println("Panel creado: " + (panelReseñas != null));
-        
+
         if (valoraciones != null && !valoraciones.isEmpty()) {
-        profilePanel.getReviewsScrollPane().setViewportView(panelReseñas);
+            profilePanel.getReviewsScrollPane().setViewportView(panelReseñas);
         }
-        
+
     }
-    
+
 }

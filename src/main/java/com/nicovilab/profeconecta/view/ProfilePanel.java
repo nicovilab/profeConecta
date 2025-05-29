@@ -50,6 +50,8 @@ public class ProfilePanel extends javax.swing.JPanel {
         appLogo = new javax.swing.JLabel();
         profileButton = new IntegratedButton("Mi perfil", true);
         exitButton = new IntegratedButton("Cerrar sesión", false);
+        adButton = new IntegratedButton("Anuncios", false);
+        chatButton = new IntegratedButton("Cerrar sesión", false);
         rightPanel = new JPanelGradient(new Color(230, 243, 250), new Color(255,255,255));
         imageAvatar = new com.nicovilab.profeconecta.view.extraSwingComponents.ImageAvatar();
         imageAvatarButton = new CircularIntegratedButton();
@@ -107,21 +109,39 @@ public class ProfilePanel extends javax.swing.JPanel {
             }
         });
 
+        adButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        adButton.setText("Anuncios");
+        adButton.setBorder(new LineBorder(Color.BLACK, 1, true));
+        adButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adButtonActionPerformed(evt);
+            }
+        });
+
+        chatButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        chatButton.setText("Chat");
+        chatButton.setBorder(new LineBorder(Color.BLACK, 1, true));
+        chatButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        chatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chatButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                            .addComponent(profileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(leftPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(appLogo)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(appLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(adButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chatButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         leftPanelLayout.setVerticalGroup(
@@ -129,8 +149,12 @@ public class ProfilePanel extends javax.swing.JPanel {
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(appLogo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(adButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(chatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -240,8 +264,11 @@ public class ProfilePanel extends javax.swing.JPanel {
         opinionLabel.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         opinionLabel.setText("Opiniones");
 
+        reviewsScrollPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
+
         descriptionTextArea.setColumns(20);
         descriptionTextArea.setRows(5);
+        descriptionTextArea.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
         descriptionScrollPane.setViewportView(descriptionTextArea);
 
         descriptionLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -293,7 +320,7 @@ public class ProfilePanel extends javax.swing.JPanel {
                             .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(descriptionLabel)
                             .addComponent(descriptionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(rightPanelLayout.createSequentialGroup()
@@ -352,11 +379,11 @@ public class ProfilePanel extends javax.swing.JPanel {
                         .addComponent(star10)
                         .addGap(18, 18, 18)
                         .addComponent(ratingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 41, Short.MAX_VALUE))
+                        .addGap(0, 37, Short.MAX_VALUE))
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(reviewsScrollPane)))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,7 +454,7 @@ public class ProfilePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE))
+                .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,8 +503,24 @@ public class ProfilePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_addressTextFieldActionPerformed
 
+    private void adButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_adButtonActionPerformed
+
+    private void chatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chatButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chatButtonActionPerformed
+
     public void addProfileButtonActionListener(ActionListener al) {
         this.profileButton.addActionListener(al);
+    }
+    
+    public void addAdButtonActionListener(ActionListener al) {
+        this.adButton.addActionListener(al);
+    }
+    
+    public void addChatButtonActionListener(ActionListener al) {
+        this.chatButton.addActionListener(al);
     }
 
     public void addEditButtonActionListener(ActionListener al) {
@@ -487,7 +530,7 @@ public class ProfilePanel extends javax.swing.JPanel {
     public void addSaveButtonActionListener(ActionListener al) {
         this.saveButton.addActionListener(al);
     }
-
+    
     public void addExitButtonActionListener(ActionListener al) {
         this.exitButton.addActionListener(al);
     }
@@ -559,9 +602,11 @@ public class ProfilePanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adButton;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JTextField addressTextField;
     private javax.swing.JLabel appLogo;
+    private javax.swing.JButton chatButton;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JScrollPane descriptionScrollPane;
     private javax.swing.JTextArea descriptionTextArea;

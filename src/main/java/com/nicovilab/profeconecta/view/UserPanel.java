@@ -4,17 +4,23 @@
  */
 package com.nicovilab.profeconecta.view;
 
+import com.nicovilab.profeconecta.view.extraSwingComponents.TextPrompt;
 import com.nicovilab.profeconecta.view.gradientComponents.ButtonGradient;
 import com.nicovilab.profeconecta.view.gradientComponents.IntegratedButton;
 import com.nicovilab.profeconecta.view.gradientComponents.JPanelGradient;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.Timer;
 import javax.swing.border.LineBorder;
+import lombok.Data;
 
 /**
  *
  * @author Nico
  */
+@Data
 public class UserPanel extends javax.swing.JPanel {
 
     /**
@@ -37,8 +43,29 @@ public class UserPanel extends javax.swing.JPanel {
         appLogo = new javax.swing.JLabel();
         profileButton = new IntegratedButton("Mi perfil", false);
         exitButton = new IntegratedButton("Cerrar sesión", false);
+        adButton = new IntegratedButton("Mi perfil", true);
+        chatButton = new IntegratedButton("Cerrar sesión", false);
         rightPanel = new JPanelGradient(new Color(230, 243, 250), new Color(255,255,255));
-        informationLabel = new javax.swing.JLabel();
+        tabbedPaneCustom2 = new com.nicovilab.profeconecta.view.extraSwingComponents.customTabbedPane.TabbedPaneCustom();
+        searchPanel = new javax.swing.JPanel();
+        filterComboBox = new javax.swing.JComboBox<>();
+        searchTextField = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        createPanel = new javax.swing.JPanel();
+        subjectComboBoxCreatePanel = new javax.swing.JComboBox<>();
+        titleTextFieldCreatePanel = new javax.swing.JTextField();
+        descriptionScrollPaneCreatePanel = new javax.swing.JScrollPane();
+        descriptionTextArea = new javax.swing.JTextArea();
+        subjectLabelCreatePanel = new javax.swing.JLabel();
+        titleLabelCreatePanel = new javax.swing.JLabel();
+        descriptionLabelCreatePanel = new javax.swing.JLabel();
+        priceLabelCreatePanel = new javax.swing.JLabel();
+        createButtonCreatePanel = new javax.swing.JButton();
+        deleteButtonCreatePanel = new javax.swing.JButton();
+        priceSpinnerCreatePanel = new javax.swing.JSpinner();
+        informationLabelCreatePanel = new javax.swing.JLabel();
+        editPanel = new javax.swing.JPanel();
 
         appLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profeConecta128px.png"))); // NOI18N
 
@@ -62,28 +89,51 @@ public class UserPanel extends javax.swing.JPanel {
             }
         });
 
+        adButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        adButton.setText("Anuncios");
+        adButton.setBorder(new LineBorder(Color.BLACK, 0, true));
+        adButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adButtonActionPerformed(evt);
+            }
+        });
+
+        chatButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        chatButton.setText("Chat");
+        chatButton.setBorder(new LineBorder(Color.BLACK, 0, true));
+        chatButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        chatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chatButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(appLogo)
+                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(exitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                    .addComponent(profileButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(adButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(chatButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(appLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                    .addComponent(profileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
         );
         leftPanelLayout.setVerticalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(appLogo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(adButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(chatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -92,24 +142,211 @@ public class UserPanel extends javax.swing.JPanel {
         rightPanel.setBackground(new java.awt.Color(235, 235, 235));
         rightPanel.setPreferredSize(new java.awt.Dimension(600, 0));
 
-        informationLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        informationLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        tabbedPaneCustom2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tabbedPaneCustom2.setSelectedColor(new java.awt.Color(38, 117, 191));
+
+        filterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        filterComboBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
+        filterComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        searchTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TextPrompt searchPlaceholder = new TextPrompt("Escribe el parámetro para filtrar la búsqueda", searchTextField);
+        searchPlaceholder.changeAlpha(0.75f);
+        searchPlaceholder.changeStyle(Font.ITALIC);
+        searchTextField.setToolTipText("");
+        searchTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
+        searchTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        searchTextField.setMaximumSize(new java.awt.Dimension(60, 30));
+        searchTextField.setPreferredSize(new java.awt.Dimension(60, 30));
+        searchTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                searchTextFieldFocusGained(evt);
+            }
+        });
+        searchTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTextFieldActionPerformed(evt);
+            }
+        });
+
+        searchButton.setText("Buscar");
+
+        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addComponent(filterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(searchButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(filterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        tabbedPaneCustom2.addTab("Buscar", searchPanel);
+
+        subjectComboBoxCreatePanel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        subjectComboBoxCreatePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
+        subjectComboBoxCreatePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        titleTextFieldCreatePanel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        titleTextFieldCreatePanel.setToolTipText("");
+        titleTextFieldCreatePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
+        titleTextFieldCreatePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        titleTextFieldCreatePanel.setMaximumSize(new java.awt.Dimension(60, 30));
+        titleTextFieldCreatePanel.setPreferredSize(new java.awt.Dimension(60, 30));
+        titleTextFieldCreatePanel.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                titleTextFieldCreatePanelFocusGained(evt);
+            }
+        });
+        titleTextFieldCreatePanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                titleTextFieldCreatePanelActionPerformed(evt);
+            }
+        });
+
+        descriptionTextArea.setColumns(20);
+        descriptionTextArea.setRows(5);
+        descriptionTextArea.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
+        descriptionScrollPaneCreatePanel.setViewportView(descriptionTextArea);
+
+        subjectLabelCreatePanel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        subjectLabelCreatePanel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        subjectLabelCreatePanel.setText("Materia:");
+        subjectLabelCreatePanel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+
+        titleLabelCreatePanel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        titleLabelCreatePanel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        titleLabelCreatePanel.setText("Título del anuncio:");
+
+        descriptionLabelCreatePanel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        descriptionLabelCreatePanel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        descriptionLabelCreatePanel.setText("Descripción del anuncio:");
+
+        priceLabelCreatePanel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        priceLabelCreatePanel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        priceLabelCreatePanel.setText("Precio:");
+        priceLabelCreatePanel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+
+        createButtonCreatePanel.setText("Crear");
+
+        deleteButtonCreatePanel.setText("Borrar");
+
+        priceSpinnerCreatePanel.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+        priceSpinnerCreatePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
+
+        informationLabelCreatePanel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout createPanelLayout = new javax.swing.GroupLayout(createPanel);
+        createPanel.setLayout(createPanelLayout);
+        createPanelLayout.setHorizontalGroup(
+            createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createPanelLayout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(createPanelLayout.createSequentialGroup()
+                        .addComponent(deleteButtonCreatePanel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(createButtonCreatePanel))
+                    .addGroup(createPanelLayout.createSequentialGroup()
+                        .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(createPanelLayout.createSequentialGroup()
+                                .addComponent(subjectLabelCreatePanel)
+                                .addGap(140, 140, 140))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, createPanelLayout.createSequentialGroup()
+                                .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(priceLabelCreatePanel, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(descriptionLabelCreatePanel, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(titleLabelCreatePanel, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(titleTextFieldCreatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(subjectComboBoxCreatePanel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(priceSpinnerCreatePanel)
+                            .addComponent(descriptionScrollPaneCreatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))))
+                .addGap(180, 180, 180))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(informationLabelCreatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114))
+        );
+        createPanelLayout.setVerticalGroup(
+            createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createPanelLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(subjectComboBoxCreatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(subjectLabelCreatePanel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titleTextFieldCreatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titleLabelCreatePanel))
+                .addGap(12, 12, 12)
+                .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(priceSpinnerCreatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(priceLabelCreatePanel))
+                .addGap(19, 19, 19)
+                .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(descriptionScrollPaneCreatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(descriptionLabelCreatePanel))
+                .addGap(18, 18, 18)
+                .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteButtonCreatePanel)
+                    .addComponent(createButtonCreatePanel))
+                .addGap(18, 18, 18)
+                .addComponent(informationLabelCreatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addGap(25, 25, 25))
+        );
+
+        tabbedPaneCustom2.addTab("Crear", createPanel);
+
+        javax.swing.GroupLayout editPanelLayout = new javax.swing.GroupLayout(editPanel);
+        editPanel.setLayout(editPanelLayout);
+        editPanelLayout.setHorizontalGroup(
+            editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 776, Short.MAX_VALUE)
+        );
+        editPanelLayout.setVerticalGroup(
+            editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 427, Short.MAX_VALUE)
+        );
+
+        tabbedPaneCustom2.addTab("Editar", editPanel);
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
         rightPanelLayout.setHorizontalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addComponent(informationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(288, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(tabbedPaneCustom2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addGap(357, 357, 357)
-                .addComponent(informationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(tabbedPaneCustom2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -119,11 +356,11 @@ public class UserPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE))
+                .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+            .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
             .addComponent(leftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -136,20 +373,99 @@ public class UserPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_exitButtonActionPerformed
 
+    private void adButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_adButtonActionPerformed
+
+    private void chatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chatButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chatButtonActionPerformed
+
+    private void searchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusGained
+
+    }//GEN-LAST:event_searchTextFieldFocusGained
+
+    private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTextFieldActionPerformed
+
+    private void titleTextFieldCreatePanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_titleTextFieldCreatePanelFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_titleTextFieldCreatePanelFocusGained
+
+    private void titleTextFieldCreatePanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTextFieldCreatePanelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_titleTextFieldCreatePanelActionPerformed
+
 
     public void addProfileButtonActionListener(ActionListener al){
         this.profileButton.addActionListener(al);
     }
     
+    public void addChatButtonActionListener(ActionListener al){
+        this.chatButton.addActionListener(al);
+    }
+    
     public void addExitButtonActionListener(ActionListener al){
         this.exitButton.addActionListener(al);
     }
+    
+    public void addCreateButtonCreatePanelActionListener(ActionListener al){
+        this.createButtonCreatePanel.addActionListener(al);
+    }
+    
+    public void addDeleteButtonCreatePanelActionListener(ActionListener al){
+        this.deleteButtonCreatePanel.addActionListener(al);
+    }
+    
+    
+    
+    public void clearAllFields(){
+        this.titleTextFieldCreatePanel.setText("");
+        this.priceSpinnerCreatePanel.setValue(0);
+        this.descriptionTextArea.setText("");
+    }
+    
+    public void setInformationLabelCreatePanel(String text, Color color){
+        this.informationLabelCreatePanel.setText(text);
+        this.informationLabelCreatePanel.setForeground(color);
+        
+        Timer t = new Timer(2500, (ActionEvent e) -> {
+            informationLabelCreatePanel.setText("");
+            informationLabelCreatePanel.setForeground(Color.black);
+        });
+        t.setRepeats(false);
+        t.start();
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adButton;
     private javax.swing.JLabel appLogo;
+    private javax.swing.JButton chatButton;
+    private javax.swing.JButton createButtonCreatePanel;
+    private javax.swing.JPanel createPanel;
+    private javax.swing.JButton deleteButtonCreatePanel;
+    private javax.swing.JLabel descriptionLabelCreatePanel;
+    private javax.swing.JScrollPane descriptionScrollPaneCreatePanel;
+    private javax.swing.JTextArea descriptionTextArea;
+    private javax.swing.JPanel editPanel;
     private javax.swing.JButton exitButton;
-    private javax.swing.JLabel informationLabel;
+    private javax.swing.JComboBox<String> filterComboBox;
+    private javax.swing.JLabel informationLabelCreatePanel;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel leftPanel;
+    private javax.swing.JLabel priceLabelCreatePanel;
+    private javax.swing.JSpinner priceSpinnerCreatePanel;
     private javax.swing.JButton profileButton;
     private javax.swing.JPanel rightPanel;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JPanel searchPanel;
+    private javax.swing.JTextField searchTextField;
+    private javax.swing.JComboBox<String> subjectComboBoxCreatePanel;
+    private javax.swing.JLabel subjectLabelCreatePanel;
+    private com.nicovilab.profeconecta.view.extraSwingComponents.customTabbedPane.TabbedPaneCustom tabbedPaneCustom2;
+    private javax.swing.JLabel titleLabelCreatePanel;
+    private javax.swing.JTextField titleTextFieldCreatePanel;
     // End of variables declaration//GEN-END:variables
 }

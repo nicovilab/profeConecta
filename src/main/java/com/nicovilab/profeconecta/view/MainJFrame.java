@@ -76,6 +76,7 @@ public class MainJFrame extends javax.swing.JFrame {
         contentPanel.add(signUpPanel, "signup");
         contentPanel.add(userPanel, "userpanel");
         contentPanel.add(profilePanel, "profile");
+
         
         setContentPane(contentPanel);
         

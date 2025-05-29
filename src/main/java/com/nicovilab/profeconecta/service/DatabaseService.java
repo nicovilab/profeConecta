@@ -6,6 +6,7 @@ package com.nicovilab.profeconecta.service;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.nicovilab.profeconecta.model.Direccion;
+import com.nicovilab.profeconecta.model.Materia;
 import com.nicovilab.profeconecta.model.Usuario;
 import com.nicovilab.profeconecta.model.Valoracion;
 import com.nicovilab.profeconecta.model.VistaValoracion;
@@ -199,9 +200,9 @@ public class DatabaseService {
         PreparedStatement preparedStatement = createQuery("SELECT id_valoracion, usuario_valorador, comentario, puntuacion, fecha FROM VALORACION WHERE usuario_valorado = ?", idUsuario);
 
         ResultSet resultSet = executeQuery(preparedStatement);
-int contador = 0;
+        int contador = 0;
         while (resultSet != null && resultSet.next()) {
-            
+
             Valoracion valoracion = new Valoracion();
 
             valoracion.setIdValoracion(resultSet.getInt("id_valoracion"));
@@ -217,7 +218,7 @@ int contador = 0;
 
             valoraciones.add(valoracion);
             contador++;
-            
+
         }
         System.out.println("contador encontrado: " + contador);
         return valoraciones;
@@ -235,6 +236,34 @@ int contador = 0;
         return null;
     }
 
+    public boolean adSuccessful(int userId, int subjectId, String title, double price, String description) {
+        PreparedStatement preparedStatement = createQuery("INSERT INTO ANUNCIO (id_usuario, id_materia, titulo, descripcion, precio_hora, fecha_publicacion, activo) VALUES (?,?, ?, ?, ?, ? , 1)",
+                userId, subjectId, title, description, price, new java.sql.Timestamp(System.currentTimeMillis()));
+
+        try {
+            preparedStatement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
+    public List<Materia> getSubjects() {
+        PreparedStatement preparedStatement = createQuery("SELECT id_materia, nombre FROM MATERIA");
+
+        ResultSet resultSet = executeQuery(preparedStatement);
+
+        if (resultSet != null) {
+            List<Materia> materias = resultSetMapper.map(resultSet, Materia.class);
+
+            if(materias != null){
+                return materias;
+            }
+        }
+        return null;
+    }
+
     private ResultSet executeQuery(PreparedStatement query) {
         try {
             return query.executeQuery();
@@ -243,7 +272,7 @@ int contador = 0;
         }
     }
 
-    private PreparedStatement createQuery(String query, String... params) {
+    private PreparedStatement createQuery(String query, Object... params) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
@@ -253,20 +282,6 @@ int contador = 0;
             return preparedStatement;
         } catch (SQLException ex) {
             throw new RuntimeException();
-        }
-    }
-
-    private PreparedStatement createQuery(String query, int... params) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-
-            for (int i = 0; i < params.length; i++) {
-                preparedStatement.setInt(i + 1, params[i]);
-            }
-
-            return preparedStatement;
-        } catch (SQLException ex) {
-            throw new RuntimeException("Error preparando la consulta", ex);
         }
     }
 
