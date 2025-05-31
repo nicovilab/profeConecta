@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JScrollPane;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 import lombok.Data;
@@ -46,7 +47,7 @@ public class UserPanel extends javax.swing.JPanel {
         adButton = new IntegratedButton("Mi perfil", true);
         chatButton = new IntegratedButton("Cerrar sesión", false);
         rightPanel = new JPanelGradient(new Color(230, 243, 250), new Color(255,255,255));
-        tabbedPaneCustom2 = new com.nicovilab.profeconecta.view.extraSwingComponents.customTabbedPane.TabbedPaneCustom();
+        adTabbedPaneCustom = new com.nicovilab.profeconecta.view.extraSwingComponents.customTabbedPane.TabbedPaneCustom();
         searchPanel = new javax.swing.JPanel();
         filterComboBox = new javax.swing.JComboBox<>();
         searchTextField = new javax.swing.JTextField();
@@ -66,6 +67,7 @@ public class UserPanel extends javax.swing.JPanel {
         priceSpinnerCreatePanel = new javax.swing.JSpinner();
         informationLabelCreatePanel = new javax.swing.JLabel();
         editPanel = new javax.swing.JPanel();
+        editScrollPane = new javax.swing.JScrollPane();
 
         appLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profeConecta128px.png"))); // NOI18N
 
@@ -142,8 +144,8 @@ public class UserPanel extends javax.swing.JPanel {
         rightPanel.setBackground(new java.awt.Color(235, 235, 235));
         rightPanel.setPreferredSize(new java.awt.Dimension(600, 0));
 
-        tabbedPaneCustom2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tabbedPaneCustom2.setSelectedColor(new java.awt.Color(38, 117, 191));
+        adTabbedPaneCustom.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        adTabbedPaneCustom.setSelectedColor(new java.awt.Color(38, 117, 191));
 
         filterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         filterComboBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
@@ -201,7 +203,7 @@ public class UserPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        tabbedPaneCustom2.addTab("Buscar", searchPanel);
+        adTabbedPaneCustom.addTab("Buscar", searchPanel);
 
         subjectComboBoxCreatePanel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         subjectComboBoxCreatePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
@@ -317,20 +319,26 @@ public class UserPanel extends javax.swing.JPanel {
                 .addGap(25, 25, 25))
         );
 
-        tabbedPaneCustom2.addTab("Crear", createPanel);
+        adTabbedPaneCustom.addTab("Crear", createPanel);
 
         javax.swing.GroupLayout editPanelLayout = new javax.swing.GroupLayout(editPanel);
         editPanel.setLayout(editPanelLayout);
         editPanelLayout.setHorizontalGroup(
             editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 776, Short.MAX_VALUE)
+            .addGroup(editPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(editScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
+                .addContainerGap())
         );
         editPanelLayout.setVerticalGroup(
             editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGroup(editPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(editScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        tabbedPaneCustom2.addTab("Editar", editPanel);
+        adTabbedPaneCustom.addTab("Editar", editPanel);
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
@@ -338,14 +346,14 @@ public class UserPanel extends javax.swing.JPanel {
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabbedPaneCustom2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(adTabbedPaneCustom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabbedPaneCustom2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(adTabbedPaneCustom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -397,39 +405,46 @@ public class UserPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_titleTextFieldCreatePanelActionPerformed
 
-
-    public void addProfileButtonActionListener(ActionListener al){
+    public void addProfileButtonActionListener(ActionListener al) {
         this.profileButton.addActionListener(al);
     }
-    
-    public void addChatButtonActionListener(ActionListener al){
+
+    public void addChatButtonActionListener(ActionListener al) {
         this.chatButton.addActionListener(al);
     }
-    
-    public void addExitButtonActionListener(ActionListener al){
+
+    public void addExitButtonActionListener(ActionListener al) {
         this.exitButton.addActionListener(al);
     }
-    
-    public void addCreateButtonCreatePanelActionListener(ActionListener al){
+
+    public void addCreateButtonCreatePanelActionListener(ActionListener al) {
         this.createButtonCreatePanel.addActionListener(al);
     }
-    
-    public void addDeleteButtonCreatePanelActionListener(ActionListener al){
+
+    public void addDeleteButtonCreatePanelActionListener(ActionListener al) {
         this.deleteButtonCreatePanel.addActionListener(al);
     }
-    
-    
-    
-    public void clearAllFields(){
+
+    public void clearAllFields() {
         this.titleTextFieldCreatePanel.setText("");
         this.priceSpinnerCreatePanel.setValue(0);
         this.descriptionTextArea.setText("");
     }
-    
-    public void setInformationLabelCreatePanel(String text, Color color){
+
+    public JScrollPane getEditScrollPane() {
+        refreshScrollPane();
+        return editScrollPane;
+    }
+
+    private void refreshScrollPane() {
+        editScrollPane.revalidate();
+        editScrollPane.repaint();
+    }
+
+    public void setInformationLabelCreatePanel(String text, Color color) {
         this.informationLabelCreatePanel.setText(text);
         this.informationLabelCreatePanel.setForeground(color);
-        
+
         Timer t = new Timer(2500, (ActionEvent e) -> {
             informationLabelCreatePanel.setText("");
             informationLabelCreatePanel.setForeground(Color.black);
@@ -437,10 +452,11 @@ public class UserPanel extends javax.swing.JPanel {
         t.setRepeats(false);
         t.start();
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adButton;
+    private com.nicovilab.profeconecta.view.extraSwingComponents.customTabbedPane.TabbedPaneCustom adTabbedPaneCustom;
     private javax.swing.JLabel appLogo;
     private javax.swing.JButton chatButton;
     private javax.swing.JButton createButtonCreatePanel;
@@ -450,6 +466,7 @@ public class UserPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane descriptionScrollPaneCreatePanel;
     private javax.swing.JTextArea descriptionTextArea;
     private javax.swing.JPanel editPanel;
+    private javax.swing.JScrollPane editScrollPane;
     private javax.swing.JButton exitButton;
     private javax.swing.JComboBox<String> filterComboBox;
     private javax.swing.JLabel informationLabelCreatePanel;
@@ -464,7 +481,6 @@ public class UserPanel extends javax.swing.JPanel {
     private javax.swing.JTextField searchTextField;
     private javax.swing.JComboBox<String> subjectComboBoxCreatePanel;
     private javax.swing.JLabel subjectLabelCreatePanel;
-    private com.nicovilab.profeconecta.view.extraSwingComponents.customTabbedPane.TabbedPaneCustom tabbedPaneCustom2;
     private javax.swing.JLabel titleLabelCreatePanel;
     private javax.swing.JTextField titleTextFieldCreatePanel;
     // End of variables declaration//GEN-END:variables

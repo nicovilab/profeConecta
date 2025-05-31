@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -153,7 +154,7 @@ public class ProfileController {
             view.showPanel("userpanel");
         };
     }
-    
+
     private ActionListener getExitButtonActionListener() {
         return (ActionEvent e) -> {
             view.showPanel("login");
@@ -241,18 +242,12 @@ public class ProfileController {
         List<String> provinceNames = autonomousCommunitiesData.stream()
                 .flatMap(community -> community.getProvinces().stream())
                 .map(Province::getLabel)
+                .sorted()
                 .toList();
         provinceModel.addAll(provinceNames);
         profilePanel.getProvinceComboBox().setModel(provinceModel);
 
-        DefaultComboBoxModel<String> townModel = new DefaultComboBoxModel<>();
-        List<String> townNames = autonomousCommunitiesData.stream()
-                .flatMap(community -> community.getProvinces().stream())
-                .flatMap(province -> province.getTowns().stream())
-                .map(Town::getLabel)
-                .toList();
-        townModel.addAll(townNames);
-        profilePanel.getTownComboBox().setModel(townModel);
+        
     }
 
     private void addProvinceComboBoxListener() {  //todo añadir las coordenadas a los ayuntamiento que faltan
@@ -261,16 +256,16 @@ public class ProfileController {
 
             if (selectedProvince != null) {
                 profilePanel.enableTownCombobox(true);
-                List<Town> towns = autonomousCommunities.stream()
+                List<String> towns = autonomousCommunities.stream()
                         .flatMap(c -> c.getProvinces().stream())
                         .filter(p -> p.getLabel().equals(selectedProvince))
                         .flatMap(p -> p.getTowns().stream())
-                        .toList();
-
-                DefaultComboBoxModel<String> townModel = new DefaultComboBoxModel<>();
-                townModel.addAll(towns.stream()
                         .map(Town::getLabel)
-                        .toList());
+                        .sorted()
+                        .toList();
+                
+                DefaultComboBoxModel<String> townModel = new DefaultComboBoxModel<>();
+                townModel.addAll(towns);
                 profilePanel.getTownComboBox().setModel(townModel);
             }
         });

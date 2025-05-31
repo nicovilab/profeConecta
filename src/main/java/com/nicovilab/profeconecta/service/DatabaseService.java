@@ -5,6 +5,7 @@
 package com.nicovilab.profeconecta.service;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.nicovilab.profeconecta.model.Anuncio;
 import com.nicovilab.profeconecta.model.Direccion;
 import com.nicovilab.profeconecta.model.Materia;
 import com.nicovilab.profeconecta.model.Usuario;
@@ -141,23 +142,12 @@ public class DatabaseService {
     }
 
     public Usuario getUserById(int userId) throws SQLException {
-        PreparedStatement preparedStatement = createQuery("SELECT id_usuario, nombre, apellidos, foto_perfil FROM USUARIO WHERE id_usuario = ?", userId);
+        PreparedStatement preparedStatement = createQuery("SELECT * FROM USUARIO WHERE id_usuario = ?", userId);
 
         ResultSet resultSet = executeQuery(preparedStatement);
 
-        if (resultSet.next()) {
-            Usuario usuario = new Usuario();
-            usuario.setIdUsuario(resultSet.getInt("id_usuario"));
-            usuario.setNombre(resultSet.getString("nombre"));
-            usuario.setApellidos(resultSet.getString("apellidos"));
-
-            Blob fotoBlob = resultSet.getBlob("foto_perfil");
-            if (fotoBlob != null) {
-                usuario.setFotoPerfil(fotoBlob.getBytes(1, (int) fotoBlob.length()));
-            }
-
-            return usuario;
-
+        if (resultSet != null) {
+            return resultSetMapper.map(resultSet, Usuario.class).getFirst();
         }
         return null;
     }
@@ -200,28 +190,11 @@ public class DatabaseService {
         PreparedStatement preparedStatement = createQuery("SELECT id_valoracion, usuario_valorador, comentario, puntuacion, fecha FROM VALORACION WHERE usuario_valorado = ?", idUsuario);
 
         ResultSet resultSet = executeQuery(preparedStatement);
-        int contador = 0;
-        while (resultSet != null && resultSet.next()) {
 
-            Valoracion valoracion = new Valoracion();
-
-            valoracion.setIdValoracion(resultSet.getInt("id_valoracion"));
-            valoracion.setUsuarioValorado(idUsuario);
-            valoracion.setUsuarioValorador(resultSet.getInt("usuario_valorador"));
-            valoracion.setPuntuacion(resultSet.getInt("puntuacion"));
-            valoracion.setComentario(resultSet.getString("comentario"));
-
-            java.sql.Date sqlDate = resultSet.getDate("fecha");
-            if (sqlDate != null) {
-                valoracion.setFecha(new java.util.Date(sqlDate.getTime()));
-            }
-
-            valoraciones.add(valoracion);
-            contador++;
-
+        if (resultSet != null) {
+            return resultSetMapper.map(resultSet, Valoracion.class);
         }
-        System.out.println("contador encontrado: " + contador);
-        return valoraciones;
+        return null;
     }
 
     public VistaValoracion getAverageRating(String userId) {
@@ -257,11 +230,62 @@ public class DatabaseService {
         if (resultSet != null) {
             List<Materia> materias = resultSetMapper.map(resultSet, Materia.class);
 
-            if(materias != null){
+            if (materias != null) {
                 return materias;
             }
         }
         return null;
+    }
+
+    public List<Anuncio> fetchUserAdsById(int userId) {
+        PreparedStatement preparedStatement = createQuery("SELECT * FROM ANUNCIO WHERE id_usuario = ?", userId);
+
+        ResultSet resultSet = executeQuery(preparedStatement);
+
+        if (resultSet != null) {
+            List<Anuncio> anuncios = resultSetMapper.map(resultSet, Anuncio.class);
+
+            if (anuncios != null) {
+                return anuncios;
+            }
+        }
+        return null;
+    }
+
+    public boolean updateAd(Anuncio anuncio) {
+        PreparedStatement preparedStatement = createQuery("""
+            UPDATE ANUNCIO 
+            SET titulo = ?, descripcion = ?, precio_hora = ?, activo = ? 
+            WHERE id_anuncio = ?
+        """,
+                anuncio.getTitulo(),
+                anuncio.getDescripcion(),
+                anuncio.getPrecioHora(),
+                anuncio.isActivo(),
+                anuncio.getIdAnuncio()
+        );
+
+        try {
+            preparedStatement.execute();
+            connection.commit();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
+    public boolean deleteAd(int adId) {
+        PreparedStatement preparedStatement = createQuery("DELETE FROM ANUNCIO WHERE id_anuncio = ?", adId);
+
+        try {
+            preparedStatement.execute();
+            connection.commit();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
 
     private ResultSet executeQuery(PreparedStatement query) {

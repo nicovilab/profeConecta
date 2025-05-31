@@ -30,10 +30,10 @@ import javax.swing.SwingConstants;
  * @author Nico
  */
 public class ReviewsView {
+
     private static final Color BACKGROUND_COLOR = Color.WHITE;
     private static final Dimension PHOTO_SIZE = new Dimension(50, 50);
     private static final Font RATING_FONT = new Font("Arial", Font.BOLD, 14);
-    private static final Color RATING_COLOR = Color.DARK_GRAY;
     private final UserService userService;
 
     public ReviewsView(UserService userService) {
@@ -57,18 +57,19 @@ public class ReviewsView {
     private JPanel createSingleReviewPanel(Valoracion valoracion) throws SQLException {
         JPanel panel = new JPanel(new BorderLayout(10, 5));
         panel.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY),
-            BorderFactory.createEmptyBorder(10, 10, 10, 10)
+                BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY),
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)
         ));
         panel.setBackground(BACKGROUND_COLOR);
 
         Usuario valorador = userService.getUserById(valoracion.getUsuarioValorador());
-        String nombreCompleto = (valorador != null) ? 
-            valorador.getNombre() + " " + valorador.getApellidos() : "Usuario desconocido";
+        String nombreCompleto = (valorador != null)
+                ? valorador.getNombre() + " " + valorador.getApellidos() : "Usuario desconocido";
 
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.add(new JLabel(nombreCompleto), BorderLayout.WEST);
         headerPanel.add(createRatingPanel(valoracion.getPuntuacion()), BorderLayout.EAST);
+        headerPanel.setBackground(BACKGROUND_COLOR);
 
         JPanel bodyPanel = new JPanel(new BorderLayout(10, 0));
         bodyPanel.add(createUserPhotoComponent(valorador), BorderLayout.WEST);
@@ -82,22 +83,21 @@ public class ReviewsView {
     private JComponent createUserPhotoComponent(Usuario usuario) {
         JLabel photoLabel = new JLabel();
         photoLabel.setPreferredSize(PHOTO_SIZE);
-        
+
         try {
             if (usuario != null && usuario.getFotoPerfil() != null && usuario.getFotoPerfil().length > 0) {
                 ImageIcon originalIcon = new ImageIcon(usuario.getFotoPerfil());
                 Image scaledImage = originalIcon.getImage()
-                    .getScaledInstance(PHOTO_SIZE.width, PHOTO_SIZE.height, Image.SCALE_SMOOTH);
+                        .getScaledInstance(PHOTO_SIZE.width, PHOTO_SIZE.height, Image.SCALE_SMOOTH);
                 photoLabel.setIcon(new ImageIcon(scaledImage));
             } else {
-                photoLabel.setBackground(Color.LIGHT_GRAY);
                 photoLabel.setOpaque(true);
             }
         } catch (Exception e) {
             photoLabel.setText("Foto");
             photoLabel.setHorizontalAlignment(SwingConstants.CENTER);
         }
-        
+
         return photoLabel;
     }
 
@@ -108,23 +108,22 @@ public class ReviewsView {
         textArea.setEditable(false);
         textArea.setBackground(null);
         textArea.setBorder(null);
+        textArea.setFocusable(false);
         return textArea;
     }
 
     private JPanel createRatingPanel(int puntuacion) {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 0));
         panel.setOpaque(false);
-        
         JLabel ratingLabel = new JLabel(String.valueOf(puntuacion));
         ratingLabel.setFont(RATING_FONT);
-        ratingLabel.setForeground(RATING_COLOR);
-        
+
         JLabel star = new JLabel("★");
         star.setForeground(Color.ORANGE);
-        
+
         panel.add(ratingLabel);
         panel.add(star);
-        
+
         return panel;
     }
 }

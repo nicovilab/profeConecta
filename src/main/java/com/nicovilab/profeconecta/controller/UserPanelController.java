@@ -4,6 +4,7 @@
  */
 package com.nicovilab.profeconecta.controller;
 
+import com.nicovilab.profeconecta.model.Anuncio;
 import com.nicovilab.profeconecta.model.Materia;
 import com.nicovilab.profeconecta.model.Usuario;
 import com.nicovilab.profeconecta.service.AdService;
@@ -11,6 +12,8 @@ import com.nicovilab.profeconecta.service.DatabaseService;
 import com.nicovilab.profeconecta.service.ProfileService;
 import com.nicovilab.profeconecta.view.MainJFrame;
 import com.nicovilab.profeconecta.view.UserPanel;
+import com.nicovilab.profeconecta.view.userAdsView.EditAdDialog;
+import com.nicovilab.profeconecta.view.userAdsView.UserAdsView;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +24,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -35,11 +42,13 @@ public class UserPanelController {
     private final DatabaseService databaseService;
     private final AdService adService;
     private final List<Materia> materias;
+    private final UserAdsView userAdsView;
 
-    public UserPanelController(MainJFrame view, UserPanel userPanel, Usuario user) {
+    public UserPanelController(MainJFrame view, UserPanel userPanel, Usuario user){
         profileService = new ProfileService();
         adService = new AdService();
         databaseService = new DatabaseService();
+        userAdsView = new UserAdsView();
         this.view = view;
         this.userPanel = userPanel;
         this.user = user;
@@ -51,6 +60,11 @@ public class UserPanelController {
         userPanel.addDeleteButtonCreatePanelActionListener(this.getDeleteButtonCreatePanelActionListener());
 
         populateSubjectComboBox(materias);
+        try {
+            loadUserAdsById(user.getIdUsuario());
+        } catch (SQLException ex) {
+            Logger.getLogger(UserPanelController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private ActionListener getProfileButtonActionListener() {
@@ -133,5 +147,76 @@ public class UserPanelController {
         }
         return true;
     }
+    
+    public void loadUserAdsById(int idUsuario) throws SQLException {
+    List<Anuncio> anuncios = adService.fetchUserAdsById(idUsuario);
+
+    // Acción: Editar anuncio
+    ActionListener onEdit = e -> {
+        int adId = Integer.parseInt(e.getActionCommand());
+        Anuncio anuncio = anuncios.stream()
+            .filter(a -> a.getIdAnuncio() == adId)
+            .findFirst()
+            .orElse(null);
+
+        if (anuncio != null) {
+            EditAdDialog dialog = new EditAdDialog(anuncio, updatedAd -> {
+                if (adService.updateAd(updatedAd)) {
+                    try {
+                        loadUserAdsById(idUsuario); // Recarga la vista
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+            dialog.setVisible(true);
+        }
+    };
+
+    // Acción: Eliminar anuncio
+    ActionListener onDelete = e -> {
+        int adId = Integer.parseInt(e.getActionCommand());
+        int confirm = JOptionPane.showConfirmDialog(null, "¿Eliminar anuncio?", "Confirmación", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            if (adService.deleteAd(adId)) {
+                try {
+                    loadUserAdsById(idUsuario); // Refresca la lista
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    };
+
+    // Acción: Activar / Desactivar anuncio
+    ActionListener onToggleState = e -> {
+        JButton source = (JButton) e.getSource();
+        int adId = Integer.parseInt(source.getActionCommand());
+        int newState = (int) source.getClientProperty("newState");
+
+        Anuncio anuncio = anuncios.stream()
+            .filter(a -> a.getIdAnuncio() == adId)
+            .findFirst()
+            .orElse(null);
+
+        if (anuncio != null) {
+            anuncio.setActivo(newState == 1); // asumiendo que ahora es boolean
+            if (adService.updateAd(anuncio)) {
+                try {
+                    loadUserAdsById(idUsuario); // Actualiza vista
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    };
+
+    JPanel panelAnuncios = userAdsView.createUserAdsPanel(anuncios, onEdit, onDelete, onToggleState);
+
+    userPanel.getEditScrollPane().setViewportView(panelAnuncios != null && !anuncios.isEmpty()
+        ? panelAnuncios
+        : new JLabel("No hay anuncios disponibles"));
+}
+    
 
 }

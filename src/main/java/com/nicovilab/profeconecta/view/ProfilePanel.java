@@ -301,11 +301,9 @@ public class ProfilePanel extends javax.swing.JPanel {
 
         ratingLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
-        provinceComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         provinceComboBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
         provinceComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        townComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         townComboBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
