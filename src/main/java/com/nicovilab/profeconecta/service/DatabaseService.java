@@ -6,6 +6,7 @@ package com.nicovilab.profeconecta.service;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.nicovilab.profeconecta.model.Anuncio;
+import com.nicovilab.profeconecta.model.AnuncioDTO;
 import com.nicovilab.profeconecta.model.Direccion;
 import com.nicovilab.profeconecta.model.Materia;
 import com.nicovilab.profeconecta.model.Usuario;
@@ -14,9 +15,12 @@ import com.nicovilab.profeconecta.model.VistaValoracion;
 import com.nicovilab.profeconecta.model.address.Town;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import nl.jiankai.mapper.ResultSetMapper;
 import nl.jiankai.mapper.ResultSetMapperFactory;
 
@@ -186,7 +190,6 @@ public class DatabaseService {
     }
 
     public List<Valoracion> getUserReviews(int idUsuario) throws SQLException {
-        List<Valoracion> valoraciones = new ArrayList<>();
         PreparedStatement preparedStatement = createQuery("SELECT id_valoracion, usuario_valorador, comentario, puntuacion, fecha FROM VALORACION WHERE usuario_valorado = ?", idUsuario);
 
         ResultSet resultSet = executeQuery(preparedStatement);
@@ -252,6 +255,94 @@ public class DatabaseService {
         return null;
     }
 
+    public List<Anuncio> fetchAllAds() {
+        PreparedStatement preparedStatement = createQuery("SELECT * FROM ANUNCIO");
+
+        ResultSet resultSet = executeQuery(preparedStatement);
+
+        if (resultSet != null) {
+            List<Anuncio> anuncios = resultSetMapper.map(resultSet, Anuncio.class);
+
+            if (anuncios != null) {
+                return anuncios;
+            }
+        }
+        return null;
+    }
+
+
+    public List<AnuncioDTO> fetchAdsFilteredDTO(Map<String, Object> filtros) throws SQLException {
+    StringBuilder query = new StringBuilder("""
+        SELECT DISTINCT a.id_anuncio, a.id_usuario, a.id_materia, a.titulo, a.descripcion, a.precio_hora, a.fecha_publicacion, a.activo,
+                        u.nombre AS usuario_nombre, u.foto_perfil AS usuario_foto_perfil, m.nombre AS materia_nombre
+        FROM ANUNCIO a
+        JOIN USUARIO u ON a.id_usuario = u.id_usuario
+        JOIN MATERIA m ON a.id_materia = m.id_materia
+        LEFT JOIN DIRECCION d ON u.id_usuario = d.id_usuario
+        LEFT JOIN (
+            SELECT usuario_valorado, AVG(puntuacion) AS media
+            FROM VALORACION
+            GROUP BY usuario_valorado
+        ) v ON u.id_usuario = v.usuario_valorado
+    """);
+
+    List<String> condiciones = new ArrayList<>();
+    List<Object> parametros = new ArrayList<>();
+
+    condiciones.add("a.activo = 1");
+
+    if (filtros.containsKey("userIdReferencia")) {
+        parametros.add(filtros.get("userIdReferencia"));
+        query.append("""
+            JOIN DIRECCION ref_d ON ref_d.id_usuario = ?
+        """);
+        condiciones.add("""
+            (
+                6371 * ACOS(
+                    COS(RADIANS(ref_d.latitud)) * COS(RADIANS(d.latitud)) *
+                    COS(RADIANS(d.longitud) - RADIANS(ref_d.longitud)) +
+                    SIN(RADIANS(ref_d.latitud)) * SIN(RADIANS(d.latitud))
+                )
+            ) <= 50
+        """);
+    }
+
+    if (filtros.containsKey("id_materia")) {
+        condiciones.add("m.id_materia = ?");
+        parametros.add(filtros.get("id_materia"));
+    }
+
+    if (filtros.containsKey("usuario")) {
+        condiciones.add("u.nombre LIKE ?");
+        parametros.add("%" + filtros.get("usuario") + "%");
+    }
+
+    if (filtros.containsKey("ciudad")) {
+        condiciones.add("d.municipio LIKE ?");
+        parametros.add("%" + filtros.get("ciudad") + "%");
+    }
+
+    if (filtros.containsKey("valoracion")) {
+        condiciones.add("v.media >= ?");
+        parametros.add((Double) filtros.get("valoracion"));
+    }
+
+    if (!condiciones.isEmpty()) {
+        query.append(" WHERE ").append(String.join(" AND ", condiciones));
+    }
+
+    query.append(" ORDER BY a.fecha_publicacion DESC");
+
+    PreparedStatement preparedStatement = createQuery(query.toString(), parametros.toArray());
+    ResultSet resultSet = executeQuery(preparedStatement);
+
+    System.out.println("Consulta SQL: " + query);
+    System.out.println("Parámetros: " + Arrays.toString(parametros.toArray()));
+
+    // Aquí asumo que tienes un mapper configurado para AnuncioDTO
+    return resultSet != null ? resultSetMapper.map(resultSet, AnuncioDTO.class) : null;
+}
+
     public boolean updateAd(Anuncio anuncio) {
         PreparedStatement preparedStatement = createQuery("""
             UPDATE ANUNCIO 
@@ -284,6 +375,20 @@ public class DatabaseService {
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
+    public boolean userHasLocation(int userId) {
+        PreparedStatement ps = createQuery("""
+        SELECT 1 FROM direccion WHERE id_usuario = ?
+    """, userId);
+
+        ResultSet rs = executeQuery(ps);
+        try {
+            return rs != null && rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
             return false;
         }
     }

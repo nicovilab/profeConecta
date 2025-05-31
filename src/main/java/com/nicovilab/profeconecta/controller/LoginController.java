@@ -45,6 +45,7 @@ public class LoginController {
                                                                  loginPanel.getPasswordField().getPassword());
         if (usuarioAutenticado != null) {
             new UserPanelController(view, view.getUserPanel(), usuarioAutenticado);
+            view.pack();
             view.showPanel("userpanel");
             loginPanel.clearAllTextFields();
             System.out.println(usuarioAutenticado);

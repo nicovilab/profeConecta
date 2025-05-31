@@ -52,6 +52,7 @@ public class ProfileController {
     private final ReviewsView reviewsView;
     private final List<AutonomousCommunity> autonomousCommunities;
 
+    private Usuario user;
     private final String userEmail;
 
     public ProfileController(MainJFrame view, ProfilePanel profilePanel, Usuario user) throws SQLException {
@@ -102,8 +103,16 @@ public class ProfileController {
             if (selectedFile != null) {
                 try {
                     byte[] imageBytes = convertFileToBytes(selectedFile);
-
+                    
                     databaseService.updateUserImage(imageBytes, userEmail);
+                    
+                    ImageIcon icon = new ImageIcon(selectedFile.getAbsolutePath());
+                Image image = icon.getImage().getScaledInstance(
+                        profilePanel.getImageAvatar().getWidth(),
+                        profilePanel.getImageAvatar().getHeight(),
+                        Image.SCALE_SMOOTH
+                );
+                profilePanel.getImageAvatar().setIcon(new ImageIcon(image));
 
                 } catch (IOException ex) {
                     Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
@@ -247,7 +256,6 @@ public class ProfileController {
         provinceModel.addAll(provinceNames);
         profilePanel.getProvinceComboBox().setModel(provinceModel);
 
-        
     }
 
     private void addProvinceComboBoxListener() {  //todo añadir las coordenadas a los ayuntamiento que faltan
@@ -263,7 +271,7 @@ public class ProfileController {
                         .map(Town::getLabel)
                         .sorted()
                         .toList();
-                
+
                 DefaultComboBoxModel<String> townModel = new DefaultComboBoxModel<>();
                 townModel.addAll(towns);
                 profilePanel.getTownComboBox().setModel(townModel);
@@ -275,7 +283,6 @@ public class ProfileController {
         List<Valoracion> valoraciones = databaseService.getUserReviews(idUsuario);
 
         JPanel panelReseñas = reviewsView.createReviewsPanel(valoraciones);
-        System.out.println("Panel creado: " + (panelReseñas != null));
 
         if (valoraciones != null && !valoraciones.isEmpty()) {
             profilePanel.getReviewsScrollPane().setViewportView(panelReseñas);

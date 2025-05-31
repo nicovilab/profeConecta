@@ -29,6 +29,7 @@ public class UserPanel extends javax.swing.JPanel {
      */
     public UserPanel(MainJFrame parent) {
         initComponents();
+        
     }
 
     /**
@@ -49,10 +50,19 @@ public class UserPanel extends javax.swing.JPanel {
         rightPanel = new JPanelGradient(new Color(230, 243, 250), new Color(255,255,255));
         adTabbedPaneCustom = new com.nicovilab.profeconecta.view.extraSwingComponents.customTabbedPane.TabbedPaneCustom();
         searchPanel = new javax.swing.JPanel();
-        filterComboBox = new javax.swing.JComboBox<>();
-        searchTextField = new javax.swing.JTextField();
-        searchButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        subjectComboBoxSearchPanel = new javax.swing.JComboBox<>();
+        nameTextFieldSearchPanel = new javax.swing.JTextField();
+        searchButtonSearchPanel = new javax.swing.JButton();
+        searchScrollPane = new javax.swing.JScrollPane();
+        provinceComboBoxSearchPanel = new javax.swing.JComboBox<>();
+        townComboBoxSearchPanel = new javax.swing.JComboBox<>();
+        ratingSpinnerSearchPanel = new javax.swing.JSpinner();
+        proximityCheckBox = new javax.swing.JCheckBox();
+        subjectLabel = new javax.swing.JLabel();
+        provinceLabel = new javax.swing.JLabel();
+        townLabel = new javax.swing.JLabel();
+        averageRatingLabel = new javax.swing.JLabel();
+        userNameLabel = new javax.swing.JLabel();
         createPanel = new javax.swing.JPanel();
         subjectComboBoxCreatePanel = new javax.swing.JComboBox<>();
         titleTextFieldCreatePanel = new javax.swing.JTextField();
@@ -138,7 +148,7 @@ public class UserPanel extends javax.swing.JPanel {
                 .addComponent(chatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         rightPanel.setBackground(new java.awt.Color(235, 235, 235));
@@ -147,59 +157,114 @@ public class UserPanel extends javax.swing.JPanel {
         adTabbedPaneCustom.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         adTabbedPaneCustom.setSelectedColor(new java.awt.Color(38, 117, 191));
 
-        filterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        filterComboBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
-        filterComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        subjectComboBoxSearchPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
+        subjectComboBoxSearchPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        searchTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        TextPrompt searchPlaceholder = new TextPrompt("Escribe el parámetro para filtrar la búsqueda", searchTextField);
-        searchPlaceholder.changeAlpha(0.75f);
-        searchPlaceholder.changeStyle(Font.ITALIC);
-        searchTextField.setToolTipText("");
-        searchTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
-        searchTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        searchTextField.setMaximumSize(new java.awt.Dimension(60, 30));
-        searchTextField.setPreferredSize(new java.awt.Dimension(60, 30));
-        searchTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+        nameTextFieldSearchPanel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nameTextFieldSearchPanel.setToolTipText("");
+        nameTextFieldSearchPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
+        nameTextFieldSearchPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        nameTextFieldSearchPanel.setMaximumSize(new java.awt.Dimension(60, 30));
+        nameTextFieldSearchPanel.setPreferredSize(new java.awt.Dimension(60, 30));
+        nameTextFieldSearchPanel.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                searchTextFieldFocusGained(evt);
+                nameTextFieldSearchPanelFocusGained(evt);
             }
         });
-        searchTextField.addActionListener(new java.awt.event.ActionListener() {
+        nameTextFieldSearchPanel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchTextFieldActionPerformed(evt);
+                nameTextFieldSearchPanelActionPerformed(evt);
             }
         });
 
-        searchButton.setText("Buscar");
+        searchButtonSearchPanel.setText("Buscar");
+
+        provinceComboBoxSearchPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
+        provinceComboBoxSearchPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        townComboBoxSearchPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
+        townComboBoxSearchPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        ratingSpinnerSearchPanel.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, 5.0d, 0.5d));
+        ratingSpinnerSearchPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
+
+        proximityCheckBox.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        proximityCheckBox.setText("Cerca de mi");
+
+        subjectLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        subjectLabel.setText("Asignatura:");
+
+        provinceLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        provinceLabel.setText("Provincia:");
+
+        townLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        townLabel.setText("Ayuntamiento:");
+
+        averageRatingLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        averageRatingLabel.setText("Valoración media:");
+
+        userNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        userNameLabel.setText("Nombre de usuario:");
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(searchScrollPane)
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(filterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(subjectComboBoxSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(subjectLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(provinceComboBoxSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(provinceLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(townComboBoxSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(townLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addComponent(averageRatingLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(userNameLabel))
+                            .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addComponent(ratingSpinnerSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nameTextFieldSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addComponent(proximityCheckBox)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchButtonSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(searchButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(filterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(subjectLabel)
+                    .addComponent(provinceLabel)
+                    .addComponent(townLabel)
+                    .addComponent(averageRatingLabel)
+                    .addComponent(userNameLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameTextFieldSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ratingSpinnerSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(townComboBoxSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(provinceComboBoxSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(subjectComboBoxSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(proximityCheckBox)
+                    .addComponent(searchButtonSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -284,7 +349,7 @@ public class UserPanel extends javax.swing.JPanel {
                             .addComponent(titleTextFieldCreatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(subjectComboBoxCreatePanel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(priceSpinnerCreatePanel)
-                            .addComponent(descriptionScrollPaneCreatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))))
+                            .addComponent(descriptionScrollPaneCreatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE))))
                 .addGap(180, 180, 180))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -327,7 +392,7 @@ public class UserPanel extends javax.swing.JPanel {
             editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(editScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
+                .addComponent(editScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
                 .addContainerGap())
         );
         editPanelLayout.setVerticalGroup(
@@ -346,14 +411,14 @@ public class UserPanel extends javax.swing.JPanel {
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(adTabbedPaneCustom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(adTabbedPaneCustom, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(adTabbedPaneCustom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(adTabbedPaneCustom, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -389,13 +454,13 @@ public class UserPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_chatButtonActionPerformed
 
-    private void searchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusGained
+    private void nameTextFieldSearchPanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTextFieldSearchPanelFocusGained
 
-    }//GEN-LAST:event_searchTextFieldFocusGained
+    }//GEN-LAST:event_nameTextFieldSearchPanelFocusGained
 
-    private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
+    private void nameTextFieldSearchPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldSearchPanelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchTextFieldActionPerformed
+    }//GEN-LAST:event_nameTextFieldSearchPanelActionPerformed
 
     private void titleTextFieldCreatePanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_titleTextFieldCreatePanelFocusGained
         // TODO add your handling code here:
@@ -423,6 +488,11 @@ public class UserPanel extends javax.swing.JPanel {
 
     public void addDeleteButtonCreatePanelActionListener(ActionListener al) {
         this.deleteButtonCreatePanel.addActionListener(al);
+
+    }
+
+    public void addSearchButtonSearchPanelActionListener(ActionListener al) {
+        this.searchButtonSearchPanel.addActionListener(al);
     }
 
     public void clearAllFields() {
@@ -434,6 +504,10 @@ public class UserPanel extends javax.swing.JPanel {
     public JScrollPane getEditScrollPane() {
         refreshScrollPane();
         return editScrollPane;
+    }
+    
+    public void enableTownComboboxSearchPanel(boolean enable) {
+        this.townComboBoxSearchPanel.setEnabled(enable);
     }
 
     private void refreshScrollPane() {
@@ -458,6 +532,7 @@ public class UserPanel extends javax.swing.JPanel {
     private javax.swing.JButton adButton;
     private com.nicovilab.profeconecta.view.extraSwingComponents.customTabbedPane.TabbedPaneCustom adTabbedPaneCustom;
     private javax.swing.JLabel appLogo;
+    private javax.swing.JLabel averageRatingLabel;
     private javax.swing.JButton chatButton;
     private javax.swing.JButton createButtonCreatePanel;
     private javax.swing.JPanel createPanel;
@@ -468,20 +543,28 @@ public class UserPanel extends javax.swing.JPanel {
     private javax.swing.JPanel editPanel;
     private javax.swing.JScrollPane editScrollPane;
     private javax.swing.JButton exitButton;
-    private javax.swing.JComboBox<String> filterComboBox;
     private javax.swing.JLabel informationLabelCreatePanel;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel leftPanel;
+    private javax.swing.JTextField nameTextFieldSearchPanel;
     private javax.swing.JLabel priceLabelCreatePanel;
     private javax.swing.JSpinner priceSpinnerCreatePanel;
     private javax.swing.JButton profileButton;
+    private javax.swing.JComboBox<String> provinceComboBoxSearchPanel;
+    private javax.swing.JLabel provinceLabel;
+    private javax.swing.JCheckBox proximityCheckBox;
+    private javax.swing.JSpinner ratingSpinnerSearchPanel;
     private javax.swing.JPanel rightPanel;
-    private javax.swing.JButton searchButton;
+    private javax.swing.JButton searchButtonSearchPanel;
     private javax.swing.JPanel searchPanel;
-    private javax.swing.JTextField searchTextField;
+    private javax.swing.JScrollPane searchScrollPane;
     private javax.swing.JComboBox<String> subjectComboBoxCreatePanel;
+    private javax.swing.JComboBox<String> subjectComboBoxSearchPanel;
+    private javax.swing.JLabel subjectLabel;
     private javax.swing.JLabel subjectLabelCreatePanel;
     private javax.swing.JLabel titleLabelCreatePanel;
     private javax.swing.JTextField titleTextFieldCreatePanel;
+    private javax.swing.JComboBox<String> townComboBoxSearchPanel;
+    private javax.swing.JLabel townLabel;
+    private javax.swing.JLabel userNameLabel;
     // End of variables declaration//GEN-END:variables
 }

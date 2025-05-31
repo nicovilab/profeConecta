@@ -29,11 +29,10 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         setupCardLayout();
-        
+        pack();
         setVisible(true);
         setLocationRelativeTo(null); // Centrar la ventana
 
-        pack();
     }
 
     /**
@@ -49,7 +48,6 @@ public class MainJFrame extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private CardLayout cardLayout;
@@ -82,7 +80,6 @@ public class MainJFrame extends javax.swing.JFrame {
         
         cardLayout.show(contentPanel, "login");
         
-        //Ajustar el tamaño del frame según los componentes
         pack();
     }
     

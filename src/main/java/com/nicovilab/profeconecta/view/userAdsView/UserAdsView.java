@@ -5,10 +5,12 @@
 package com.nicovilab.profeconecta.view.userAdsView;
 
 import com.nicovilab.profeconecta.model.Anuncio;
+import com.nicovilab.profeconecta.model.Materia;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -21,13 +23,13 @@ public class UserAdsView {
     private static final Font TITLE_FONT = new Font("Arial", Font.BOLD, 14);
     private static final Font TEXT_FONT = new Font("Arial", Font.PLAIN, 12);
 
-    public JPanel createUserAdsPanel(List<Anuncio> anuncios, ActionListener onEdit, ActionListener onDelete, ActionListener onToggleState) {
+    public JPanel createUserAdsPanel(List<Anuncio> anuncios, Map<Integer, Materia> materiaMap, ActionListener onEdit, ActionListener onDelete, ActionListener onToggleState) {
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setBackground(BACKGROUND_COLOR);
 
         for (Anuncio anuncio : anuncios) {
-            JPanel adPanel = createSingleAdPanel(anuncio, onEdit, onDelete, onToggleState);
+            JPanel adPanel = createSingleAdPanel(anuncio, materiaMap, onEdit, onDelete, onToggleState);
             adPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, adPanel.getPreferredSize().height));
             contentPanel.add(adPanel);
         }
@@ -35,7 +37,7 @@ public class UserAdsView {
         return contentPanel;
     }
 
-    private JPanel createSingleAdPanel(Anuncio anuncio, ActionListener onEdit, ActionListener onDelete, ActionListener onToggleState) {
+    private JPanel createSingleAdPanel(Anuncio anuncio, Map<Integer, Materia> materiaMap,  ActionListener onEdit, ActionListener onDelete, ActionListener onToggleState) {
         JPanel panel = new JPanel(new BorderLayout(10, 5));
         panel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY),
@@ -46,6 +48,10 @@ public class UserAdsView {
         JLabel titleLabel = new JLabel(anuncio.getTitulo());
         titleLabel.setFont(TITLE_FONT);
         titleLabel.setForeground(PRIMARY_COLOR);
+        
+        String nombreMateria = materiaMap.containsKey(anuncio.getIdMateria())
+            ? materiaMap.get(anuncio.getIdMateria()).getNombre()
+            : "Desconocida";
 
         JLabel subjectLabel = new JLabel("Materia: " + anuncio.getIdMateria());
         subjectLabel.setFont(TEXT_FONT);
