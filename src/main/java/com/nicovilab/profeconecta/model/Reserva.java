@@ -4,6 +4,7 @@
  */
 package com.nicovilab.profeconecta.model;
 
+import java.sql.Time;
 import java.util.Date;
 import lombok.Data;
 
@@ -19,7 +20,7 @@ public class Reserva {
   private String estado;
   private Date fechaSolicitud;
   private Date fecha;
-  private String horaInicio;
-  private String horaFin;
+  private Time horaInicio;
+  private Time horaFin;
   private boolean disponible;
 }

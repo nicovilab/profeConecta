@@ -47,6 +47,7 @@ public class UserPanel extends javax.swing.JPanel {
         exitButton = new IntegratedButton("Cerrar sesión", false);
         adButton = new IntegratedButton("Mi perfil", true);
         chatButton = new IntegratedButton("Cerrar sesión", false);
+        calendarButton = new IntegratedButton("Mi perfil", false);
         rightPanel = new JPanelGradient(new Color(230, 243, 250), new Color(255,255,255));
         adTabbedPaneCustom = new com.nicovilab.profeconecta.view.extraSwingComponents.customTabbedPane.TabbedPaneCustom();
         searchPanel = new javax.swing.JPanel();
@@ -121,19 +122,33 @@ public class UserPanel extends javax.swing.JPanel {
             }
         });
 
+        calendarButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        calendarButton.setText("Calendario");
+        calendarButton.setBorder(new LineBorder(Color.BLACK, 0, true));
+        calendarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        calendarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calendarButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(exitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                    .addComponent(profileButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(adButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(chatButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(appLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(leftPanelLayout.createSequentialGroup()
+                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(exitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                            .addComponent(profileButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(adButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(chatButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(appLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(calendarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         leftPanelLayout.setVerticalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,13 +157,15 @@ public class UserPanel extends javax.swing.JPanel {
                 .addComponent(appLogo)
                 .addGap(18, 18, 18)
                 .addComponent(adButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
+                .addComponent(calendarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(chatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         rightPanel.setBackground(new java.awt.Color(235, 235, 235));
@@ -403,7 +420,7 @@ public class UserPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        adTabbedPaneCustom.addTab("Editar", editPanel);
+        adTabbedPaneCustom.addTab("Editar mis anuncios", editPanel);
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
@@ -470,6 +487,10 @@ public class UserPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_titleTextFieldCreatePanelActionPerformed
 
+    private void calendarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calendarButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calendarButtonActionPerformed
+
     public void addProfileButtonActionListener(ActionListener al) {
         this.profileButton.addActionListener(al);
     }
@@ -493,6 +514,10 @@ public class UserPanel extends javax.swing.JPanel {
 
     public void addSearchButtonSearchPanelActionListener(ActionListener al) {
         this.searchButtonSearchPanel.addActionListener(al);
+    } 
+    
+    public void addCalendarButtonActionListener(ActionListener al) {
+        this.calendarButton.addActionListener(al);
     }
 
     public void clearAllFields() {
@@ -533,6 +558,7 @@ public class UserPanel extends javax.swing.JPanel {
     private com.nicovilab.profeconecta.view.extraSwingComponents.customTabbedPane.TabbedPaneCustom adTabbedPaneCustom;
     private javax.swing.JLabel appLogo;
     private javax.swing.JLabel averageRatingLabel;
+    private javax.swing.JButton calendarButton;
     private javax.swing.JButton chatButton;
     private javax.swing.JButton createButtonCreatePanel;
     private javax.swing.JPanel createPanel;

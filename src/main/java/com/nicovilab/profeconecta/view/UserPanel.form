@@ -41,14 +41,20 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="exitButton" alignment="1" pref="132" max="32767" attributes="0"/>
-                      <Component id="profileButton" alignment="1" max="32767" attributes="0"/>
-                      <Component id="adButton" alignment="1" max="32767" attributes="0"/>
-                      <Component id="chatButton" max="32767" attributes="0"/>
-                      <Component id="appLogo" pref="132" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="exitButton" alignment="1" pref="132" max="32767" attributes="0"/>
+                              <Component id="profileButton" alignment="1" max="32767" attributes="0"/>
+                              <Component id="adButton" alignment="1" max="32767" attributes="0"/>
+                              <Component id="chatButton" max="32767" attributes="0"/>
+                              <Component id="appLogo" pref="132" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="calendarButton" alignment="1" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -59,13 +65,15 @@
                   <Component id="appLogo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="adButton" min="-2" pref="27" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="profileButton" min="-2" pref="27" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="calendarButton" min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="chatButton" min="-2" pref="27" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="exitButton" min="-2" pref="27" max="-2" attributes="0"/>
-                  <EmptySpace pref="172" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -156,6 +164,26 @@
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new IntegratedButton(&quot;Cerrar sesi&#xf3;n&quot;, false)"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="calendarButton">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Calendario"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new LineBorder(Color.BLACK, 0, true)" type="code"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="calendarButtonActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new IntegratedButton(&quot;Mi perfil&quot;, false)"/>
           </AuxValues>
         </Component>
       </SubComponents>
@@ -689,8 +717,8 @@
             <Container class="javax.swing.JPanel" name="editPanel">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Editar">
-                    <Property name="tabTitle" type="java.lang.String" value="Editar"/>
+                  <JTabbedPaneConstraints tabName="Editar mis anuncios">
+                    <Property name="tabTitle" type="java.lang.String" value="Editar mis anuncios"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>

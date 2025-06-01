@@ -9,11 +9,13 @@ import com.nicovilab.profeconecta.model.Anuncio;
 import com.nicovilab.profeconecta.model.AnuncioDTO;
 import com.nicovilab.profeconecta.model.Direccion;
 import com.nicovilab.profeconecta.model.Materia;
+import com.nicovilab.profeconecta.model.Reserva;
 import com.nicovilab.profeconecta.model.Usuario;
 import com.nicovilab.profeconecta.model.Valoracion;
 import com.nicovilab.profeconecta.model.VistaValoracion;
 import com.nicovilab.profeconecta.model.address.Town;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -190,7 +192,7 @@ public class DatabaseService {
     }
 
     public List<Valoracion> getUserReviews(int idUsuario) throws SQLException {
-        PreparedStatement preparedStatement = createQuery("SELECT id_valoracion, usuario_valorador, comentario, puntuacion, fecha FROM VALORACION WHERE usuario_valorado = ?", idUsuario);
+        PreparedStatement preparedStatement = createQuery("SELECT id_valoracion, usuario_valorado, usuario_valorador, comentario, puntuacion, fecha FROM VALORACION WHERE usuario_valorado = ?", idUsuario);
 
         ResultSet resultSet = executeQuery(preparedStatement);
 
@@ -270,9 +272,8 @@ public class DatabaseService {
         return null;
     }
 
-
     public List<AnuncioDTO> fetchAdsFilteredDTO(Map<String, Object> filtros) throws SQLException {
-    StringBuilder query = new StringBuilder("""
+        StringBuilder query = new StringBuilder("""
         SELECT DISTINCT a.id_anuncio, a.id_usuario, a.id_materia, a.titulo, a.descripcion, a.precio_hora, a.fecha_publicacion, a.activo,
                         u.nombre AS usuario_nombre, u.foto_perfil AS usuario_foto_perfil, m.nombre AS materia_nombre
         FROM ANUNCIO a
@@ -286,17 +287,17 @@ public class DatabaseService {
         ) v ON u.id_usuario = v.usuario_valorado
     """);
 
-    List<String> condiciones = new ArrayList<>();
-    List<Object> parametros = new ArrayList<>();
+        List<String> condiciones = new ArrayList<>();
+        List<Object> parametros = new ArrayList<>();
 
-    condiciones.add("a.activo = 1");
+        condiciones.add("a.activo = 1");
 
-    if (filtros.containsKey("userIdReferencia")) {
-        parametros.add(filtros.get("userIdReferencia"));
-        query.append("""
+        if (filtros.containsKey("userIdReferencia")) {
+            parametros.add(filtros.get("userIdReferencia"));
+            query.append("""
             JOIN DIRECCION ref_d ON ref_d.id_usuario = ?
         """);
-        condiciones.add("""
+            condiciones.add("""
             (
                 6371 * ACOS(
                     COS(RADIANS(ref_d.latitud)) * COS(RADIANS(d.latitud)) *
@@ -305,43 +306,43 @@ public class DatabaseService {
                 )
             ) <= 50
         """);
+        }
+
+        if (filtros.containsKey("id_materia")) {
+            condiciones.add("m.id_materia = ?");
+            parametros.add(filtros.get("id_materia"));
+        }
+
+        if (filtros.containsKey("usuario")) {
+            condiciones.add("u.nombre LIKE ?");
+            parametros.add("%" + filtros.get("usuario") + "%");
+        }
+
+        if (filtros.containsKey("ciudad")) {
+            condiciones.add("d.municipio LIKE ?");
+            parametros.add("%" + filtros.get("ciudad") + "%");
+        }
+
+        if (filtros.containsKey("valoracion")) {
+            condiciones.add("v.media >= ?");
+            parametros.add((Double) filtros.get("valoracion"));
+        }
+
+        if (!condiciones.isEmpty()) {
+            query.append(" WHERE ").append(String.join(" AND ", condiciones));
+        }
+
+        query.append(" ORDER BY a.fecha_publicacion DESC");
+
+        PreparedStatement preparedStatement = createQuery(query.toString(), parametros.toArray());
+        ResultSet resultSet = executeQuery(preparedStatement);
+
+        System.out.println("Consulta SQL: " + query);
+        System.out.println("Parámetros: " + Arrays.toString(parametros.toArray()));
+
+        // Aquí asumo que tienes un mapper configurado para AnuncioDTO
+        return resultSet != null ? resultSetMapper.map(resultSet, AnuncioDTO.class) : null;
     }
-
-    if (filtros.containsKey("id_materia")) {
-        condiciones.add("m.id_materia = ?");
-        parametros.add(filtros.get("id_materia"));
-    }
-
-    if (filtros.containsKey("usuario")) {
-        condiciones.add("u.nombre LIKE ?");
-        parametros.add("%" + filtros.get("usuario") + "%");
-    }
-
-    if (filtros.containsKey("ciudad")) {
-        condiciones.add("d.municipio LIKE ?");
-        parametros.add("%" + filtros.get("ciudad") + "%");
-    }
-
-    if (filtros.containsKey("valoracion")) {
-        condiciones.add("v.media >= ?");
-        parametros.add((Double) filtros.get("valoracion"));
-    }
-
-    if (!condiciones.isEmpty()) {
-        query.append(" WHERE ").append(String.join(" AND ", condiciones));
-    }
-
-    query.append(" ORDER BY a.fecha_publicacion DESC");
-
-    PreparedStatement preparedStatement = createQuery(query.toString(), parametros.toArray());
-    ResultSet resultSet = executeQuery(preparedStatement);
-
-    System.out.println("Consulta SQL: " + query);
-    System.out.println("Parámetros: " + Arrays.toString(parametros.toArray()));
-
-    // Aquí asumo que tienes un mapper configurado para AnuncioDTO
-    return resultSet != null ? resultSetMapper.map(resultSet, AnuncioDTO.class) : null;
-}
 
     public boolean updateAd(Anuncio anuncio) {
         PreparedStatement preparedStatement = createQuery("""
@@ -391,6 +392,52 @@ public class DatabaseService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public boolean insertOpenBooking(int userId, LocalDate date, String startTime, String endTime) {
+        PreparedStatement preparedStatement = createQuery("""
+        INSERT INTO RESERVA (usuario_profesor, fecha_solicitud, fecha, hora_inicio, hora_fin, disponible)
+        VALUES (?, ?, ?, ?, ?, ?)
+     """, userId,
+                new java.sql.Date(System.currentTimeMillis()),
+                java.sql.Date.valueOf(date),
+                startTime,
+                endTime,
+                1);
+
+        try {
+            preparedStatement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean deleteOpenBooking(int userId, int bookingId) {
+        PreparedStatement preparedStatement = createQuery("""
+        DELETE FROM RESERVA
+        WHERE id_reserva = ? AND usuario_profesor = ? AND disponible = 1
+    """, bookingId, userId);
+
+        try {
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
+    public List<Reserva> getAllBookingsByUser(int userId) {
+        List<Reserva> reservas = new ArrayList<>();
+
+        PreparedStatement preparedStatement = createQuery("""
+        SELECT * FROM RESERVA
+        WHERE usuario_profesor = ?
+        ORDER BY fecha, hora_inicio
+    """, userId);
+        ResultSet resultSet = executeQuery(preparedStatement);
+        return resultSet != null ? resultSetMapper.map(resultSet, Reserva.class) : null;
     }
 
     private ResultSet executeQuery(PreparedStatement query) {

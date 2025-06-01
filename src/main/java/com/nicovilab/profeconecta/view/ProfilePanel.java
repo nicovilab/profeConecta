@@ -52,6 +52,7 @@ public class ProfilePanel extends javax.swing.JPanel {
         exitButton = new IntegratedButton("Cerrar sesión", false);
         adButton = new IntegratedButton("Anuncios", false);
         chatButton = new IntegratedButton("Cerrar sesión", false);
+        calendarButton = new IntegratedButton("Calendario", false);
         rightPanel = new JPanelGradient(new Color(230, 243, 250), new Color(255,255,255));
         imageAvatar = new com.nicovilab.profeconecta.view.extraSwingComponents.ImageAvatar();
         imageAvatarButton = new CircularIntegratedButton();
@@ -129,6 +130,16 @@ public class ProfilePanel extends javax.swing.JPanel {
             }
         });
 
+        calendarButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        calendarButton.setText("Calendario");
+        calendarButton.setBorder(new LineBorder(Color.BLACK, 1, true));
+        calendarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        calendarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calendarButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
@@ -137,11 +148,15 @@ public class ProfilePanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(appLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(adButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(chatButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(chatButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(leftPanelLayout.createSequentialGroup()
+                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(adButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(calendarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         leftPanelLayout.setVerticalGroup(
@@ -151,11 +166,13 @@ public class ProfilePanel extends javax.swing.JPanel {
                 .addComponent(appLogo)
                 .addGap(18, 18, 18)
                 .addComponent(adButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(calendarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(chatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -313,75 +330,76 @@ public class ProfilePanel extends javax.swing.JPanel {
             .addGroup(rightPanelLayout.createSequentialGroup()
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rightPanelLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descriptionLabel)
-                            .addComponent(descriptionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(rightPanelLayout.createSequentialGroup()
-                                    .addComponent(numberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(provinceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(rightPanelLayout.createSequentialGroup()
-                                    .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(nameLabel)
-                                        .addComponent(telefonoLabel))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(provinceLabel)
-                                        .addComponent(surnameLabel)
-                                        .addComponent(surnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(rightPanelLayout.createSequentialGroup()
-                                    .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(townLabel)
+                            .addGroup(rightPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(opinionLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(star1)
+                                .addGap(0, 0, 0)
+                                .addComponent(star2)
+                                .addGap(0, 0, 0)
+                                .addComponent(star3)
+                                .addGap(0, 0, 0)
+                                .addComponent(star4)
+                                .addGap(0, 0, 0)
+                                .addComponent(star5)
+                                .addGap(0, 0, 0)
+                                .addComponent(star6)
+                                .addGap(0, 0, 0)
+                                .addComponent(star7)
+                                .addGap(0, 0, 0)
+                                .addComponent(star8)
+                                .addGap(0, 0, 0)
+                                .addComponent(star9)
+                                .addGap(0, 0, 0)
+                                .addComponent(star10)
+                                .addGap(18, 18, 18)
+                                .addComponent(ratingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(rightPanelLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(descriptionLabel)
+                                    .addComponent(descriptionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(rightPanelLayout.createSequentialGroup()
-                                            .addGap(1, 1, 1)
-                                            .addComponent(townComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(addressLabel))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
-                                .addComponent(saveButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editButton))))
+                                            .addComponent(numberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(provinceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(rightPanelLayout.createSequentialGroup()
+                                            .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(nameLabel)
+                                                .addComponent(telefonoLabel))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(provinceLabel)
+                                                .addComponent(surnameLabel)
+                                                .addComponent(surnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(rightPanelLayout.createSequentialGroup()
+                                            .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(townLabel)
+                                                .addGroup(rightPanelLayout.createSequentialGroup()
+                                                    .addGap(1, 1, 1)
+                                                    .addComponent(townComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(addressLabel))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
+                                        .addComponent(saveButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(editButton)))))
+                        .addGap(0, 100, Short.MAX_VALUE))
                     .addGroup(rightPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(mainSeparator))
-                    .addGroup(rightPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(opinionLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(star1)
-                        .addGap(0, 0, 0)
-                        .addComponent(star2)
-                        .addGap(0, 0, 0)
-                        .addComponent(star3)
-                        .addGap(0, 0, 0)
-                        .addComponent(star4)
-                        .addGap(0, 0, 0)
-                        .addComponent(star5)
-                        .addGap(0, 0, 0)
-                        .addComponent(star6)
-                        .addGap(0, 0, 0)
-                        .addComponent(star7)
-                        .addGap(0, 0, 0)
-                        .addComponent(star8)
-                        .addGap(0, 0, 0)
-                        .addComponent(star9)
-                        .addGap(0, 0, 0)
-                        .addComponent(star10)
-                        .addGap(18, 18, 18)
-                        .addComponent(ratingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 37, Short.MAX_VALUE))
-                    .addGroup(rightPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(reviewsScrollPane)))
-                .addContainerGap(111, Short.MAX_VALUE))
+                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mainSeparator)
+                            .addComponent(reviewsScrollPane))))
+                .addContainerGap())
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -509,6 +527,10 @@ public class ProfilePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_chatButtonActionPerformed
 
+    private void calendarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calendarButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calendarButtonActionPerformed
+
     public void addProfileButtonActionListener(ActionListener al) {
         this.profileButton.addActionListener(al);
     }
@@ -529,9 +551,15 @@ public class ProfilePanel extends javax.swing.JPanel {
         this.saveButton.addActionListener(al);
     }
     
+    public void addCalendarButtonActionListener(ActionListener al) {
+        this.calendarButton.addActionListener(al);
+    }
+
+    
     public void addExitButtonActionListener(ActionListener al) {
         this.exitButton.addActionListener(al);
     }
+    
 
     public void addImageAvatarButtonActionListener(ActionListener al) {
         this.imageAvatarButton.addActionListener(al);
@@ -604,6 +632,7 @@ public class ProfilePanel extends javax.swing.JPanel {
     private javax.swing.JLabel addressLabel;
     private javax.swing.JTextField addressTextField;
     private javax.swing.JLabel appLogo;
+    private javax.swing.JButton calendarButton;
     private javax.swing.JButton chatButton;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JScrollPane descriptionScrollPane;

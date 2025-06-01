@@ -59,6 +59,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public LoginPanel loginPanel;
     public UserPanel userPanel;
     public ProfilePanel profilePanel;
+    public BookingPanel calendarPanel;
     
      private void setupCardLayout() {
         // 1. Crear el panel contenedor con CardLayout
@@ -69,11 +70,13 @@ public class MainJFrame extends javax.swing.JFrame {
         loginPanel = new LoginPanel(this);
         userPanel = new UserPanel(this);
         profilePanel = new ProfilePanel(this);
+        calendarPanel = new BookingPanel(this);
         
         contentPanel.add(loginPanel, "login");
         contentPanel.add(signUpPanel, "signup");
         contentPanel.add(userPanel, "userpanel");
         contentPanel.add(profilePanel, "profile");
+        contentPanel.add(calendarPanel, "calendar");
 
         
         setContentPane(contentPanel);

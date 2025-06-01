@@ -85,6 +85,7 @@ public class UserPanelController {
         userPanel.addExitButtonActionListener(this.getExitButtonActionListener());
         userPanel.addCreateButtonCreatePanelActionListener(this.getCreateButtonCreatePanelActionListener());
         userPanel.addDeleteButtonCreatePanelActionListener(this.getDeleteButtonCreatePanelActionListener());
+        userPanel.addCalendarButtonActionListener(this.getCalendarButtonActionListener());
 
         populateSubjectComboBox(materias);
         try {
@@ -136,6 +137,13 @@ public class UserPanelController {
     private ActionListener getDeleteButtonCreatePanelActionListener() {
         return (ActionEvent e) -> {
             userPanel.clearAllFields();
+        };
+    }
+    
+    private ActionListener getCalendarButtonActionListener() {
+        return (ActionEvent e) -> {
+            view.showPanel("calendar");
+            new BookingController(view, view.getCalendarPanel(), user);
         };
     }
 

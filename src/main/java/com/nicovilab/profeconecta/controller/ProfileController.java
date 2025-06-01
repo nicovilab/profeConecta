@@ -59,6 +59,7 @@ public class ProfileController {
         this.view = view;
         this.profilePanel = profilePanel;
         this.userEmail = user.getEmail();
+        this.user = user;
 
         databaseService = new DatabaseService();
         profileService = new ProfileService();
@@ -71,12 +72,12 @@ public class ProfileController {
 
         addProvinceComboBoxListener();
 
-        profilePanel.addProfileButtonActionListener(this.getProfileButtonActionListener());
         profilePanel.addExitButtonActionListener(this.getExitButtonActionListener());
         profilePanel.addEditButtonActionListener(this.getEditButtonActionListener());
         profilePanel.addSaveButtonActionListener(this.getSaveButtonActionListener());
         profilePanel.addImageAvatarButtonActionListener(this.getImageAvatarButtonActionListener());
         profilePanel.addAdButtonActionListener(this.getAdButtonActionListener());
+        profilePanel.addCalendarButtonActionListener(this.getCalendarButtonActionListener());
 
         VistaValoracion vistaValoracion = databaseService.getAverageRating(String.valueOf(user.getIdUsuario()));
 
@@ -89,13 +90,10 @@ public class ProfileController {
 
         setUserInfo(user, profileService.fetchUserAddress(user.getEmail()));
         cargarPerfilUsuario(user.getIdUsuario());
+        
+        profilePanel.enableFields(false);
     }
 
-    private ActionListener getProfileButtonActionListener() {
-        return (ActionEvent e) -> {
-
-        };
-    }
 
     private ActionListener getImageAvatarButtonActionListener() {
         return (ActionEvent e) -> {
@@ -161,6 +159,13 @@ public class ProfileController {
     private ActionListener getAdButtonActionListener() {
         return (ActionEvent e) -> {
             view.showPanel("userpanel");
+        };
+    }
+    
+    private ActionListener getCalendarButtonActionListener() {
+        return (ActionEvent e) -> {
+            view.showPanel("calendar");
+            new BookingController(view, view.getCalendarPanel(), user);
         };
     }
 
