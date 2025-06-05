@@ -29,8 +29,8 @@ public class LoginPanel extends javax.swing.JPanel {
     public LoginPanel(MainJFrame parent) {
         initComponents();
         changeWindowFocusOnLaunch();
-        hoverEffectButtonManipulation(signUpButton, Color.BLACK,new Color(37, 116, 169));
-        hoverEffectButtonManipulation(signInButton, Color.BLACK,new Color(37, 116, 169));
+        hoverEffectButtonManipulation(signUpButton, Color.BLACK, new Color(37, 116, 169));
+        hoverEffectButtonManipulation(signInButton, Color.BLACK, new Color(37, 116, 169));
         setVisible(true);
     }
 
@@ -224,38 +224,39 @@ public class LoginPanel extends javax.swing.JPanel {
 
     public void addSignInButtonActionListener(ActionListener al) {
         this.signInButton.addActionListener(al);
-    }  
-    
+    }
+
     public void addSignUpButtonActionListener(ActionListener al) {
         this.signUpButton.addActionListener(al);
-    } 
-    
+    }
+
     public void changeWindowFocusOnLaunch() {
         leftPanel.requestFocusInWindow();
     }
-    
-    public void clearAllTextFields(){
+
+    public void clearAllTextFields() {
         emailTextField.setText("");
         passwordField.setText("");
     }
+
     private void hoverEffectButtonManipulation(JButton button, Color color, Color hoverColor) {
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 button.setForeground(hoverColor);
             }
-            
+
             @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 button.setForeground(color);
             }
         });
     }
-    
-    public void setInformationTextField(String text, Color color){
+
+    public void setInformationTextField(String text, Color color) {
         this.informationLabel.setText(text);
         this.informationLabel.setForeground(color);
-        
+
         Timer t = new Timer(2500, (ActionEvent e) -> {
             informationLabel.setText("");
             informationLabel.setForeground(Color.black);

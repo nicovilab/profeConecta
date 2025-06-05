@@ -7,11 +7,8 @@ package com.nicovilab.profeconecta.view;
 import com.nicovilab.profeconecta.view.gradientComponents.CircularIntegratedButton;
 import com.nicovilab.profeconecta.view.gradientComponents.IntegratedButton;
 import com.nicovilab.profeconecta.view.gradientComponents.JPanelGradient;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
@@ -534,11 +531,11 @@ public class ProfilePanel extends javax.swing.JPanel {
     public void addProfileButtonActionListener(ActionListener al) {
         this.profileButton.addActionListener(al);
     }
-    
+
     public void addAdButtonActionListener(ActionListener al) {
         this.adButton.addActionListener(al);
     }
-    
+
     public void addChatButtonActionListener(ActionListener al) {
         this.chatButton.addActionListener(al);
     }
@@ -550,16 +547,14 @@ public class ProfilePanel extends javax.swing.JPanel {
     public void addSaveButtonActionListener(ActionListener al) {
         this.saveButton.addActionListener(al);
     }
-    
+
     public void addCalendarButtonActionListener(ActionListener al) {
         this.calendarButton.addActionListener(al);
     }
 
-    
     public void addExitButtonActionListener(ActionListener al) {
         this.exitButton.addActionListener(al);
     }
-    
 
     public void addImageAvatarButtonActionListener(ActionListener al) {
         this.imageAvatarButton.addActionListener(al);

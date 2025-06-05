@@ -44,6 +44,7 @@ public class BookingController {
         bookingPanel.addExitButtonActionListener(this.getExitButtonActionListener());
         bookingPanel.addBookingButtonActionListener(this.getAddBookingButtonActionListener());
         bookingPanel.addDeleteBookingButtonActionListener(this.getDeleteBookingButtonActionListener());
+        bookingPanel.addChatButtonActionListener(this.getChatButtonActionListener());
 
         loadBookings();
     }
@@ -67,7 +68,8 @@ public class BookingController {
 
     private ActionListener getChatButtonActionListener() {
         return (ActionEvent e) -> {
-
+            new ChatController(view, view.getChatPanel(), user);
+            view.showPanel("chatpanel");
         };
     }
 

@@ -4,18 +4,10 @@
  */
 package com.nicovilab.profeconecta.view;
 
-import com.nicovilab.profeconecta.view.extraSwingComponents.TextPrompt;
-
-import java.awt.*;
-import javax.swing.border.LineBorder;
-
-import com.nicovilab.profeconecta.view.gradientComponents.ButtonGradient;
-import com.nicovilab.profeconecta.view.gradientComponents.JPanelGradient;
-
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import lombok.Getter;
+
 /**
  *
  * @author Nico
@@ -52,16 +44,16 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private CardLayout cardLayout;
     private JPanel contentPanel;
-    
-    
+
     //Declarar variables de los paneles de las vistas
     public SignUpPanel signUpPanel;
     public LoginPanel loginPanel;
     public UserPanel userPanel;
     public ProfilePanel profilePanel;
     public BookingPanel calendarPanel;
-    
-     private void setupCardLayout() {
+    public ChatPanel chatPanel;
+
+    private void setupCardLayout() {
         // 1. Crear el panel contenedor con CardLayout
         cardLayout = new CardLayout();
         contentPanel = new JPanel(cardLayout);
@@ -71,30 +63,28 @@ public class MainJFrame extends javax.swing.JFrame {
         userPanel = new UserPanel(this);
         profilePanel = new ProfilePanel(this);
         calendarPanel = new BookingPanel(this);
-        
+        chatPanel = new ChatPanel(this);
+
         contentPanel.add(loginPanel, "login");
         contentPanel.add(signUpPanel, "signup");
         contentPanel.add(userPanel, "userpanel");
         contentPanel.add(profilePanel, "profile");
         contentPanel.add(calendarPanel, "calendar");
+        contentPanel.add(chatPanel, "chatpanel");
 
-        
         setContentPane(contentPanel);
-        
+
         cardLayout.show(contentPanel, "login");
-        
+
         pack();
     }
-    
+
     // Método para cambiar entre paneles
     public void showPanel(String panelName) {
         cardLayout.show(contentPanel, panelName);
     }
 
-    
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
 }

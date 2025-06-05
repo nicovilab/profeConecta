@@ -6,9 +6,7 @@ package com.nicovilab.profeconecta.view.BookingHighlightPolicy;
 
 import com.nicovilab.profeconecta.model.Reserva;
 import java.awt.BorderLayout;
-import java.awt.Frame;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -44,9 +42,8 @@ public class AvailableHoursDialog extends JDialog {
     add(new JScrollPane(hoursList), BorderLayout.CENTER);
     add(bookButton, BorderLayout.SOUTH);
 
-    // 🔥 Aquí está el truco
-    pack(); // Ajusta el tamaño a los componentes automáticamente
-    setLocationRelativeTo(view); // Centra el diálogo respecto al padre
+    pack();
+    setLocationRelativeTo(view);
 }
 
     public void setBookingActionListener(ActionListener listener) {

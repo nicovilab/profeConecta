@@ -6,7 +6,6 @@ package com.nicovilab.profeconecta.view;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.Timer;
@@ -17,9 +16,6 @@ import javax.swing.Timer;
  */
 public class UserAdDetailAddReviewDialog extends JDialog {
 
-    /**
-     * Creates new form UserAdDetailAddReviewDialog
-     */
     public UserAdDetailAddReviewDialog(JDialog view) {
         super(view, true);
         initComponents();
@@ -126,11 +122,11 @@ public class UserAdDetailAddReviewDialog extends JDialog {
     public JButton getSendButton() {
         return sendButton;
     }
-    
-    public void setInformationTextField(String text, Color color){
+
+    public void setInformationTextField(String text, Color color) {
         this.informationLabel.setText(text);
         this.informationLabel.setForeground(color);
-        
+
         Timer t = new Timer(2500, (ActionEvent e) -> {
             informationLabel.setText("");
             informationLabel.setForeground(Color.black);

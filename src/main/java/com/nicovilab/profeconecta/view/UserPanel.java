@@ -4,12 +4,9 @@
  */
 package com.nicovilab.profeconecta.view;
 
-import com.nicovilab.profeconecta.view.extraSwingComponents.TextPrompt;
-import com.nicovilab.profeconecta.view.gradientComponents.ButtonGradient;
 import com.nicovilab.profeconecta.view.gradientComponents.IntegratedButton;
 import com.nicovilab.profeconecta.view.gradientComponents.JPanelGradient;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JScrollPane;
@@ -29,7 +26,7 @@ public class UserPanel extends javax.swing.JPanel {
      */
     public UserPanel(MainJFrame parent) {
         initComponents();
-        
+
     }
 
     /**
@@ -514,8 +511,8 @@ public class UserPanel extends javax.swing.JPanel {
 
     public void addSearchButtonSearchPanelActionListener(ActionListener al) {
         this.searchButtonSearchPanel.addActionListener(al);
-    } 
-    
+    }
+
     public void addCalendarButtonActionListener(ActionListener al) {
         this.calendarButton.addActionListener(al);
     }
@@ -530,7 +527,7 @@ public class UserPanel extends javax.swing.JPanel {
         refreshScrollPane();
         return editScrollPane;
     }
-    
+
     public void enableTownComboboxSearchPanel(boolean enable) {
         this.townComboBoxSearchPanel.setEnabled(enable);
     }

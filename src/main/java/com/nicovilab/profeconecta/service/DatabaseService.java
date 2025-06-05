@@ -7,13 +7,18 @@ package com.nicovilab.profeconecta.service;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.nicovilab.profeconecta.model.Anuncio;
 import com.nicovilab.profeconecta.model.AnuncioDetail;
+import com.nicovilab.profeconecta.model.Chat;
 import com.nicovilab.profeconecta.model.Direccion;
 import com.nicovilab.profeconecta.model.Materia;
 import com.nicovilab.profeconecta.model.Reserva;
+import com.nicovilab.profeconecta.model.ReservaDetail;
 import com.nicovilab.profeconecta.model.Usuario;
 import com.nicovilab.profeconecta.model.Valoracion;
 import com.nicovilab.profeconecta.model.VistaValoracion;
 import com.nicovilab.profeconecta.model.address.Town;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.*;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -459,11 +464,11 @@ public class DatabaseService {
     }
 
     public Map<LocalDate, List<Reserva>> getBookingsGroupedByDate(int userId) {
-    List<Reserva> reservas = getAllBookingsByUser(userId);
-    return reservas.stream()
-            .filter(reserva -> reserva.getFecha() != null)
-            .collect(Collectors.groupingBy(Reserva::getFecha));
-}
+        List<Reserva> reservas = getAllBookingsByUser(userId);
+        return reservas.stream()
+                .filter(reserva -> reserva.getFecha() != null)
+                .collect(Collectors.groupingBy(Reserva::getFecha));
+    }
 
     public boolean bookSlot(int bookingId, int studentUserId, LocalDate date) {
         PreparedStatement preparedStatement = createQuery("""
@@ -471,6 +476,22 @@ public class DatabaseService {
         SET usuario_estudiante = ?, disponible = 0
         WHERE id_reserva = ? AND fecha = ?
     """, studentUserId, bookingId, java.sql.Date.valueOf(date));
+
+        try {
+            preparedStatement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean removeBookSlot(int bookingId) {
+        PreparedStatement preparedStatement = createQuery("""
+        UPDATE RESERVA
+        SET usuario_estudiante = NULL, disponible = 1
+        WHERE id_reserva = ?
+    """, bookingId);
 
         try {
             preparedStatement.execute();
@@ -500,6 +521,149 @@ public class DatabaseService {
             return false;
         }
         return true;
+    }
+
+    public List<Chat> fetchChatMessages(int bookingId) {
+        String sql = """
+        SELECT 
+            id_chat,
+            usuario_emisor,
+            usuario_receptor,
+            fecha_creacion,
+            contenido,
+            fecha_hora,
+            leido,
+            contenido_archivo,
+            id_reserva
+        FROM CHAT
+        WHERE id_reserva = ?
+        ORDER BY fecha_hora ASC
+    """;
+
+        PreparedStatement ps = createQuery(sql, bookingId);
+        ResultSet rs = executeQuery(ps);
+        return resultSetMapper.map(rs, Chat.class);
+    }
+
+    public boolean sendMessage(int idReserva, int idEmisor, int idReceptor, String contenido) {
+        PreparedStatement preparedStatement = createQuery("""
+        INSERT INTO CHAT (id_reserva, usuario_emisor, usuario_receptor, contenido, fecha_creacion, fecha_hora, leido, contenido_archivo)
+        VALUES (?, ?, ?, ?, ?, ?, ?, NULL)
+        """,
+                idReserva,
+                idEmisor,
+                idReceptor,
+                contenido,
+                java.time.LocalDate.now(),
+                java.time.LocalDateTime.now(),
+                0 // leido = false
+        );
+
+        try {
+            preparedStatement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean sendFileMessage(int idReserva, int idEmisor, int idReceptor, File file) {
+    try (FileInputStream fis = new FileInputStream(file)) {
+
+        PreparedStatement preparedStatement = createQuery("""
+            INSERT INTO CHAT (id_reserva, usuario_emisor, usuario_receptor, contenido, fecha_creacion, fecha_hora, leido, contenido_archivo)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+            idReserva,
+            idEmisor,
+            idReceptor,
+            file.getName(),            // contenido textual que puedes mostrar en el chat
+            java.time.LocalDate.now(),
+            java.time.LocalDateTime.now(),
+            0                                              // leido = false
+        );
+
+        preparedStatement.setBinaryStream(8, fis, (int) file.length()); // 8 = índice de contenido_archivo
+        preparedStatement.execute();
+
+    } catch (IOException | SQLException ex) {
+        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        return false;
+    }
+
+    return true;
+}
+
+    public List<ReservaDetail> fetchBookingDetail(int userId) {
+        String sql = """
+         SELECT 
+            r.id_reserva,
+            r.usuario_estudiante AS id_alumno,
+            r.usuario_profesor AS id_profesor,
+            r.fecha_solicitud,
+            r.fecha,
+            r.hora_inicio,
+            r.hora_fin,
+
+            u_prof.nombre AS nombre_profesor,
+            u_prof.apellidos AS apellidos_profesor,
+            u_prof.descripcion AS descripcion_profesor,
+            u_prof.foto_perfil AS foto_perfil_profesor,
+
+            u_alum.nombre AS nombre_alumno,
+            u_alum.apellidos AS apellidos_alumno,
+
+            (SELECT MAX(c2.fecha_hora) FROM CHAT c2 WHERE c2.id_reserva = r.id_reserva) AS fecha_hora
+
+            FROM RESERVA r
+            JOIN USUARIO u_prof ON r.usuario_profesor = u_prof.id_usuario
+            JOIN USUARIO u_alum ON r.usuario_estudiante = u_alum.id_usuario
+
+            WHERE (r.usuario_estudiante = ? OR r.usuario_profesor = ?) 
+              AND r.disponible = 0
+
+            ORDER BY 
+                fecha_hora IS NULL,
+                fecha_hora DESC;
+    """;
+
+        PreparedStatement ps = createQuery(sql, userId, userId);
+        ResultSet rs = executeQuery(ps);
+        return resultSetMapper.map(rs, ReservaDetail.class);
+    }
+
+    public ReservaDetail fetchBookingDetailById(int bookingId) {
+        String sql = """
+         SELECT 
+            r.id_reserva,
+            r.usuario_estudiante AS id_alumno,
+            r.usuario_profesor AS id_profesor,
+            r.fecha_solicitud,
+            r.fecha,
+            r.hora_inicio,
+            r.hora_fin,
+
+            u_prof.nombre AS nombre_profesor,
+            u_prof.apellidos AS apellidos_profesor,
+            u_prof.descripcion AS descripcion_profesor,
+            u_prof.foto_perfil AS foto_perfil_profesor,
+
+            u_alum.nombre AS nombre_alumno,
+            u_alum.apellidos AS apellidos_alumno,
+
+            NULL AS fecha_hora
+
+        FROM RESERVA r
+        JOIN USUARIO u_prof ON r.usuario_profesor = u_prof.id_usuario
+        JOIN USUARIO u_alum ON r.usuario_estudiante = u_alum.id_usuario
+        WHERE r.id_reserva = ?
+    """;
+
+        PreparedStatement ps = createQuery(sql, bookingId);
+        ResultSet rs = executeQuery(ps);
+        List<ReservaDetail> lista = resultSetMapper.map(rs, ReservaDetail.class);
+        return lista.isEmpty() ? null : lista.get(0);
     }
 
     private ResultSet executeQuery(PreparedStatement query) {

@@ -443,11 +443,11 @@ public class UserAdDetailDialog extends javax.swing.JDialog {
     public void addBookingButtonActionListener(ActionListener al) {
         this.bookingButton.addActionListener(al);
     }
-    
-    public void setInformationTextField(String text, Color color){
+
+    public void setInformationTextField(String text, Color color) {
         this.informationLabel.setText(text);
         this.informationLabel.setForeground(color);
-        
+
         Timer t = new Timer(2500, (ActionEvent e) -> {
             informationLabel.setText("");
             informationLabel.setForeground(Color.black);

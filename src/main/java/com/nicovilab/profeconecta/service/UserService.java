@@ -30,6 +30,7 @@ public class UserService {
         return databaseService.getUserReviews(idUsuario);
     }
     
+    
     public boolean insertReview(int reviewedUserId, int reviewerUserId, int rating, String comment, LocalDate date){
         return databaseService.insertReview(reviewedUserId, reviewerUserId, rating, comment, date);
     }

@@ -74,6 +74,7 @@ public class ProfileController {
         profilePanel.addImageAvatarButtonActionListener(this.getImageAvatarButtonActionListener());
         profilePanel.addAdButtonActionListener(this.getAdButtonActionListener());
         profilePanel.addCalendarButtonActionListener(this.getCalendarButtonActionListener());
+        profilePanel.addChatButtonActionListener(this.getChatButtonActionListener());
 
         VistaValoracion vistaValoracion = databaseService.getAverageRating(String.valueOf(user.getIdUsuario()));
 
@@ -162,6 +163,13 @@ public class ProfileController {
         return (ActionEvent e) -> {
             view.showPanel("calendar");
             new BookingController(view, view.getCalendarPanel(), user);
+        };
+    }
+    
+    private ActionListener getChatButtonActionListener() {
+        return (ActionEvent e) -> {
+            new ChatController(view, view.getChatPanel(), user);
+            view.showPanel("chatpanel");
         };
     }
 

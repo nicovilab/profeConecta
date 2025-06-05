@@ -12,7 +12,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 import lombok.Getter;
@@ -30,8 +29,8 @@ public class SignUpPanel extends javax.swing.JPanel {
     public SignUpPanel(MainJFrame parent) {
         initComponents();
         changeWindowFocusOnLaunch();
-        hoverEffectButtonManipulation(registerButton, Color.BLACK,new Color(37, 116, 169));
-        hoverEffectButtonManipulation(signInButton, Color.BLACK,new Color(37, 116, 169));
+        hoverEffectButtonManipulation(registerButton, Color.BLACK, new Color(37, 116, 169));
+        hoverEffectButtonManipulation(signInButton, Color.BLACK, new Color(37, 116, 169));
     }
 
     /**
@@ -332,44 +331,44 @@ public class SignUpPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmPasswordFieldActionPerformed
 
-    
     public void addSignInButtonActionListener(ActionListener al) {
         this.signInButton.addActionListener(al);
-    }  
-    
+    }
+
     public void addRegisterButtonActionListener(ActionListener al) {
         this.registerButton.addActionListener(al);
-    }  
-    
+    }
+
     public void changeWindowFocusOnLaunch() {
         leftPanel.requestFocusInWindow();
     }
-    
-    public void clearAllFields(){
+
+    public void clearAllFields() {
         nameTextField.setText("");
         surnameTextField.setText("");
         emailTextField.setText("");
         passwordField.setText("");
         confirmPasswordField.setText("");
     }
+
     private void hoverEffectButtonManipulation(JButton button, Color color, Color hoverColor) {
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 button.setForeground(hoverColor);
             }
-            
+
             @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 button.setForeground(color);
             }
         });
     }
-    
-    public void setInformationTextField(String text, Color color){
+
+    public void setInformationTextField(String text, Color color) {
         this.informationLabel.setText(text);
         this.informationLabel.setForeground(color);
-        
+
         Timer t = new Timer(2500, (ActionEvent e) -> {
             informationLabel.setText("");
             informationLabel.setForeground(Color.black);

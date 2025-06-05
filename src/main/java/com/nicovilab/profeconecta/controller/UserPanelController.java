@@ -74,6 +74,7 @@ public class UserPanelController {
         userPanel.addCreateButtonCreatePanelActionListener(this.getCreateButtonCreatePanelActionListener());
         userPanel.addDeleteButtonCreatePanelActionListener(this.getDeleteButtonCreatePanelActionListener());
         userPanel.addCalendarButtonActionListener(this.getCalendarButtonActionListener());
+        userPanel.addChatButtonActionListener(this.getChatButtonActionListener());
 
         populateSubjectComboBox(materias);
         loadUserAdsById(user.getIdUsuario());
@@ -134,6 +135,13 @@ public class UserPanelController {
         return (ActionEvent e) -> {
             view.showPanel("calendar");
             new BookingController(view, view.getCalendarPanel(), user);
+        };
+    }
+    
+    private ActionListener getChatButtonActionListener() {
+        return (ActionEvent e) -> {
+            view.showPanel("chatpanel");
+            new ChatController(view, view.getChatPanel(), user);
         };
     }
 
