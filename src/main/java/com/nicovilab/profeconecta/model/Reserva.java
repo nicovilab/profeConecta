@@ -5,7 +5,7 @@
 package com.nicovilab.profeconecta.model;
 
 import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
 import lombok.Data;
 
 /**
@@ -18,8 +18,8 @@ public class Reserva {
   private Integer usuarioProfesor;
   private Integer usuarioEstudiante;
   private String estado;
-  private Date fechaSolicitud;
-  private Date fecha;
+  private LocalDate fechaSolicitud;
+  private LocalDate fecha;
   private Time horaInicio;
   private Time horaFin;
   private boolean disponible;

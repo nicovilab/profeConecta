@@ -5,27 +5,21 @@
 package com.nicovilab.profeconecta.controller;
 
 import com.nicovilab.profeconecta.model.Anuncio;
-import com.nicovilab.profeconecta.model.AnuncioDTO;
+import com.nicovilab.profeconecta.model.AnuncioDetail;
 import com.nicovilab.profeconecta.model.Materia;
 import com.nicovilab.profeconecta.model.Usuario;
-import com.nicovilab.profeconecta.model.address.AutonomousCommunity;
-import com.nicovilab.profeconecta.model.address.Province;
-import com.nicovilab.profeconecta.model.address.Town;
 import com.nicovilab.profeconecta.service.AdService;
 import com.nicovilab.profeconecta.service.DatabaseService;
 import com.nicovilab.profeconecta.service.ProfileService;
 import com.nicovilab.profeconecta.service.UserService;
-import static com.nicovilab.profeconecta.utils.Utils.getAutonomousCommunitiesData;
+import static com.nicovilab.profeconecta.utils.Utils.getProvinceNamesModel;
+import static com.nicovilab.profeconecta.utils.Utils.getTownsByProvince;
 import com.nicovilab.profeconecta.view.MainJFrame;
 import com.nicovilab.profeconecta.view.UserPanel;
 import com.nicovilab.profeconecta.view.userAdsView.EditAdDialog;
 import com.nicovilab.profeconecta.view.userAdsView.SearchAdDialog;
 import com.nicovilab.profeconecta.view.userAdsView.UserAdsView;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -34,15 +28,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 /**
  *
@@ -60,8 +50,8 @@ public class UserPanelController {
     private final UserAdsView userAdsView;
     private final UserService userService;
     private final SearchAdDialog searchAdDialog;
-    private final List<AutonomousCommunity> autonomousCommunities;
-    private Map<Integer, Materia> subjectMap = new HashMap<>();
+    private final Map<String, Materia> subjectMapByName = new HashMap<>();
+    private final Map<Integer, Materia> subjectMapById = new HashMap<>();
 
     public UserPanelController(MainJFrame view, UserPanel userPanel, Usuario user) {
         profileService = new ProfileService();
@@ -70,15 +60,13 @@ public class UserPanelController {
         userAdsView = new UserAdsView();
         userService = new UserService();
         searchAdDialog = new SearchAdDialog();
+
         this.view = view;
         this.userPanel = userPanel;
         this.user = user;
         this.materias = databaseService.getSubjects();
 
-        this.autonomousCommunities = getAutonomousCommunitiesData();
-
-        populateAddressData(autonomousCommunities);
-
+        userPanel.getProvinceComboBoxSearchPanel().setModel(getProvinceNamesModel(true));
         addProvinceComboBoxListener();
 
         userPanel.addProfileButtonActionListener(this.getProfileButtonActionListener());
@@ -88,12 +76,12 @@ public class UserPanelController {
         userPanel.addCalendarButtonActionListener(this.getCalendarButtonActionListener());
 
         populateSubjectComboBox(materias);
-        try {
-            loadUserAdsById(user.getIdUsuario());
-        } catch (SQLException ex) {
-            Logger.getLogger(UserPanelController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        loadUserAdsById(user.getIdUsuario());
         addSearchButtonListener();
+
+        searchAdDialog.setAdCardClickListener(ad -> {
+            new UserAdDetailController(view, user, ad);
+        });
 
     }
 
@@ -110,36 +98,38 @@ public class UserPanelController {
     }
 
     private ActionListener getCreateButtonCreatePanelActionListener() {
-        return (ActionEvent e) -> {
-            String selectedSubject = (String) userPanel.getSubjectComboBoxCreatePanel().getSelectedItem();
-            String title = userPanel.getTitleTextFieldCreatePanel().getText();
-            Double price = (Double) userPanel.getPriceSpinnerCreatePanel().getValue();
-            String description = userPanel.getDescriptionTextArea().getText();
+    return e -> {
+        String selectedSubjectName = (String) userPanel.getSubjectComboBoxCreatePanel().getSelectedItem();
+        Materia selectedMateria = subjectMapByName.get(selectedSubjectName);
 
-            int selectedSubjectId = subjectMap.get(selectedSubject).getIdMateria();
+        if (selectedMateria == null) {
+            userPanel.setInformationLabelCreatePanel("Debe seleccionar una materia válida", Color.RED);
+            return;
+        }
 
-            if (validateAdCreation(selectedSubject, title, price, description)) {
-                if (adService.adSuccessful(user.getIdUsuario(), selectedSubjectId, title, price, description)) {
-                    userPanel.setInformationLabelCreatePanel("El anuncio se ha creado correctamente", Color.GREEN);
-                    userPanel.clearAllFields();
-                    try {
-                        loadUserAdsById(user.getIdUsuario());
-                    } catch (SQLException ex) {
-                        Logger.getLogger(UserPanelController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } else {
-                    userPanel.setInformationLabelCreatePanel("Se ha producido un error al crear el anuncio", Color.RED);
-                }
+        String title = userPanel.getTitleTextFieldCreatePanel().getText();
+        Double price = (Double) userPanel.getPriceSpinnerCreatePanel().getValue();
+        String description = userPanel.getDescriptionTextArea().getText();
+        int selectedSubjectId = selectedMateria.getIdMateria();
+
+        if (validateAdCreation(selectedSubjectName, title, price, description)) {
+            if (adService.adSuccessful(user.getIdUsuario(), selectedSubjectId, title, price, description)) {
+                userPanel.setInformationLabelCreatePanel("El anuncio se ha creado correctamente", Color.GREEN);
+                userPanel.clearAllFields();
+                loadUserAdsById(user.getIdUsuario());
+            } else {
+                userPanel.setInformationLabelCreatePanel("Error al crear el anuncio", Color.RED);
             }
-        };
-    }
+        }
+    };
+}
 
     private ActionListener getDeleteButtonCreatePanelActionListener() {
         return (ActionEvent e) -> {
             userPanel.clearAllFields();
         };
     }
-    
+
     private ActionListener getCalendarButtonActionListener() {
         return (ActionEvent e) -> {
             view.showPanel("calendar");
@@ -154,16 +144,17 @@ public class UserPanelController {
     }
 
     public void populateSubjectComboBox(List<Materia> materias) {
-    DefaultComboBoxModel<String> subjectModel = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<String> subjectModel = new DefaultComboBoxModel<>();
 
-    materias.forEach(materia -> {
-        subjectModel.addElement(materia.getNombre());
-        subjectMap.put(materia.getIdMateria(), materia); // mapear por ID
-    });
+        for (Materia materia : materias) {
+            subjectModel.addElement(materia.getNombre());
+            subjectMapByName.put(materia.getNombre(), materia);
+            subjectMapById.put(materia.getIdMateria(), materia);
+        }
 
-    userPanel.getSubjectComboBoxCreatePanel().setModel(subjectModel);
-    userPanel.getSubjectComboBoxSearchPanel().setModel(subjectModel);
-}
+        userPanel.getSubjectComboBoxCreatePanel().setModel(subjectModel);
+        userPanel.getSubjectComboBoxSearchPanel().setModel(subjectModel);
+    }
 
     public boolean validateAdCreation(String selectedSubject, String title, Double price, String description) {
 
@@ -189,7 +180,7 @@ public class UserPanelController {
         return true;
     }
 
-    public void loadUserAdsById(int idUsuario) throws SQLException {
+    public void loadUserAdsById(int idUsuario) {
         List<Anuncio> anuncios = adService.fetchUserAdsById(idUsuario);
 
         ActionListener onEdit = e -> {
@@ -202,11 +193,7 @@ public class UserPanelController {
             if (anuncio != null) {
                 EditAdDialog dialog = new EditAdDialog(anuncio, updatedAd -> {
                     if (adService.updateAd(updatedAd)) {
-                        try {
-                            loadUserAdsById(idUsuario);
-                        } catch (SQLException ex) {
-                            ex.printStackTrace();
-                        }
+                        loadUserAdsById(idUsuario);
                     }
                 });
                 dialog.setVisible(true);
@@ -218,11 +205,7 @@ public class UserPanelController {
             int confirm = JOptionPane.showConfirmDialog(null, "¿Estas seguro de querer eliminar el anuncio?", "Confirmación", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 if (adService.deleteAd(adId)) {
-                    try {
-                        loadUserAdsById(idUsuario);
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                    }
+                    loadUserAdsById(idUsuario);
                 }
             }
         };
@@ -240,16 +223,12 @@ public class UserPanelController {
             if (anuncio != null) {
                 anuncio.setActivo(newState == 1);
                 if (adService.updateAd(anuncio)) {
-                    try {
-                        loadUserAdsById(idUsuario);
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                    }
+                    loadUserAdsById(idUsuario);
                 }
             }
         };
 
-        JPanel panelAnuncios = userAdsView.createUserAdsPanel(anuncios, subjectMap, onEdit, onDelete, onToggleState);
+        JPanel panelAnuncios = userAdsView.createUserAdsPanel(anuncios, subjectMapById, onEdit, onDelete, onToggleState);
 
         userPanel.getEditScrollPane().setViewportView(panelAnuncios != null && !anuncios.isEmpty()
                 ? panelAnuncios
@@ -260,17 +239,17 @@ public class UserPanelController {
         userPanel.getSearchButtonSearchPanel().addActionListener(e -> {
             Map<String, Object> filtros = new HashMap<>();
             String materiaSeleccionada = (String) userPanel.getSubjectComboBoxCreatePanel().getSelectedItem();
-            Materia materiaSeleccionadaObj = subjectMap.get(materiaSeleccionada);
-            
+            Materia materiaSeleccionadaObj = subjectMapByName.get(materiaSeleccionada);
+
             if (materiaSeleccionadaObj != null) {
                 filtros.put("id_materia", materiaSeleccionadaObj.getIdMateria());
             }
-            
+
             String nombreUsuario = userPanel.getNameTextFieldSearchPanel().getText();
             if (nombreUsuario != null && !nombreUsuario.isBlank()) {
                 filtros.put("usuario", nombreUsuario);
             }
-            
+
             String municipio = (String) userPanel.getTownComboBoxSearchPanel().getSelectedItem();
             if (municipio != null && !municipio.isBlank()) {
                 filtros.put("ciudad", municipio);
@@ -280,30 +259,18 @@ public class UserPanelController {
             if (valoracionMin != null && valoracionMin > 0) {
                 filtros.put("valoracion", valoracionMin);
             }
-            
+
             if (userPanel.getProximityCheckBox().isSelected()) {
                 filtros.put("userIdReferencia", user.getIdUsuario());
             }
-            
-            List<AnuncioDTO> anuncios = adService.fetchAdsFilteredDTO(filtros);
+
+            List<AnuncioDetail> anuncios = adService.fetchAdsFilteredDTO(filtros);
             JPanel resultsPanel = searchAdDialog.createCardsPanel(anuncios);
             userPanel.getSearchScrollPane().setViewportView(resultsPanel);
-            
+
             resultsPanel.revalidate();
             resultsPanel.repaint();
         });
-    }
-
-    private void populateAddressData(List<AutonomousCommunity> autonomousCommunitiesData) {
-        DefaultComboBoxModel<String> provinceModel = new DefaultComboBoxModel<>();
-        List<String> provinceNames = autonomousCommunitiesData.stream()
-                .flatMap(community -> community.getProvinces().stream())
-                .map(Province::getLabel)
-                .sorted()
-                .toList();
-        provinceModel.addAll(provinceNames);
-        userPanel.getProvinceComboBoxSearchPanel().setModel(provinceModel);
-
     }
 
     private void addProvinceComboBoxListener() {  //todo añadir las coordenadas a los ayuntamiento que faltan
@@ -312,13 +279,7 @@ public class UserPanelController {
 
             if (selectedProvince != null) {
                 userPanel.enableTownComboboxSearchPanel(true);
-                List<String> towns = autonomousCommunities.stream()
-                        .flatMap(c -> c.getProvinces().stream())
-                        .filter(p -> p.getLabel().equals(selectedProvince))
-                        .flatMap(p -> p.getTowns().stream())
-                        .map(Town::getLabel)
-                        .sorted()
-                        .toList();
+                List<String> towns = getTownsByProvince(selectedProvince, true);
 
                 DefaultComboBoxModel<String> townModel = new DefaultComboBoxModel<>();
                 townModel.addAll(towns);

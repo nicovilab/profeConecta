@@ -4,7 +4,7 @@
  */
 package com.nicovilab.profeconecta.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import lombok.Data;
 
 /**
@@ -18,5 +18,5 @@ public class Valoracion {
     private Integer usuarioValorador;
     private Integer puntuacion;
     private String comentario;
-    private Date fecha;
+    private LocalDate fecha;
 }

@@ -6,7 +6,7 @@ package com.nicovilab.profeconecta.service;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.nicovilab.profeconecta.model.Anuncio;
-import com.nicovilab.profeconecta.model.AnuncioDTO;
+import com.nicovilab.profeconecta.model.AnuncioDetail;
 import com.nicovilab.profeconecta.model.Direccion;
 import com.nicovilab.profeconecta.model.Materia;
 import com.nicovilab.profeconecta.model.Reserva;
@@ -15,7 +15,9 @@ import com.nicovilab.profeconecta.model.Valoracion;
 import com.nicovilab.profeconecta.model.VistaValoracion;
 import com.nicovilab.profeconecta.model.address.Town;
 import java.sql.*;
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -215,8 +217,10 @@ public class DatabaseService {
     }
 
     public boolean adSuccessful(int userId, int subjectId, String title, double price, String description) {
-        PreparedStatement preparedStatement = createQuery("INSERT INTO ANUNCIO (id_usuario, id_materia, titulo, descripcion, precio_hora, fecha_publicacion, activo) VALUES (?,?, ?, ?, ?, ? , 1)",
-                userId, subjectId, title, description, price, new java.sql.Timestamp(System.currentTimeMillis()));
+        PreparedStatement preparedStatement = createQuery("""
+                                                          INSERT INTO ANUNCIO (id_usuario, id_materia, titulo, descripcion, precio_hora, fecha_publicacion, activo) 
+                                                          VALUES (?, ?, ?, ?, ?, ?, 1)""",
+                userId, subjectId, title, description, price, LocalDateTime.now());
 
         try {
             preparedStatement.execute();
@@ -248,11 +252,7 @@ public class DatabaseService {
         ResultSet resultSet = executeQuery(preparedStatement);
 
         if (resultSet != null) {
-            List<Anuncio> anuncios = resultSetMapper.map(resultSet, Anuncio.class);
-
-            if (anuncios != null) {
-                return anuncios;
-            }
+            return resultSetMapper.map(resultSet, Anuncio.class);
         }
         return null;
     }
@@ -263,40 +263,61 @@ public class DatabaseService {
         ResultSet resultSet = executeQuery(preparedStatement);
 
         if (resultSet != null) {
-            List<Anuncio> anuncios = resultSetMapper.map(resultSet, Anuncio.class);
-
-            if (anuncios != null) {
-                return anuncios;
-            }
+            return resultSetMapper.map(resultSet, Anuncio.class);
         }
         return null;
     }
 
-    public List<AnuncioDTO> fetchAdsFilteredDTO(Map<String, Object> filtros) throws SQLException {
+    public List<AnuncioDetail> fetchAdsFilteredDTO(Map<String, Object> filtros) {
         StringBuilder query = new StringBuilder("""
-        SELECT DISTINCT a.id_anuncio, a.id_usuario, a.id_materia, a.titulo, a.descripcion, a.precio_hora, a.fecha_publicacion, a.activo,
-                        u.nombre AS usuario_nombre, u.foto_perfil AS usuario_foto_perfil, m.nombre AS materia_nombre
-        FROM ANUNCIO a
-        JOIN USUARIO u ON a.id_usuario = u.id_usuario
-        JOIN MATERIA m ON a.id_materia = m.id_materia
-        LEFT JOIN DIRECCION d ON u.id_usuario = d.id_usuario
-        LEFT JOIN (
-            SELECT usuario_valorado, AVG(puntuacion) AS media
-            FROM VALORACION
-            GROUP BY usuario_valorado
-        ) v ON u.id_usuario = v.usuario_valorado
-    """);
+            SELECT DISTINCT 
+                a.id_anuncio, 
+                a.id_usuario, 
+                a.id_materia, 
+                a.titulo, 
+                a.descripcion, 
+                a.precio_hora, 
+                a.fecha_publicacion, 
+                a.activo,
+
+                u.nombre AS usuario_nombre,
+                u.apellidos AS usuario_apellidos,
+                u.foto_perfil AS usuario_foto_perfil,
+                u.descripcion AS usuario_descripcion,
+
+                d.provincia AS usuario_provincia,
+                d.municipio AS usuario_municipio,
+
+                v.media AS valoracion_media,
+                v.total_valoraciones AS total_valoraciones,
+
+                m.nombre AS materia_nombre
+
+            FROM ANUNCIO a
+            JOIN USUARIO u ON a.id_usuario = u.id_usuario
+            JOIN MATERIA m ON a.id_materia = m.id_materia
+            LEFT JOIN DIRECCION d ON u.id_usuario = d.id_usuario
+            LEFT JOIN (
+                SELECT usuario_valorado, 
+                       AVG(puntuacion) AS media,
+                       COUNT(*) AS total_valoraciones
+                FROM VALORACION
+                GROUP BY usuario_valorado
+            ) v ON u.id_usuario = v.usuario_valorado
+        """);
 
         List<String> condiciones = new ArrayList<>();
         List<Object> parametros = new ArrayList<>();
 
         condiciones.add("a.activo = 1");
 
-        if (filtros.containsKey("userIdReferencia")) {
-            parametros.add(filtros.get("userIdReferencia"));
+        // Solo añadimos la búsqueda por cercanía si se solicitó explícitamente
+        if (Boolean.TRUE.equals(filtros.get("buscarCerca")) && filtros.containsKey("userIdReferencia")) {
             query.append("""
             JOIN DIRECCION ref_d ON ref_d.id_usuario = ?
         """);
+            parametros.add(filtros.get("userIdReferencia"));
+
             condiciones.add("""
             (
                 6371 * ACOS(
@@ -340,8 +361,7 @@ public class DatabaseService {
         System.out.println("Consulta SQL: " + query);
         System.out.println("Parámetros: " + Arrays.toString(parametros.toArray()));
 
-        // Aquí asumo que tienes un mapper configurado para AnuncioDTO
-        return resultSet != null ? resultSetMapper.map(resultSet, AnuncioDTO.class) : null;
+        return resultSetMapper.map(resultSet, AnuncioDetail.class);
     }
 
     public boolean updateAd(Anuncio anuncio) {
@@ -383,7 +403,7 @@ public class DatabaseService {
     public boolean userHasLocation(int userId) {
         PreparedStatement ps = createQuery("""
         SELECT 1 FROM direccion WHERE id_usuario = ?
-    """, userId);
+        """, userId);
 
         ResultSet rs = executeQuery(ps);
         try {
@@ -399,7 +419,7 @@ public class DatabaseService {
         INSERT INTO RESERVA (usuario_profesor, fecha_solicitud, fecha, hora_inicio, hora_fin, disponible)
         VALUES (?, ?, ?, ?, ?, ?)
      """, userId,
-                new java.sql.Date(System.currentTimeMillis()),
+                LocalDateTime.now(),
                 java.sql.Date.valueOf(date),
                 startTime,
                 endTime,
@@ -429,15 +449,57 @@ public class DatabaseService {
     }
 
     public List<Reserva> getAllBookingsByUser(int userId) {
-        List<Reserva> reservas = new ArrayList<>();
-
         PreparedStatement preparedStatement = createQuery("""
         SELECT * FROM RESERVA
         WHERE usuario_profesor = ?
         ORDER BY fecha, hora_inicio
     """, userId);
         ResultSet resultSet = executeQuery(preparedStatement);
-        return resultSet != null ? resultSetMapper.map(resultSet, Reserva.class) : null;
+        return resultSetMapper.map(resultSet, Reserva.class);
+    }
+
+    public Map<LocalDate, List<Reserva>> getBookingsGroupedByDate(int userId) {
+    List<Reserva> reservas = getAllBookingsByUser(userId);
+    return reservas.stream()
+            .filter(reserva -> reserva.getFecha() != null)
+            .collect(Collectors.groupingBy(Reserva::getFecha));
+}
+
+    public boolean bookSlot(int bookingId, int studentUserId, LocalDate date) {
+        PreparedStatement preparedStatement = createQuery("""
+        UPDATE RESERVA
+        SET usuario_estudiante = ?, disponible = 0
+        WHERE id_reserva = ? AND fecha = ?
+    """, studentUserId, bookingId, java.sql.Date.valueOf(date));
+
+        try {
+            preparedStatement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean insertReview(int reviewedUserId, int reviewerUserId, int rating, String comment, LocalDate date) {
+        PreparedStatement preparedStatement = createQuery("""
+        INSERT INTO VALORACION (usuario_valorado, usuario_valorador, puntuacion, comentario, fecha)
+        VALUES (?, ?, ?, ?, ?)
+    """,
+                reviewedUserId,
+                reviewerUserId,
+                rating,
+                comment,
+                LocalDateTime.now() // Convert java.util.Date to java.sql.Date
+        );
+
+        try {
+            preparedStatement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
     }
 
     private ResultSet executeQuery(PreparedStatement query) {

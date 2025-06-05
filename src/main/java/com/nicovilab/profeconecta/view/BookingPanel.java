@@ -4,11 +4,18 @@
  */
 package com.nicovilab.profeconecta.view;
 
+import com.github.lgooddatepicker.components.DatePicker;
+import com.github.lgooddatepicker.components.DatePickerSettings;
+import com.github.lgooddatepicker.optionalusertools.DateHighlightPolicy;
+import com.github.lgooddatepicker.zinternaltools.HighlightInformation;
 import com.nicovilab.profeconecta.view.gradientComponents.IntegratedButton;
 import com.nicovilab.profeconecta.view.gradientComponents.JPanelGradient;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.Month;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 import lombok.Data;
@@ -25,6 +32,31 @@ public class BookingPanel extends javax.swing.JPanel {
      */
     public BookingPanel(MainJFrame parent) {
         initComponents();
+        
+        
+    }
+    
+    private static class SampleHighlightPolicy implements DateHighlightPolicy { // todo move this
+        @Override
+        public HighlightInformation getHighlightInformationOrNull(LocalDate date) {
+            
+            if (date.getDayOfMonth() == 3 && date.getMonth() == Month.JUNE) {
+                return new HighlightInformation(Color.red, null, "It's the 25th!");
+            }
+            if (date.getDayOfMonth() == 25) {
+                return new HighlightInformation(Color.red, null, "It's the 25th!");
+            }
+            // Highlight all Saturdays with a unique background and foreground color.
+            if (date.getDayOfWeek() == DayOfWeek.SATURDAY) {
+                return new HighlightInformation(Color.orange, Color.yellow, "It's Saturday!");
+            }
+            // Highlight all Sundays with default colors and a tooltip.
+            if (date.getDayOfWeek() == DayOfWeek.SUNDAY) {
+                return new HighlightInformation(null, null, "It's Sunday!");
+            }
+            // All other days should not be highlighted.
+            return null;
+        }
     }
 
     /**
@@ -142,7 +174,7 @@ public class BookingPanel extends javax.swing.JPanel {
                 .addComponent(chatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         rightPanel.setBackground(new java.awt.Color(235, 235, 235));
@@ -210,7 +242,7 @@ public class BookingPanel extends javax.swing.JPanel {
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addBookingButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(informationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Separator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)

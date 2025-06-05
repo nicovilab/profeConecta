@@ -8,14 +8,15 @@ import com.nicovilab.profeconecta.model.Direccion;
 import com.nicovilab.profeconecta.model.Usuario;
 import com.nicovilab.profeconecta.model.Valoracion;
 import com.nicovilab.profeconecta.model.VistaValoracion;
-import com.nicovilab.profeconecta.model.address.AutonomousCommunity;
-import com.nicovilab.profeconecta.model.address.Province;
 import com.nicovilab.profeconecta.model.address.Town;
 import com.nicovilab.profeconecta.service.DatabaseService;
 import com.nicovilab.profeconecta.service.ProfileService;
 import com.nicovilab.profeconecta.service.UserService;
+import static com.nicovilab.profeconecta.utils.Utils.autonomousCommunities;
 import static com.nicovilab.profeconecta.utils.Utils.convertFileToBytes;
-import static com.nicovilab.profeconecta.utils.Utils.getAutonomousCommunitiesData;
+import static com.nicovilab.profeconecta.utils.Utils.getProvinceNamesModel;
+import static com.nicovilab.profeconecta.utils.Utils.getTownsByProvince;
+import static com.nicovilab.profeconecta.utils.Utils.roundRating;
 import com.nicovilab.profeconecta.view.MainJFrame;
 import com.nicovilab.profeconecta.view.ProfilePanel;
 import com.nicovilab.profeconecta.view.extraSwingComponents.ImageAvatar;
@@ -27,11 +28,9 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
-import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -50,7 +49,6 @@ public class ProfileController {
     private final ProfileService profileService;
     private final UserService userService;
     private final ReviewsView reviewsView;
-    private final List<AutonomousCommunity> autonomousCommunities;
 
     private Usuario user;
     private final String userEmail;
@@ -66,9 +64,7 @@ public class ProfileController {
         userService = new UserService();
         reviewsView = new ReviewsView(userService);
 
-        this.autonomousCommunities = getAutonomousCommunitiesData();
-
-        populateAddressData(autonomousCommunities);
+        populateAddressData();
 
         addProvinceComboBoxListener();
 
@@ -89,7 +85,7 @@ public class ProfileController {
         }
 
         setUserInfo(user, profileService.fetchUserAddress(user.getEmail()));
-        cargarPerfilUsuario(user.getIdUsuario());
+        laodUserReviews(user.getIdUsuario());
         
         profilePanel.enableFields(false);
     }
@@ -206,19 +202,6 @@ public class ProfileController {
         profilePanel.repaint();
     }
 
-    private Double roundRating(Double valoracionMedia) {
-        double floor = Math.floor(valoracionMedia);
-        int decimal = (int) ((valoracionMedia - floor) * 10);
-
-        if (decimal >= 0 && decimal < 5) {
-            return floor;
-        } else if (decimal >= 6 && decimal < 9) {
-            return floor + 1;
-        } else if (decimal == 5) {
-            return valoracionMedia;
-        }
-        return null;
-    }
 
     private File selectImageFile() {
         JFileChooser fileChooser = new JFileChooser();
@@ -251,15 +234,8 @@ public class ProfileController {
         }
     }
 
-    private void populateAddressData(List<AutonomousCommunity> autonomousCommunitiesData) {
-        DefaultComboBoxModel<String> provinceModel = new DefaultComboBoxModel<>();
-        List<String> provinceNames = autonomousCommunitiesData.stream()
-                .flatMap(community -> community.getProvinces().stream())
-                .map(Province::getLabel)
-                .sorted()
-                .toList();
-        provinceModel.addAll(provinceNames);
-        profilePanel.getProvinceComboBox().setModel(provinceModel);
+    private void populateAddressData() {
+        profilePanel.getProvinceComboBox().setModel(getProvinceNamesModel(false));
 
     }
 
@@ -269,23 +245,15 @@ public class ProfileController {
 
             if (selectedProvince != null) {
                 profilePanel.enableTownCombobox(true);
-                List<String> towns = autonomousCommunities.stream()
-                        .flatMap(c -> c.getProvinces().stream())
-                        .filter(p -> p.getLabel().equals(selectedProvince))
-                        .flatMap(p -> p.getTowns().stream())
-                        .map(Town::getLabel)
-                        .sorted()
-                        .toList();
-
                 DefaultComboBoxModel<String> townModel = new DefaultComboBoxModel<>();
-                townModel.addAll(towns);
+                townModel.addAll(getTownsByProvince(selectedProvince, false));
                 profilePanel.getTownComboBox().setModel(townModel);
             }
         });
     }
 
-    public void cargarPerfilUsuario(int idUsuario) throws SQLException {
-        List<Valoracion> valoraciones = databaseService.getUserReviews(idUsuario);
+    public void laodUserReviews(int idUsuario) throws SQLException {
+        List<Valoracion> valoraciones = userService.getUserReviews(idUsuario);
 
         JPanel panelReseñas = reviewsView.createReviewsPanel(valoraciones);
 

@@ -83,7 +83,7 @@
                   <Component id="chatButton" min="-2" pref="27" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="exitButton" min="-2" pref="27" max="-2" attributes="0"/>
-                  <EmptySpace pref="240" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -253,7 +253,7 @@
                       <Component id="dateTimePicker" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="addBookingButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
                   <Component id="informationLabel" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="Separator" min="-2" pref="10" max="-2" attributes="0"/>

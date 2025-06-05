@@ -92,17 +92,13 @@ public class BookingController {
     }
 
     private void loadBookings() {
-        List<Reserva> reservas = bookingService.getUserBookings(user.getIdUsuario());
-        if (reservas == null) {
-            reservas = List.of();
-        }
-        showBookings(reservas);
+        showBookings(bookingService.getUserBookings(user.getIdUsuario()));
     }
 
     private void addBooking() {
-    var dtp = bookingPanel.getDateTimePicker();
-    var date = dtp.getDatePicker().getDate();
-    var startTime = dtp.getTimePicker().getTime();
+    var dateTimePicker = bookingPanel.getDateTimePicker();
+    var date = dateTimePicker.getDatePicker().getDate();
+    var startTime = dateTimePicker.getTimePicker().getTime();
 
     if (date == null || startTime == null) {
         bookingPanel.setInformationTextField("Selecciona fecha y hora para la reserva.", Color.RED);

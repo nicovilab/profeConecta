@@ -13,7 +13,9 @@ import lombok.Data;
  * @author Nico
  */
 @Data
-public class AnuncioDTO {
+public class AnuncioDetail {
+
+    //Datos del anuncio
     private int idAnuncio;
     private int idUsuario;
     private int idMateria;
@@ -22,7 +24,19 @@ public class AnuncioDTO {
     private BigDecimal precioHora;
     private Date fechaPublicacion;
     private boolean activo;
+
+    //Datos del anunciante
     private String usuarioNombre;
+    private String usuarioApellidos;
     private byte[] usuarioFotoPerfil;
+    private String usuarioDescripcion;
+    private BigDecimal valoracionMedia;
+    private Long totalValoraciones;
+
+    //Localizacion del anunciante
+    private String usuarioProvincia;
+    private String usuarioMunicipio;
+
+    //Datos de la materia
     private String materiaNombre;
 }

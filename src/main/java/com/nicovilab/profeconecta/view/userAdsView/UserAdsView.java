@@ -37,7 +37,7 @@ public class UserAdsView {
         return contentPanel;
     }
 
-    private JPanel createSingleAdPanel(Anuncio anuncio, Map<Integer, Materia> materiaMap,  ActionListener onEdit, ActionListener onDelete, ActionListener onToggleState) {
+    private JPanel createSingleAdPanel(Anuncio anuncio, Map<Integer, Materia> materiaMap, ActionListener onEdit, ActionListener onDelete, ActionListener onToggleState) {
         JPanel panel = new JPanel(new BorderLayout(10, 5));
         panel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createMatteBorder(0, 0, 1, 0, Color.LIGHT_GRAY),
@@ -48,12 +48,12 @@ public class UserAdsView {
         JLabel titleLabel = new JLabel(anuncio.getTitulo());
         titleLabel.setFont(TITLE_FONT);
         titleLabel.setForeground(PRIMARY_COLOR);
-        
-        String nombreMateria = materiaMap.containsKey(anuncio.getIdMateria())
-            ? materiaMap.get(anuncio.getIdMateria()).getNombre()
-            : "Desconocida";
 
-        JLabel subjectLabel = new JLabel("Materia: " + anuncio.getIdMateria());
+        String nombreMateria = materiaMap.containsKey(anuncio.getIdMateria())
+                ? materiaMap.get(anuncio.getIdMateria()).getNombre()
+                : "Desconocida";
+
+        JLabel subjectLabel = new JLabel("Materia: " + nombreMateria);
         subjectLabel.setFont(TEXT_FONT);
         subjectLabel.setForeground(Color.DARK_GRAY);
 

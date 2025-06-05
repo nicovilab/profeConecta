@@ -15,16 +15,16 @@ import com.nicovilab.profeconecta.model.Usuario;
 public class LoginService {
 
     DatabaseService databaseService;
+    
+    public LoginService() {
+        databaseService = new DatabaseService();
+    }
 
     public Usuario loginSuccessful(String username, char[] password) {
-        databaseService = new DatabaseService();
-
         return databaseService.loginSuccessful(username, password);
     }
     
     public boolean registerSuccessful(String name, String surname, String email, char[] password) {
-        databaseService = new DatabaseService();
-
         String hashedPassword = BCrypt.withDefaults().hashToString(12, password);
         return databaseService.registerSuccessful(name, surname, email, hashedPassword);
     }
