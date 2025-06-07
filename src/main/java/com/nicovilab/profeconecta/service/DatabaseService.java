@@ -59,7 +59,7 @@ public class DatabaseService {
     public DatabaseService() {
         try {
             connection = DriverManager.getConnection(
-                    "jdbc:mariadb://localhost:3306/exmple-database",
+                    "jdbc:mariadb://localhost:3306/profeConecta",
                     "root", "my-secret-pw");
             resultSetMapper = ResultSetMapperFactory.getResultSetMapperLowerCaseUnderscore();
         } catch (SQLException ex) {
