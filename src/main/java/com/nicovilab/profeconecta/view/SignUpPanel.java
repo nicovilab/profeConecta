@@ -23,9 +23,6 @@ import lombok.Getter;
 @Getter
 public class SignUpPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form SiognUpPanel
-     */
     public SignUpPanel(MainJFrame parent) {
         initComponents();
         changeWindowFocusOnLaunch();

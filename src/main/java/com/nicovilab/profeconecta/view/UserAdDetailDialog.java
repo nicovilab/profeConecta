@@ -7,7 +7,6 @@ package com.nicovilab.profeconecta.view;
 import com.github.lgooddatepicker.components.CalendarPanel;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import com.nicovilab.profeconecta.view.BookingHighlightPolicy.BookingHighlightPolicy;
-import com.nicovilab.profeconecta.view.gradientComponents.CircularIntegratedButton;
 import com.nicovilab.profeconecta.view.gradientComponents.JPanelGradient;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -24,9 +23,6 @@ import lombok.Data;
 @Data
 public class UserAdDetailDialog extends javax.swing.JDialog {
 
-    /**
-     * Creates new form UserAdDetailDialog
-     */
     public UserAdDetailDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();

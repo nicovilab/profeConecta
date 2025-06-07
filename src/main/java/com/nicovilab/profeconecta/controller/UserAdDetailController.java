@@ -4,9 +4,6 @@
  */
 package com.nicovilab.profeconecta.controller;
 
-import com.github.lgooddatepicker.components.DatePickerSettings;
-import com.github.lgooddatepicker.optionalusertools.CalendarListener;
-import com.github.lgooddatepicker.zinternaltools.CalendarSelectionEvent;
 import com.nicovilab.profeconecta.model.AnuncioDetail;
 import com.nicovilab.profeconecta.model.Reserva;
 import com.nicovilab.profeconecta.model.Usuario;
@@ -31,9 +28,7 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -45,7 +40,6 @@ import java.util.stream.Collectors;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -112,6 +106,11 @@ public class UserAdDetailController {
         };
     }
 
+    /* 
+     Listener para botón de reservar
+     Verifica que la fecha esté seleccionada y que haya horarios disponibles
+     Muestra mensaje de error si no se cumple alguna condición
+     */
     private ActionListener getAddBookingActionListener() {
         return (ActionEvent e) -> {
             LocalDate selectedDate = userAdDetailDialog.getCalendarPanel().getSelectedDate();
@@ -135,6 +134,7 @@ public class UserAdDetailController {
         };
     }
 
+    // Carga y ajusta la imagen del usuario en el componente avatar
     private void loadUserImage(ImageAvatar imageAvatar, byte[] fotoPerfilBytes) {
         if (fotoPerfilBytes != null && fotoPerfilBytes.length > 0) {
             ImageIcon icon = new ImageIcon(fotoPerfilBytes);
@@ -150,6 +150,7 @@ public class UserAdDetailController {
         }
     }
 
+    // Carga las valoraciones del anunciante y las muestra en el panel de reviews
     private void cargarReviewsDelAnunciante(int idUsuarioAnunciante) throws SQLException {
         List<Valoracion> valoraciones = userService.getUserReviews(idUsuarioAnunciante);
 
@@ -158,16 +159,18 @@ public class UserAdDetailController {
         if (valoraciones != null && !valoraciones.isEmpty()) {
             userAdDetailDialog.getReviewsScrollPane().setViewportView(panelResenas);
         } else {
-            // Opcional: mostrar mensaje "Sin valoraciones"
             userAdDetailDialog.getReviewsScrollPane().setViewportView(new JLabel("Sin valoraciones. Sé el primero en valorar al usuario"));
         }
     }
 
+    /* 
+     Muestra las estrellas de valoración en función de la media redondeada
+     Usa reflexión para acceder a los labels de estrella y cambiar su visibilidad
+     */
     private void setStarRating(BigDecimal valoracionMedia) {
         if (valoracionMedia == null) {
             return;
         }
-        // Adaptar el método de roundRating si esperas Double, convertir BigDecimal a double
         double media = valoracionMedia.doubleValue();
 
         int visibleStars = (int) Math.round(roundRating(media) * 2d);
@@ -186,6 +189,7 @@ public class UserAdDetailController {
         userAdDetailDialog.repaint();
     }
 
+    // Abre el diálogo para añadir una valoración. Actualiza la puntuación y las estrellas y actualiza todo para mostrarse correctamente
     public void addReviewDialog() {
         UserAdDetailAddReviewDialog addReviewDialog = new UserAdDetailAddReviewDialog(userAdDetailDialog);
 
@@ -232,20 +236,26 @@ public class UserAdDetailController {
         addReviewDialog.setVisible(true);
     }
 
+    // Deshabilita el botón para auto-valorarse si es el propio usuario
     private void DisableAddReviewOnOwnProfile() {
         if (user.getIdUsuario() == anuncioDTO.getIdUsuario()) {
             userAdDetailDialog.getRateUserButton().setEnabled(false);
             userAdDetailDialog.getRateUserButton().setToolTipText("No te puedes valorar a ti mismo");
         }
     }
+
+    // Deshabilita el botón para reservarse a sí mismo
     private void DisableAddBookingOnOwnProfile() {
         if (user.getIdUsuario() == anuncioDTO.getIdUsuario()) {
             userAdDetailDialog.getBookingButton().setEnabled(false);
             userAdDetailDialog.getBookingButton().setToolTipText("No te puedes reservar a ti mismo");
         }
     }
-    
 
+    /* 
+     Actualiza el calendario con el estado de las reservas:
+     fechas sin reservas, fechas con reservas disponibles y fechas con reservas completas
+     */
     private void refreshCalendarHighlighting() {
         Map<LocalDate, List<Reserva>> bookingsByDate = bookingService.getBookingsGroupedByDate(anuncioDTO.getIdUsuario());
 
@@ -271,10 +281,15 @@ public class UserAdDetailController {
         userAdDetailDialog.updateCalendarHighlighting(noBookingDates, availableBookingDates, fullyBookedDates);
     }
 
+    // Carga el calendario del usuario con la info actualizada
     public void loadUserCalendar() {
         refreshCalendarHighlighting();
     }
 
+    /* 
+     Muestra el diálogo con los horarios disponibles para la fecha seleccionada 
+     Permite reservar un horario si está disponible
+     */
     public void showAvailableHoursDialog(LocalDate selectedDate) {
         Map<LocalDate, List<Reserva>> bookingsByDate = bookingService.getBookingsGroupedByDate(anuncioDTO.getIdUsuario());
         List<Reserva> bookings = bookingsByDate.getOrDefault(selectedDate, Collections.emptyList());

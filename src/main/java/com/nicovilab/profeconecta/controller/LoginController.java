@@ -32,6 +32,7 @@ public class LoginController {
 
     }
 
+    // Listener de los botones
     private ActionListener getSignUpMenuActionListener() {
         return (ActionEvent e) -> {
             view.showPanel("signup");
@@ -40,19 +41,19 @@ public class LoginController {
     }
 
     private ActionListener getSignInMenuActionListener() {
-    return (ActionEvent e) -> {
-        Usuario usuarioAutenticado = loginService.loginSuccessful(loginPanel.getEmailTextField().getText(), 
-                                                                 loginPanel.getPasswordField().getPassword());
-        if (usuarioAutenticado != null) {
-            new UserPanelController(view, view.getUserPanel(), usuarioAutenticado);
-            view.pack();
-            view.showPanel("userpanel");
-            loginPanel.clearAllTextFields();
-            System.out.println(usuarioAutenticado);
-        } else {
-            loginPanel.setInformationTextField("Las credenciales no son válidas", Color.red);
-        }
-    };
-}
+        return (ActionEvent e) -> {
+            Usuario usuarioAutenticado = loginService.loginSuccessful(loginPanel.getEmailTextField().getText(),
+                    loginPanel.getPasswordField().getPassword());
+            if (usuarioAutenticado != null) {
+                new UserPanelController(view, view.getUserPanel(), usuarioAutenticado);
+                view.pack();
+                view.showPanel("userpanel");
+                loginPanel.clearAllTextFields();
+                System.out.println(usuarioAutenticado);
+            } else {
+                loginPanel.setInformationTextField("Las credenciales no son válidas", Color.red);
+            }
+        };
+    }
 
 }

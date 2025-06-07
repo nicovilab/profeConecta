@@ -25,26 +25,26 @@ public class AvailableHoursDialog extends JDialog {
     private List<Reserva> availableSlots;
 
     public AvailableHoursDialog(JDialog view, List<Reserva> availableSlots) {
-    super(view, true);
-    this.availableSlots = availableSlots;
+        super(view, true);
+        this.availableSlots = availableSlots;
 
-    setTitle("Horas disponibles");
+        setTitle("Horas disponibles");
 
-    DefaultListModel<String> listModel = new DefaultListModel<>();
-    for (Reserva slot : availableSlots) {
-        listModel.addElement(slot.getHoraInicio() + " - " + slot.getHoraFin());
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for (Reserva slot : availableSlots) {
+            listModel.addElement(slot.getHoraInicio() + " - " + slot.getHoraFin());
+        }
+
+        hoursList = new JList<>(listModel);
+        bookButton = new JButton("Reservar");
+
+        setLayout(new BorderLayout());
+        add(new JScrollPane(hoursList), BorderLayout.CENTER);
+        add(bookButton, BorderLayout.SOUTH);
+
+        pack();
+        setLocationRelativeTo(view);
     }
-
-    hoursList = new JList<>(listModel);
-    bookButton = new JButton("Reservar");
-
-    setLayout(new BorderLayout());
-    add(new JScrollPane(hoursList), BorderLayout.CENTER);
-    add(bookButton, BorderLayout.SOUTH);
-
-    pack();
-    setLocationRelativeTo(view);
-}
 
     public void setBookingActionListener(ActionListener listener) {
         bookButton.addActionListener(listener);

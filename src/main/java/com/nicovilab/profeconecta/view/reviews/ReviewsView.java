@@ -6,7 +6,6 @@ package com.nicovilab.profeconecta.view.reviews;
 
 import com.nicovilab.profeconecta.model.Usuario;
 import com.nicovilab.profeconecta.model.Valoracion;
-import com.nicovilab.profeconecta.service.DatabaseService;
 import com.nicovilab.profeconecta.service.UserService;
 import java.awt.BorderLayout;
 import java.awt.Color;

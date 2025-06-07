@@ -52,11 +52,13 @@ public class ProfileController {
 
     private Usuario user;
     private final String userEmail;
+    private final int userId;
 
     public ProfileController(MainJFrame view, ProfilePanel profilePanel, Usuario user) throws SQLException {
         this.view = view;
         this.profilePanel = profilePanel;
         this.userEmail = user.getEmail();
+        this.userId = user.getIdUsuario();
         this.user = user;
 
         databaseService = new DatabaseService();
@@ -75,6 +77,7 @@ public class ProfileController {
         profilePanel.addAdButtonActionListener(this.getAdButtonActionListener());
         profilePanel.addCalendarButtonActionListener(this.getCalendarButtonActionListener());
         profilePanel.addChatButtonActionListener(this.getChatButtonActionListener());
+        profilePanel.addReportsButtonActionListener(this.getReportsButtonActionListener());
 
         VistaValoracion vistaValoracion = databaseService.getAverageRating(String.valueOf(user.getIdUsuario()));
 
@@ -86,28 +89,37 @@ public class ProfileController {
         }
 
         setUserInfo(user, profileService.fetchUserAddress(user.getEmail()));
-        laodUserReviews(user.getIdUsuario());
-        
+        loadUserReviews(user.getIdUsuario());
+
         profilePanel.enableFields(false);
+        loadReportsButton();
     }
 
+    // Desactiva el botón de reportes si el usuario no es administrador
+    private void loadReportsButton() {
+        if (!user.isEsAdmin()) {
+            profilePanel.getReportsButton().setEnabled(false);
+            profilePanel.getReportsButton().setVisible(false);
+        }
+    }
 
+    // Permite al usuario seleccionar una imagen y actualizar su avatar en la base de datos
     private ActionListener getImageAvatarButtonActionListener() {
         return (ActionEvent e) -> {
             File selectedFile = selectImageFile();
             if (selectedFile != null) {
                 try {
                     byte[] imageBytes = convertFileToBytes(selectedFile);
-                    
+
                     databaseService.updateUserImage(imageBytes, userEmail);
-                    
+
                     ImageIcon icon = new ImageIcon(selectedFile.getAbsolutePath());
-                Image image = icon.getImage().getScaledInstance(
-                        profilePanel.getImageAvatar().getWidth(),
-                        profilePanel.getImageAvatar().getHeight(),
-                        Image.SCALE_SMOOTH
-                );
-                profilePanel.getImageAvatar().setIcon(new ImageIcon(image));
+                    Image image = icon.getImage().getScaledInstance(
+                            profilePanel.getImageAvatar().getWidth(),
+                            profilePanel.getImageAvatar().getHeight(),
+                            Image.SCALE_SMOOTH
+                    );
+                    profilePanel.getImageAvatar().setIcon(new ImageIcon(image));
 
                 } catch (IOException ex) {
                     Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,6 +128,7 @@ public class ProfileController {
         };
     }
 
+    // Habilita los campos del formulario para que el usuario edite su perfil
     private ActionListener getEditButtonActionListener() {
         return (ActionEvent e) -> {
             profilePanel.enableFields(true);
@@ -125,6 +138,7 @@ public class ProfileController {
         };
     }
 
+    // Guarda los cambios realizados por el usuario en su perfil y desactiva los campos de edición
     private ActionListener getSaveButtonActionListener() {
         return (ActionEvent e) -> {
 
@@ -146,6 +160,14 @@ public class ProfileController {
                     profilePanel.getAddressTextField().getText(),
                     profilePanel.getDescriptionTextArea().getText(),
                     userEmail);
+
+            try {
+                this.user = userService.getUserById(userId);
+                setUserInfo(user, profileService.fetchUserAddress(userEmail));
+            } catch (SQLException ex) {
+                Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             profilePanel.enableFields(false);
             profilePanel.enableEditButton(true);
             profilePanel.enableSaveButton(false);
@@ -153,19 +175,20 @@ public class ProfileController {
         };
     }
 
+    // Listeners de los botones
     private ActionListener getAdButtonActionListener() {
         return (ActionEvent e) -> {
             view.showPanel("userpanel");
         };
     }
-    
+
     private ActionListener getCalendarButtonActionListener() {
         return (ActionEvent e) -> {
             view.showPanel("calendar");
             new BookingController(view, view.getCalendarPanel(), user);
         };
     }
-    
+
     private ActionListener getChatButtonActionListener() {
         return (ActionEvent e) -> {
             new ChatController(view, view.getChatPanel(), user);
@@ -175,10 +198,18 @@ public class ProfileController {
 
     private ActionListener getExitButtonActionListener() {
         return (ActionEvent e) -> {
-            view.showPanel("login");
+            view.resetUserSession();
         };
     }
 
+    private ActionListener getReportsButtonActionListener() {
+        return (ActionEvent e) -> {
+            new ReportsController(view, view.getReportsPanel(), user);
+            view.showPanel("reportsPanel");
+        };
+    }
+
+    // Rellena los campos del perfil del usuario con la información personal y de dirección (diferentes tablas en base de datos)
     private void setUserInfo(Usuario user, Direccion address) {
         profilePanel.setNameTextField(user.getNombre());
         profilePanel.setSurnameTextField(user.getApellidos());
@@ -192,12 +223,13 @@ public class ProfileController {
         loadUserImage(user, profilePanel.getImageAvatar());
     }
 
+    // Calcula y muestra visualmente las estrellas de la valoración media del usuario
     private void setStarRating(Double valoracionMedia) {
         int visibleStars = (int) Math.round(roundRating(valoracionMedia) * 2d);
 
         for (int i = 1; i < 11; i++) {
             boolean shouldBeVisible = i <= visibleStars;
-            try { //todo catchear correctamente la excepcion
+            try {
                 Method getter = profilePanel.getClass().getMethod("getStar" + i);
                 Object starLabel = getter.invoke(profilePanel);
                 Method setVisible = starLabel.getClass().getMethod("setVisible", boolean.class);
@@ -210,7 +242,7 @@ public class ProfileController {
         profilePanel.repaint();
     }
 
-
+    // Abre un selector de archivos para elegir una imagen y la retorna
     private File selectImageFile() {
         JFileChooser fileChooser = new JFileChooser();
 
@@ -227,6 +259,7 @@ public class ProfileController {
         return null;
     }
 
+    // Carga y muestra la imagen de perfil del usuario en el panel correspondiente
     private void loadUserImage(Usuario user, ImageAvatar imageAvatar) {
         if (user != null && user.getFotoPerfil() != null) {
             ImageIcon icon = new ImageIcon(user.getFotoPerfil());
@@ -242,11 +275,13 @@ public class ProfileController {
         }
     }
 
+    // Carga los datos de provincias en el comboBox correspondiente
     private void populateAddressData() {
         profilePanel.getProvinceComboBox().setModel(getProvinceNamesModel(false));
 
     }
 
+    // Añade un listener al comboBox de provincias para actualizar los municipios disponibles
     private void addProvinceComboBoxListener() {  //todo añadir las coordenadas a los ayuntamiento que faltan
         profilePanel.getProvinceComboBox().addActionListener(e -> {
             String selectedProvince = (String) profilePanel.getProvinceComboBox().getSelectedItem();
@@ -260,7 +295,8 @@ public class ProfileController {
         });
     }
 
-    public void laodUserReviews(int idUsuario) throws SQLException {
+    // Carga y muestra las reseñas que ha recibido un usuario determinado en su perfil
+    public void loadUserReviews(int idUsuario) throws SQLException {
         List<Valoracion> valoraciones = userService.getUserReviews(idUsuario);
 
         JPanel panelReseñas = reviewsView.createReviewsPanel(valoraciones);

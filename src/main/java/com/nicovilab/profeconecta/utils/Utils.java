@@ -23,9 +23,11 @@ import javax.swing.DefaultComboBoxModel;
  * @author Nico
  */
 public class Utils {
-    
+
+    // Lista de comunidades autónomas cargadas desde un archivo JSON al iniciar la clase
     public static List<AutonomousCommunity> autonomousCommunities = getAutonomousCommunitiesData();
 
+    // Convierte un archivo en un array de bytes para almacenar imágenes (en base de datos el campo es BLOB)
     public static byte[] convertFileToBytes(File file) throws IOException {
         FileInputStream fis = null;
         ByteArrayOutputStream baos = null;
@@ -51,6 +53,10 @@ public class Utils {
         }
     }
 
+    /*
+     Lee el archivo cities.json y convierte su contenido en una lista de objetos AutonomousCommunity
+     Este archivo contiene la jerarquía de comunidades, provincias y municipios
+     */
     public static List<AutonomousCommunity> getAutonomousCommunitiesData() {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -64,29 +70,37 @@ public class Utils {
             return null;
         }
     }
-    
+
+    /*
+     Devuelve una lista de nombres de municipios (towns) a partir del nombre de una provincia
+     Si 'firstNull' es true, agrega un elemento vacío al inicio de la lista
+     */
     public static List<String> getTownsByProvince(String selectedProvince, Boolean firstNull) {
         List<String> towns = autonomousCommunities.stream()
-            .flatMap(c -> c.getProvinces().stream())
-            .filter(p -> p.getLabel().equals(selectedProvince))
-            .flatMap(p -> p.getTowns().stream())
-            .map(Town::getLabel)
-            .sorted()
-            .collect(Collectors.toCollection(ArrayList::new));
-        
-        if(firstNull) {
+                .flatMap(c -> c.getProvinces().stream())
+                .filter(p -> p.getLabel().equals(selectedProvince))
+                .flatMap(p -> p.getTowns().stream())
+                .map(Town::getLabel)
+                .sorted()
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        if (firstNull) {
             towns.addFirst("");
         }
-        
+
         return towns;
     }
-    
+
+    /*
+     Genera un modelo de ComboBox con los nombres de todas las provincias disponibles
+     Si 'firstNull' es true, agrega un elemento vacío como primera opción
+     */
     public static DefaultComboBoxModel<String> getProvinceNamesModel(Boolean firstNull) {
         DefaultComboBoxModel<String> provinceModel = new DefaultComboBoxModel<>();
-        if(firstNull) {
+        if (firstNull) {
             provinceModel.addElement("");
         }
-        
+
         List<String> provinceNames = autonomousCommunities.stream()
                 .flatMap(community -> community.getProvinces().stream())
                 .map(Province::getLabel)
@@ -95,7 +109,13 @@ public class Utils {
         provinceModel.addAll(provinceNames);
         return provinceModel;
     }
-    
+
+    /**
+     * Redondea una valoración media de forma personalizada (para sacar las
+     * estrellas en los perfiles de usuario) Si los decimales están entre 0-4 →
+     * redondea hacia abajo Si están entre 6-9 → redondea hacia arriba Si es
+     * exactamente .5 → lo deja igual
+     */
     public static double roundRating(double valoracionMedia) {
         double floor = Math.floor(valoracionMedia);
         int decimal = (int) ((valoracionMedia - floor) * 10);

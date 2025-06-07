@@ -18,14 +18,13 @@ import lombok.Data;
  * @author Nico
  */
 @Data
-public class BookingPanel extends javax.swing.JPanel {
+public class ReportsPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CalendarPanel
+     * Creates new form ReportsPanel
      */
-    public BookingPanel(MainJFrame parent) {
+    public ReportsPanel(MainJFrame parent) {
         initComponents();
-
     }
 
     /**
@@ -41,29 +40,23 @@ public class BookingPanel extends javax.swing.JPanel {
         appLogo = new javax.swing.JLabel();
         profileButton = new IntegratedButton("Mi perfil", false);
         exitButton = new IntegratedButton("Cerrar sesión", false);
-        adButton = new IntegratedButton("Anuncios", false);
+        adButton = new IntegratedButton("Mi perfil", true);
         chatButton = new IntegratedButton("Cerrar sesión", false);
-        calendarButton = new IntegratedButton("Calendario", true);
+        calendarButton = new IntegratedButton("Mi perfil", false);
         reportsButton = new IntegratedButton("Cerrar sesión", false);
         rightPanel = new JPanelGradient(new Color(230, 243, 250), new Color(255,255,255));
-        dateTimePicker = new com.github.lgooddatepicker.components.DateTimePicker();
-        addBookingButton = new javax.swing.JButton();
-        bookingScrollPane = new javax.swing.JScrollPane();
-        bookingTable = new javax.swing.JTable();
-        Separator = new javax.swing.JSeparator();
-        mainLabel = new javax.swing.JLabel();
-        deleteBookingButton = new javax.swing.JButton();
+        reportLabel = new javax.swing.JLabel();
+        provinceComboBox = new javax.swing.JComboBox<>();
+        createReportButton = new javax.swing.JButton();
         informationLabel = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(861, 575));
-
-        leftPanel.setPreferredSize(new java.awt.Dimension(861, 575));
+        setPreferredSize(new java.awt.Dimension(943, 486));
 
         appLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profeConecta128px.png"))); // NOI18N
 
         profileButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         profileButton.setText("Mi perfil");
-        profileButton.setBorder(new LineBorder(Color.BLACK, 1, true));
+        profileButton.setBorder(new LineBorder(Color.BLACK, 0, true));
         profileButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         profileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,7 +66,7 @@ public class BookingPanel extends javax.swing.JPanel {
 
         exitButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         exitButton.setText("Cerrar sesión");
-        exitButton.setBorder(new LineBorder(Color.BLACK, 1, true));
+        exitButton.setBorder(new LineBorder(Color.BLACK, 0, true));
         exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,7 +76,7 @@ public class BookingPanel extends javax.swing.JPanel {
 
         adButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         adButton.setText("Anuncios");
-        adButton.setBorder(new LineBorder(Color.BLACK, 1, true));
+        adButton.setBorder(new LineBorder(Color.BLACK, 0, true));
         adButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         adButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +86,7 @@ public class BookingPanel extends javax.swing.JPanel {
 
         chatButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         chatButton.setText("Chat");
-        chatButton.setBorder(new LineBorder(Color.BLACK, 1, true));
+        chatButton.setBorder(new LineBorder(Color.BLACK, 0, true));
         chatButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         chatButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +96,7 @@ public class BookingPanel extends javax.swing.JPanel {
 
         calendarButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         calendarButton.setText("Calendario");
-        calendarButton.setBorder(new LineBorder(Color.BLACK, 1, true));
+        calendarButton.setBorder(new LineBorder(Color.BLACK, 0, true));
         calendarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         calendarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,15 +104,10 @@ public class BookingPanel extends javax.swing.JPanel {
             }
         });
 
-        reportsButton.setText("Informes");
-        reportsButton.setBorder(new LineBorder(Color.BLACK, 1, true));
-        reportsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         reportsButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        reportsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reportsButtonActionPerformed(evt);
-            }
-        });
+        reportsButton.setText("Informes");
+        reportsButton.setBorder(new LineBorder(Color.BLACK, 0, true));
+        reportsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
@@ -128,16 +116,16 @@ public class BookingPanel extends javax.swing.JPanel {
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(appLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                    .addComponent(calendarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(leftPanelLayout.createSequentialGroup()
-                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(reportsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(chatButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(adButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                            .addComponent(profileButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(calendarButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(exitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                            .addComponent(profileButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(adButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(chatButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(appLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(reportsButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         leftPanelLayout.setVerticalGroup(
@@ -151,89 +139,56 @@ public class BookingPanel extends javax.swing.JPanel {
                 .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(calendarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(chatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(reportsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(reportsButton)
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         rightPanel.setBackground(new java.awt.Color(235, 235, 235));
-        rightPanel.setPreferredSize(new java.awt.Dimension(861, 575));
+        rightPanel.setPreferredSize(new java.awt.Dimension(600, 0));
 
-        dateTimePicker.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
+        reportLabel.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        reportLabel.setText("Crear informe de los anuncios ubicados en los ayuntamientos de:");
 
-        addBookingButton.setText("Añadir");
+        provinceComboBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
+        provinceComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        bookingTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
-        bookingTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Fecha", "Hora inicio", "Hora fin", "Disponible"
-            }
-        ));
-        bookingTable.getColumnModel().getColumn(0).setMinWidth(0);
-        bookingTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        bookingTable.getColumnModel().getColumn(0).setWidth(0);
-        bookingScrollPane.setViewportView(bookingTable);
-
-        mainLabel.setText("Añade cuando estás disponible para reservas");
-        mainLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-
-        deleteBookingButton.setText("Eliminar");
+        createReportButton.setText("Generar informe");
 
         informationLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        informationLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
         rightPanelLayout.setHorizontalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(reportLabel)
                     .addGroup(rightPanelLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(deleteBookingButton)
-                            .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(bookingScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
-                                .addComponent(Separator))))
-                    .addGroup(rightPanelLayout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(mainLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(rightPanelLayout.createSequentialGroup()
-                                .addComponent(dateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addBookingButton))
-                            .addComponent(informationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(72, Short.MAX_VALUE))
+                        .addComponent(provinceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(informationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(createReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(reportLabel)
                 .addGap(18, 18, 18)
-                .addComponent(mainLabel)
-                .addGap(42, 42, 42)
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addBookingButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(informationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Separator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookingScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(deleteBookingButton)
-                .addGap(28, 28, 28))
+                    .addComponent(provinceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(informationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -241,14 +196,14 @@ public class BookingPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
+                .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
             .addComponent(leftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -272,39 +227,35 @@ public class BookingPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_calendarButtonActionPerformed
 
-    private void reportsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reportsButtonActionPerformed
+    public void addAdButtonActionListener(ActionListener al) {
+        this.adButton.addActionListener(al);
+    }
 
     public void addProfileButtonActionListener(ActionListener al) {
         this.profileButton.addActionListener(al);
-    }
-
-    public void addAdButtonActionListener(ActionListener al) {
-        this.adButton.addActionListener(al);
     }
 
     public void addChatButtonActionListener(ActionListener al) {
         this.chatButton.addActionListener(al);
     }
 
-    public void addBookingButtonActionListener(ActionListener al) {
-        this.addBookingButton.addActionListener(al);
-    }
-
-    public void addDeleteBookingButtonActionListener(ActionListener al) {
-        this.deleteBookingButton.addActionListener(al);
-    }
-
     public void addExitButtonActionListener(ActionListener al) {
         this.exitButton.addActionListener(al);
+    }
+
+    public void addCalendarButtonActionListener(ActionListener al) {
+        this.calendarButton.addActionListener(al);
     }
 
     public void addReportsButtonActionListener(ActionListener al) {
         this.reportsButton.addActionListener(al);
     }
 
-    public void setInformationTextField(String text, Color color) {
+    public void addCreateReportButtonActionListener(ActionListener al) {
+        this.createReportButton.addActionListener(al);
+    }
+
+    public void setInformationLabelCreatePanel(String text, Color color) {
         this.informationLabel.setText(text);
         this.informationLabel.setForeground(color);
 
@@ -317,21 +268,17 @@ public class BookingPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSeparator Separator;
     private javax.swing.JButton adButton;
-    private javax.swing.JButton addBookingButton;
     private javax.swing.JLabel appLogo;
-    private javax.swing.JScrollPane bookingScrollPane;
-    private javax.swing.JTable bookingTable;
     private javax.swing.JButton calendarButton;
     private javax.swing.JButton chatButton;
-    private com.github.lgooddatepicker.components.DateTimePicker dateTimePicker;
-    private javax.swing.JButton deleteBookingButton;
+    private javax.swing.JButton createReportButton;
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel informationLabel;
     private javax.swing.JPanel leftPanel;
-    private javax.swing.JLabel mainLabel;
     private javax.swing.JButton profileButton;
+    private javax.swing.JComboBox<String> provinceComboBox;
+    private javax.swing.JLabel reportLabel;
     private javax.swing.JButton reportsButton;
     private javax.swing.JPanel rightPanel;
     // End of variables declaration//GEN-END:variables

@@ -4,21 +4,19 @@
  */
 package com.nicovilab.profeconecta.service;
 
-import com.nicovilab.profeconecta.model.Direccion;
-
 /**
  *
  * @author Nico
  */
-public class ProfileService {
+public class ReportService {
 
     DatabaseService databaseService;
 
-    public ProfileService() {
+    public ReportService() {
         databaseService = new DatabaseService();
     }
 
-    public Direccion fetchUserAddress(String username) {
-        return databaseService.profileInfoSuccessful(username);
+    public void createAdsNumberByProvinceReport(String provincia) {
+        databaseService.createAdsNumberByProvinceReport(provincia);
     }
 }

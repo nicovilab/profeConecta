@@ -16,9 +16,9 @@ import java.util.Set;
 
 public class BookingHighlightPolicy implements DateHighlightPolicy {
 
-    private Set<LocalDate> noBookingDates;      
-    private Set<LocalDate> availableBookingDates;  
-    private Set<LocalDate> fullyBookedDates;     
+    private Set<LocalDate> noBookingDates;
+    private Set<LocalDate> availableBookingDates;
+    private Set<LocalDate> fullyBookedDates;
 
     public BookingHighlightPolicy(Set<LocalDate> noBookingDates, Set<LocalDate> availableBookingDates, Set<LocalDate> fullyBookedDates) {
         this.noBookingDates = noBookingDates;

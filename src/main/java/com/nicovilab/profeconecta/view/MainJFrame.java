@@ -5,6 +5,8 @@
 package com.nicovilab.profeconecta.view;
 
 import java.awt.CardLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import lombok.Getter;
 
@@ -15,16 +17,14 @@ import lombok.Getter;
 @Getter
 public class MainJFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainJFrame
-     */
     public MainJFrame() {
         initComponents();
         setupCardLayout();
         pack();
         setVisible(true);
-        setLocationRelativeTo(null); // Centrar la ventana
-
+        setLocationRelativeTo(null);
+        Image icon = new ImageIcon(getClass().getResource("/images/profeConecta1000px.png")).getImage();
+        setIconImage(icon);
     }
 
     /**
@@ -45,16 +45,16 @@ public class MainJFrame extends javax.swing.JFrame {
     private CardLayout cardLayout;
     private JPanel contentPanel;
 
-    //Declarar variables de los paneles de las vistas
     public SignUpPanel signUpPanel;
     public LoginPanel loginPanel;
     public UserPanel userPanel;
     public ProfilePanel profilePanel;
     public BookingPanel calendarPanel;
     public ChatPanel chatPanel;
+    public ReportsPanel reportsPanel;
 
+    // Declarar paneles. En el inicio aparece el panel de login
     private void setupCardLayout() {
-        // 1. Crear el panel contenedor con CardLayout
         cardLayout = new CardLayout();
         contentPanel = new JPanel(cardLayout);
 
@@ -64,6 +64,7 @@ public class MainJFrame extends javax.swing.JFrame {
         profilePanel = new ProfilePanel(this);
         calendarPanel = new BookingPanel(this);
         chatPanel = new ChatPanel(this);
+        reportsPanel = new ReportsPanel(this);
 
         contentPanel.add(loginPanel, "login");
         contentPanel.add(signUpPanel, "signup");
@@ -71,6 +72,7 @@ public class MainJFrame extends javax.swing.JFrame {
         contentPanel.add(profilePanel, "profile");
         contentPanel.add(calendarPanel, "calendar");
         contentPanel.add(chatPanel, "chatpanel");
+        contentPanel.add(reportsPanel, "reportsPanel");
 
         setContentPane(contentPanel);
 
@@ -79,7 +81,30 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }
 
-    // Método para cambiar entre paneles
+    public void resetUserSession() {
+        userPanel = new UserPanel(this);
+        profilePanel = new ProfilePanel(this);
+        calendarPanel = new BookingPanel(this);
+        chatPanel = new ChatPanel(this);
+        reportsPanel = new ReportsPanel(this);
+
+        contentPanel.removeAll();
+
+        contentPanel.add(loginPanel, "login");
+        contentPanel.add(signUpPanel, "signup");
+        contentPanel.add(userPanel, "userpanel");
+        contentPanel.add(profilePanel, "profile");
+        contentPanel.add(calendarPanel, "calendar");
+        contentPanel.add(chatPanel, "chatpanel");
+        contentPanel.add(reportsPanel, "reportsPanel");
+
+        contentPanel.revalidate();
+        contentPanel.repaint();
+
+        showPanel("login");
+    }
+
+    // Mostrar los paneles
     public void showPanel(String panelName) {
         cardLayout.show(contentPanel, panelName);
     }

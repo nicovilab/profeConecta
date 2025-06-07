@@ -16,22 +16,22 @@ import java.util.List;
  * @author Nico
  */
 public class UserService {
+
     DatabaseService databaseService;
-    
+
     public UserService() {
         databaseService = new DatabaseService();
     }
-    
+
     public Usuario getUserById(int userId) throws SQLException {
         return databaseService.getUserById(userId);
     }
-    
-    public List<Valoracion> getUserReviews(int idUsuario) throws SQLException{
+
+    public List<Valoracion> getUserReviews(int idUsuario) throws SQLException {
         return databaseService.getUserReviews(idUsuario);
     }
-    
-    
-    public boolean insertReview(int reviewedUserId, int reviewerUserId, int rating, String comment, LocalDate date){
+
+    public boolean insertReview(int reviewedUserId, int reviewerUserId, int rating, String comment, LocalDate date) {
         return databaseService.insertReview(reviewedUserId, reviewerUserId, rating, comment, date);
     }
 }

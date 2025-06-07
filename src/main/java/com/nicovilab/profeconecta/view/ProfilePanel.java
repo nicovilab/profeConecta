@@ -50,6 +50,7 @@ public class ProfilePanel extends javax.swing.JPanel {
         adButton = new IntegratedButton("Anuncios", false);
         chatButton = new IntegratedButton("Cerrar sesión", false);
         calendarButton = new IntegratedButton("Calendario", false);
+        reportsButton = new IntegratedButton("Cerrar sesión", false);
         rightPanel = new JPanelGradient(new Color(230, 243, 250), new Color(255,255,255));
         imageAvatar = new com.nicovilab.profeconecta.view.extraSwingComponents.ImageAvatar();
         imageAvatarButton = new CircularIntegratedButton();
@@ -137,6 +138,16 @@ public class ProfilePanel extends javax.swing.JPanel {
             }
         });
 
+        reportsButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        reportsButton.setText("Informes");
+        reportsButton.setBorder(new LineBorder(Color.BLACK, 1, true));
+        reportsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reportsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
@@ -153,7 +164,8 @@ public class ProfilePanel extends javax.swing.JPanel {
                                 .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(calendarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(reportsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         leftPanelLayout.setVerticalGroup(
@@ -171,6 +183,8 @@ public class ProfilePanel extends javax.swing.JPanel {
                 .addComponent(chatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(reportsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -528,6 +542,10 @@ public class ProfilePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_calendarButtonActionPerformed
 
+    private void reportsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reportsButtonActionPerformed
+
     public void addProfileButtonActionListener(ActionListener al) {
         this.profileButton.addActionListener(al);
     }
@@ -554,6 +572,10 @@ public class ProfilePanel extends javax.swing.JPanel {
 
     public void addExitButtonActionListener(ActionListener al) {
         this.exitButton.addActionListener(al);
+    }
+
+    public void addReportsButtonActionListener(ActionListener al) {
+        this.reportsButton.addActionListener(al);
     }
 
     public void addImageAvatarButtonActionListener(ActionListener al) {
@@ -646,6 +668,7 @@ public class ProfilePanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> provinceComboBox;
     private javax.swing.JLabel provinceLabel;
     private javax.swing.JLabel ratingLabel;
+    private javax.swing.JButton reportsButton;
     private javax.swing.JScrollPane reviewsScrollPane;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JButton saveButton;

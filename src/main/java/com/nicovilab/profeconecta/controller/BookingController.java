@@ -16,7 +16,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -45,8 +44,17 @@ public class BookingController {
         bookingPanel.addBookingButtonActionListener(this.getAddBookingButtonActionListener());
         bookingPanel.addDeleteBookingButtonActionListener(this.getDeleteBookingButtonActionListener());
         bookingPanel.addChatButtonActionListener(this.getChatButtonActionListener());
+        bookingPanel.addReportsButtonActionListener(this.getReportsButtonActionListener());
 
         loadBookings();
+        loadReportsButton();
+    }
+    // Listeners de los botones
+    private void loadReportsButton() {
+        if (!user.isEsAdmin()) {
+            bookingPanel.getReportsButton().setEnabled(false);
+            bookingPanel.getReportsButton().setVisible(false);
+        }
     }
 
     private ActionListener getProfileButtonActionListener() {
@@ -75,7 +83,14 @@ public class BookingController {
 
     private ActionListener getExitButtonActionListener() {
         return (ActionEvent e) -> {
-            view.showPanel("login");
+            view.resetUserSession();
+        };
+    }
+
+    private ActionListener getReportsButtonActionListener() {
+        return (ActionEvent e) -> {
+            new ReportsController(view, view.getReportsPanel(), user);
+            view.showPanel("reportsPanel");
         };
     }
 
@@ -97,51 +112,54 @@ public class BookingController {
         showBookings(bookingService.getUserBookings(user.getIdUsuario()));
     }
 
+    // Agrega una reserva con fecha y hora seleccionadas
     private void addBooking() {
-    var dateTimePicker = bookingPanel.getDateTimePicker();
-    var date = dateTimePicker.getDatePicker().getDate();
-    var startTime = dateTimePicker.getTimePicker().getTime();
+        var dateTimePicker = bookingPanel.getDateTimePicker();
+        var date = dateTimePicker.getDatePicker().getDate();
+        var startTime = dateTimePicker.getTimePicker().getTime();
 
-    if (date == null || startTime == null) {
-        bookingPanel.setInformationTextField("Selecciona fecha y hora para la reserva.", Color.RED);
-        return;
+        if (date == null || startTime == null) {
+            bookingPanel.setInformationTextField("Selecciona fecha y hora para la reserva.", Color.RED);
+            return;
+        }
+
+        var endTime = startTime.plusHours(1);
+
+        boolean success = bookingService.addBooking(user.getIdUsuario(), date, startTime.toString(), endTime.toString());
+        if (success) {
+            bookingPanel.setInformationTextField("Reserva añadida correctamente.", Color.GREEN.darker());
+            loadBookings();
+        } else {
+            bookingPanel.setInformationTextField("Error al añadir la reserva.", Color.RED);
+        }
     }
 
-    var endTime = startTime.plusHours(1);
+    // Elimina la reserva seleccionada si está disponible
+    private void deleteBooking() {
+        int selectedRow = bookingPanel.getBookingTable().getSelectedRow();
+        if (selectedRow == -1) {
+            bookingPanel.setInformationTextField("Selecciona una reserva para eliminar.", Color.RED);
+            return;
+        }
 
-    boolean success = bookingService.addBooking(user.getIdUsuario(), date, startTime.toString(), endTime.toString());
-    if (success) {
-        bookingPanel.setInformationTextField("Reserva añadida correctamente.", Color.GREEN.darker());
-        loadBookings();
-    } else {
-        bookingPanel.setInformationTextField("Error al añadir la reserva.", Color.RED);
+        int bookingId = (int) bookingPanel.getBookingTable().getValueAt(selectedRow, 0);
+        String disponible = (String) bookingPanel.getBookingTable().getValueAt(selectedRow, 4);
+
+        if (!"Sí".equals(disponible)) {
+            bookingPanel.setInformationTextField("Solo se pueden eliminar reservas disponibles.", Color.RED);
+            return;
+        }
+
+        boolean success = bookingService.removeBooking(user.getIdUsuario(), bookingId);
+        if (success) {
+            bookingPanel.setInformationTextField("Reserva eliminada correctamente.", Color.GREEN.darker());
+            loadBookings();
+        } else {
+            bookingPanel.setInformationTextField("Error al eliminar la reserva.", Color.RED);
+        }
     }
-}
 
-private void deleteBooking() {
-    int selectedRow = bookingPanel.getBookingTable().getSelectedRow();
-    if (selectedRow == -1) {
-        bookingPanel.setInformationTextField("Selecciona una reserva para eliminar.", Color.RED);
-        return;
-    }
-
-    int bookingId = (int) bookingPanel.getBookingTable().getValueAt(selectedRow, 0);
-    String disponible = (String) bookingPanel.getBookingTable().getValueAt(selectedRow, 4);
-
-    if (!"Sí".equals(disponible)) {
-        bookingPanel.setInformationTextField("Solo se pueden eliminar reservas disponibles.", Color.RED);
-        return;
-    }
-
-    boolean success = bookingService.removeBooking(user.getIdUsuario(), bookingId);
-    if (success) {
-        bookingPanel.setInformationTextField("Reserva eliminada correctamente.", Color.GREEN.darker());
-        loadBookings();
-    } else {
-        bookingPanel.setInformationTextField("Error al eliminar la reserva.", Color.RED);
-    }
-}
-
+    // Muestra una lista de reservas en la tabla del panel
     public void showBookings(List<Reserva> reservas) {
         JTable table = bookingPanel.getBookingTable();
         DefaultTableModel model = (DefaultTableModel) table.getModel();

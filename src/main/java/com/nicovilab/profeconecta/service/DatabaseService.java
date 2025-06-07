@@ -19,17 +19,24 @@ import com.nicovilab.profeconecta.model.address.Town;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 import nl.jiankai.mapper.ResultSetMapper;
 import nl.jiankai.mapper.ResultSetMapperFactory;
 
@@ -39,6 +46,13 @@ import nl.jiankai.mapper.ResultSetMapperFactory;
  */
 public class DatabaseService {
 
+    /*
+    En esta clase se encuentran todos los métodos de llamadas a base de datos
+    Se está utilizando la librería ResultSetMapper para evitar hacer codigo repetitivo y aumentar la legibilidad
+    Se mapea en cada clase correspondiente del modelado
+    Estos métodos son llamados en el Service correspondiente a cada controlador para repartir responsabilidades
+    y que distintos controladores no tengan acceso a los mismos métodos
+     */
     private final Connection connection;
     private final ResultSetMapper resultSetMapper;
 
@@ -138,11 +152,9 @@ public class DatabaseService {
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
 
-            // Establecer parámetros
             ps.setBytes(1, imageBytes);
             ps.setString(2, email);
 
-            // Ejecutar la actualización
             int rowsAffected = ps.executeUpdate();
 
             ps.execute();
@@ -316,7 +328,6 @@ public class DatabaseService {
 
         condiciones.add("a.activo = 1");
 
-        // Solo añadimos la búsqueda por cercanía si se solicitó explícitamente
         if (Boolean.TRUE.equals(filtros.get("buscarCerca")) && filtros.containsKey("userIdReferencia")) {
             query.append("""
             JOIN DIRECCION ref_d ON ref_d.id_usuario = ?
@@ -330,7 +341,7 @@ public class DatabaseService {
                     COS(RADIANS(d.longitud) - RADIANS(ref_d.longitud)) +
                     SIN(RADIANS(ref_d.latitud)) * SIN(RADIANS(d.latitud))
                 )
-            ) <= 50
+            ) <= 30
         """);
         }
 
@@ -354,6 +365,11 @@ public class DatabaseService {
             parametros.add((Double) filtros.get("valoracion"));
         }
 
+        if (filtros.containsKey("precio_maximo")) {
+            condiciones.add("a.precio_hora <= ?");
+            parametros.add(filtros.get("precio_maximo"));
+        }
+
         if (!condiciones.isEmpty()) {
             query.append(" WHERE ").append(String.join(" AND ", condiciones));
         }
@@ -362,9 +378,6 @@ public class DatabaseService {
 
         PreparedStatement preparedStatement = createQuery(query.toString(), parametros.toArray());
         ResultSet resultSet = executeQuery(preparedStatement);
-
-        System.out.println("Consulta SQL: " + query);
-        System.out.println("Parámetros: " + Arrays.toString(parametros.toArray()));
 
         return resultSetMapper.map(resultSet, AnuncioDetail.class);
     }
@@ -511,7 +524,7 @@ public class DatabaseService {
                 reviewerUserId,
                 rating,
                 comment,
-                LocalDateTime.now() // Convert java.util.Date to java.sql.Date
+                LocalDateTime.now()
         );
 
         try {
@@ -556,7 +569,7 @@ public class DatabaseService {
                 contenido,
                 java.time.LocalDate.now(),
                 java.time.LocalDateTime.now(),
-                0 // leido = false
+                0
         );
 
         try {
@@ -567,33 +580,33 @@ public class DatabaseService {
         }
         return true;
     }
-    
-    public boolean sendFileMessage(int idReserva, int idEmisor, int idReceptor, File file) {
-    try (FileInputStream fis = new FileInputStream(file)) {
 
-        PreparedStatement preparedStatement = createQuery("""
+    public boolean sendFileMessage(int idReserva, int idEmisor, int idReceptor, File file) {
+        try (FileInputStream fis = new FileInputStream(file)) {
+
+            PreparedStatement preparedStatement = createQuery("""
             INSERT INTO CHAT (id_reserva, usuario_emisor, usuario_receptor, contenido, fecha_creacion, fecha_hora, leido, contenido_archivo)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """,
-            idReserva,
-            idEmisor,
-            idReceptor,
-            file.getName(),            // contenido textual que puedes mostrar en el chat
-            java.time.LocalDate.now(),
-            java.time.LocalDateTime.now(),
-            0                                              // leido = false
-        );
+                    idReserva,
+                    idEmisor,
+                    idReceptor,
+                    file.getName(),
+                    java.time.LocalDate.now(),
+                    java.time.LocalDateTime.now(),
+                    0
+            );
 
-        preparedStatement.setBinaryStream(8, fis, (int) file.length()); // 8 = índice de contenido_archivo
-        preparedStatement.execute();
+            preparedStatement.setBinaryStream(8, fis, (int) file.length());
+            preparedStatement.execute();
 
-    } catch (IOException | SQLException ex) {
-        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-        return false;
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+        return true;
     }
-
-    return true;
-}
 
     public List<ReservaDetail> fetchBookingDetail(int userId) {
         String sql = """
@@ -692,6 +705,27 @@ public class DatabaseService {
             return connection.prepareStatement(query);
         } catch (SQLException ex) {
             throw new RuntimeException();
+        }
+    }
+
+    public void createAdsNumberByProvinceReport(String provincia) {
+        try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("provincia", provincia);
+
+            InputStream reportStream = getClass().getResourceAsStream("/reports/anuncios_por_provincia.jrxml");
+
+            JasperReport reporte = JasperCompileManager.compileReport(reportStream);
+            JasperPrint print = JasperFillManager.fillReport(reporte, parametros, this.connection);
+
+            JasperExportManager.exportReportToPdfFile(print, "informe_anuncios_por_provincia.pdf");
+
+            JasperViewer viewer = new JasperViewer(print, false);
+            viewer.setTitle("Informe de anuncios por provincia");
+            viewer.setVisible(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

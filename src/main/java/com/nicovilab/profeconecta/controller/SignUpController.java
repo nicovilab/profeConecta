@@ -31,6 +31,7 @@ public class SignUpController {
         signUpPanel.addRegisterButtonActionListener(this.getRegisterButtonActionListener());
     }
 
+    // Listener del botón
     private ActionListener getSignInButtonActionListener() {
         return (ActionEvent e) -> {
             view.showPanel("login");
@@ -38,9 +39,13 @@ public class SignUpController {
         };
     }
 
+    /* 
+     Valida los campos del formulario de registro 
+     Si todo está correcto, intenta registrar al usuario 
+     Muestra mensaje de éxito o error según el resultado
+     */
     private ActionListener getRegisterButtonActionListener() {
         return (ActionEvent e) -> {
-            // todo comprobar todos los campos. El email con comprobar que tiene un @ basta.
             String name = signUpPanel.getNameTextField().getText();
             String surname = signUpPanel.getSurnameTextField().getText();
             String email = signUpPanel.getEmailTextField().getText();
@@ -59,8 +64,8 @@ public class SignUpController {
         };
     }
 
+    // Validar en el orden original de prioridades
     public boolean validateRegister(String name, String surname, String email, char[] password, char[] confirmPassword) {
-        // Validar en el orden original de prioridades
         if (name.isEmpty()) {
             signUpPanel.setInformationTextField("El nombre es obligatorio", Color.RED);
             return false;
@@ -88,6 +93,7 @@ public class SignUpController {
         return true;
     }
 
+    // Cambia automáticamente al panel de login después de 3 segundos
     private void delayedViewChanged() {
         Timer t = new Timer(3000, (ActionEvent e) -> {
             view.showPanel("login");

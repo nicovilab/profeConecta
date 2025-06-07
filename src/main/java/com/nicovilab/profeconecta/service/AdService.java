@@ -18,30 +18,31 @@ import java.util.Map;
 public class AdService {
 
     DatabaseService databaseService;
-    
+
     public AdService() {
-         databaseService = new DatabaseService();
+        databaseService = new DatabaseService();
     }
 
     public boolean adSuccessful(int userId, int subjectId, String title, double price, String description) {
         return databaseService.adSuccessful(userId, subjectId, title, price, description);
     }
-    
+
     public List<Anuncio> fetchUserAdsById(int userId) {
         return databaseService.fetchUserAdsById(userId);
     }
-    
+
     public List<Anuncio> fetchAllAds() {
         return databaseService.fetchAllAds();
     }
-    
+
     public List<AnuncioDetail> fetchAdsFilteredDTO(Map<String, Object> filtros) {
         return databaseService.fetchAdsFilteredDTO(filtros);
     }
 
-    public boolean userHasDirection(int userId){
+    public boolean userHasDirection(int userId) {
         return databaseService.userHasLocation(userId);
     }
+
     public boolean updateAd(Anuncio anuncio) {
         return databaseService.updateAd(anuncio);
     }
@@ -49,7 +50,7 @@ public class AdService {
     public boolean deleteAd(int adId) {
         return databaseService.deleteAd(adId);
     }
-    
+
     public Usuario getUsuarioById(int userId) throws SQLException {
         return databaseService.getUserById(userId);
     }

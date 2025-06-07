@@ -15,7 +15,6 @@ import com.nicovilab.profeconecta.view.MainJFrame;
 public class ProfeConecta {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
         new DatabaseService();
         MainJFrame mainView = new MainJFrame();
         new LoginController(mainView, mainView.getLoginPanel());

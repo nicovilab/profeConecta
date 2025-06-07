@@ -75,10 +75,12 @@ public class UserPanelController {
         userPanel.addDeleteButtonCreatePanelActionListener(this.getDeleteButtonCreatePanelActionListener());
         userPanel.addCalendarButtonActionListener(this.getCalendarButtonActionListener());
         userPanel.addChatButtonActionListener(this.getChatButtonActionListener());
+        userPanel.addReportsButtonActionListener(this.getReportsButtonActionListener());
 
         populateSubjectComboBox(materias);
         loadUserAdsById(user.getIdUsuario());
         addSearchButtonListener();
+        loadReportsButton();
 
         searchAdDialog.setAdCardClickListener(ad -> {
             new UserAdDetailController(view, user, ad);
@@ -89,7 +91,8 @@ public class UserPanelController {
     private ActionListener getProfileButtonActionListener() {
         return (ActionEvent e) -> {
             try {
-                new ProfileController(view, view.getProfilePanel(), user);
+                Usuario freshUser = userService.getUserById(user.getIdUsuario());
+                new ProfileController(view, view.getProfilePanel(), freshUser);
             } catch (SQLException ex) {
                 Logger.getLogger(UserPanelController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -98,46 +101,49 @@ public class UserPanelController {
         };
     }
 
+    // Crea un anuncio nuevo con los datos del formulario
     private ActionListener getCreateButtonCreatePanelActionListener() {
-    return e -> {
-        String selectedSubjectName = (String) userPanel.getSubjectComboBoxCreatePanel().getSelectedItem();
-        Materia selectedMateria = subjectMapByName.get(selectedSubjectName);
+        return e -> {
+            String selectedSubjectName = (String) userPanel.getSubjectComboBoxCreatePanel().getSelectedItem();
+            Materia selectedMateria = subjectMapByName.get(selectedSubjectName);
 
-        if (selectedMateria == null) {
-            userPanel.setInformationLabelCreatePanel("Debe seleccionar una materia válida", Color.RED);
-            return;
-        }
-
-        String title = userPanel.getTitleTextFieldCreatePanel().getText();
-        Double price = (Double) userPanel.getPriceSpinnerCreatePanel().getValue();
-        String description = userPanel.getDescriptionTextArea().getText();
-        int selectedSubjectId = selectedMateria.getIdMateria();
-
-        if (validateAdCreation(selectedSubjectName, title, price, description)) {
-            if (adService.adSuccessful(user.getIdUsuario(), selectedSubjectId, title, price, description)) {
-                userPanel.setInformationLabelCreatePanel("El anuncio se ha creado correctamente", Color.GREEN);
-                userPanel.clearAllFields();
-                loadUserAdsById(user.getIdUsuario());
-            } else {
-                userPanel.setInformationLabelCreatePanel("Error al crear el anuncio", Color.RED);
+            if (selectedMateria == null) {
+                userPanel.setInformationLabelCreatePanel("Debe seleccionar una materia válida", Color.RED);
+                return;
             }
-        }
-    };
-}
 
+            String title = userPanel.getTitleTextFieldCreatePanel().getText();
+            Double price = (Double) userPanel.getPriceSpinnerCreatePanel().getValue();
+            String description = userPanel.getDescriptionTextArea().getText();
+            int selectedSubjectId = selectedMateria.getIdMateria();
+
+            if (validateAdCreation(selectedSubjectName, title, price, description)) {
+                if (adService.adSuccessful(user.getIdUsuario(), selectedSubjectId, title, price, description)) {
+                    userPanel.setInformationLabelCreatePanel("El anuncio se ha creado correctamente", Color.GREEN);
+                    userPanel.clearAllFields();
+                    loadUserAdsById(user.getIdUsuario());
+                } else {
+                    userPanel.setInformationLabelCreatePanel("Error al crear el anuncio", Color.RED);
+                }
+            }
+        };
+    }
+
+    // Limpia los campos del formulario de creación de un anuncio
     private ActionListener getDeleteButtonCreatePanelActionListener() {
         return (ActionEvent e) -> {
             userPanel.clearAllFields();
         };
     }
 
+    //Listeners de los botones
     private ActionListener getCalendarButtonActionListener() {
         return (ActionEvent e) -> {
             view.showPanel("calendar");
             new BookingController(view, view.getCalendarPanel(), user);
         };
     }
-    
+
     private ActionListener getChatButtonActionListener() {
         return (ActionEvent e) -> {
             view.showPanel("chatpanel");
@@ -147,10 +153,18 @@ public class UserPanelController {
 
     private ActionListener getExitButtonActionListener() {
         return (ActionEvent e) -> {
-            view.showPanel("login");
+            view.resetUserSession();
         };
     }
 
+    private ActionListener getReportsButtonActionListener() {
+        return (ActionEvent e) -> {
+            new ReportsController(view, view.getReportsPanel(), user);
+            view.showPanel("reportsPanel");
+        };
+    }
+
+    // Llena el combo de materias con las materias disponibles
     public void populateSubjectComboBox(List<Materia> materias) {
         DefaultComboBoxModel<String> subjectModel = new DefaultComboBoxModel<>();
 
@@ -164,6 +178,7 @@ public class UserPanelController {
         userPanel.getSubjectComboBoxSearchPanel().setModel(subjectModel);
     }
 
+    // Valida los datos para crear un anuncio. En este caso todos deben estar cubiertos
     public boolean validateAdCreation(String selectedSubject, String title, Double price, String description) {
 
         if (selectedSubject == null || selectedSubject.trim().isEmpty()) {
@@ -188,6 +203,11 @@ public class UserPanelController {
         return true;
     }
 
+    /*
+    Carga y muestra los anuncios del usuario por su ID
+    Cada anuncio tiene un boton para editar, borrar o activar/desactivar
+    Los desactivados no saldrán a la hora de buscar
+     */
     public void loadUserAdsById(int idUsuario) {
         List<Anuncio> anuncios = adService.fetchUserAdsById(idUsuario);
 
@@ -240,9 +260,13 @@ public class UserPanelController {
 
         userPanel.getEditScrollPane().setViewportView(panelAnuncios != null && !anuncios.isEmpty()
                 ? panelAnuncios
-                : new JLabel("No hay anuncios disponibles"));
+                : new JLabel("No hay anuncios disponibles. Crea uno primero"));
     }
 
+    /*
+    Añade el listener al botón de búsqueda para filtrar anuncios
+    Añade en un mapa los filtros que se han cubierto y busca en la base de datos en función a esas condiciones
+     */
     public void addSearchButtonListener() {
         userPanel.getSearchButtonSearchPanel().addActionListener(e -> {
             Map<String, Object> filtros = new HashMap<>();
@@ -268,7 +292,16 @@ public class UserPanelController {
                 filtros.put("valoracion", valoracionMin);
             }
 
+            Object rawValue = userPanel.getPriceSpinnerSearchPanel().getValue();
+            if (rawValue != null) {
+                double precioMaximo = Double.parseDouble(rawValue.toString().replace(",", "."));
+                if (precioMaximo > 0) {
+                    filtros.put("precio_maximo", precioMaximo);
+                }
+            }
+
             if (userPanel.getProximityCheckBox().isSelected()) {
+                filtros.put("buscarCerca", true);
                 filtros.put("userIdReferencia", user.getIdUsuario());
             }
 
@@ -278,10 +311,12 @@ public class UserPanelController {
 
             resultsPanel.revalidate();
             resultsPanel.repaint();
-        });
+        }
+        );
     }
 
-    private void addProvinceComboBoxListener() {  //todo añadir las coordenadas a los ayuntamiento que faltan
+    // Añade listener al combo de provincias para actualizar municipios
+    private void addProvinceComboBoxListener() {
         userPanel.getProvinceComboBoxSearchPanel().addActionListener(e -> {
             String selectedProvince = (String) userPanel.getProvinceComboBoxSearchPanel().getSelectedItem();
 
@@ -294,5 +329,13 @@ public class UserPanelController {
                 userPanel.getTownComboBoxSearchPanel().setModel(townModel);
             }
         });
+    }
+
+    // Desactiva y oculta el botón de reportes si el usuario no es admin
+    private void loadReportsButton() {
+        if (!user.isEsAdmin()) {
+            userPanel.getReportsButton().setEnabled(false);
+            userPanel.getReportsButton().setVisible(false);
+        }
     }
 }

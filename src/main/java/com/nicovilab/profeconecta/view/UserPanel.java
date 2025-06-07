@@ -21,9 +21,6 @@ import lombok.Data;
 @Data
 public class UserPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form NewJPanel
-     */
     public UserPanel(MainJFrame parent) {
         initComponents();
 
@@ -45,6 +42,7 @@ public class UserPanel extends javax.swing.JPanel {
         adButton = new IntegratedButton("Mi perfil", true);
         chatButton = new IntegratedButton("Cerrar sesión", false);
         calendarButton = new IntegratedButton("Mi perfil", false);
+        reportsButton = new IntegratedButton("Cerrar sesión", false);
         rightPanel = new JPanelGradient(new Color(230, 243, 250), new Color(255,255,255));
         adTabbedPaneCustom = new com.nicovilab.profeconecta.view.extraSwingComponents.customTabbedPane.TabbedPaneCustom();
         searchPanel = new javax.swing.JPanel();
@@ -61,6 +59,8 @@ public class UserPanel extends javax.swing.JPanel {
         townLabel = new javax.swing.JLabel();
         averageRatingLabel = new javax.swing.JLabel();
         userNameLabel = new javax.swing.JLabel();
+        priceSpinnerSearchPanel = new javax.swing.JSpinner();
+        priceLabel = new javax.swing.JLabel();
         createPanel = new javax.swing.JPanel();
         subjectComboBoxCreatePanel = new javax.swing.JComboBox<>();
         titleTextFieldCreatePanel = new javax.swing.JTextField();
@@ -129,6 +129,11 @@ public class UserPanel extends javax.swing.JPanel {
             }
         });
 
+        reportsButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        reportsButton.setText("Informes");
+        reportsButton.setBorder(new LineBorder(Color.BLACK, 0, true));
+        reportsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
@@ -136,6 +141,7 @@ public class UserPanel extends javax.swing.JPanel {
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(calendarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(leftPanelLayout.createSequentialGroup()
                         .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(exitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
@@ -144,7 +150,7 @@ public class UserPanel extends javax.swing.JPanel {
                             .addComponent(chatButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(appLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(calendarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(reportsButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         leftPanelLayout.setVerticalGroup(
@@ -156,12 +162,14 @@ public class UserPanel extends javax.swing.JPanel {
                 .addComponent(adButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(calendarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(calendarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(chatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(reportsButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -218,7 +226,13 @@ public class UserPanel extends javax.swing.JPanel {
         averageRatingLabel.setText("Valoración media:");
 
         userNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        userNameLabel.setText("Nombre de usuario:");
+        userNameLabel.setText("Nombre:");
+
+        priceSpinnerSearchPanel.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, 100.0d, 0.5d));
+        priceSpinnerSearchPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191), 2));
+
+        priceLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        priceLabel.setText("Precio máximo:");
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -243,18 +257,22 @@ public class UserPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addComponent(averageRatingLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(userNameLabel))
-                            .addGroup(searchPanelLayout.createSequentialGroup()
                                 .addComponent(ratingSpinnerSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(nameTextFieldSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nameTextFieldSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addComponent(averageRatingLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(userNameLabel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(priceLabel)
+                            .addComponent(priceSpinnerSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(searchPanelLayout.createSequentialGroup()
                         .addComponent(proximityCheckBox)
                         .addGap(18, 18, 18)
                         .addComponent(searchButtonSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,14 +283,16 @@ public class UserPanel extends javax.swing.JPanel {
                     .addComponent(provinceLabel)
                     .addComponent(townLabel)
                     .addComponent(averageRatingLabel)
-                    .addComponent(userNameLabel))
+                    .addComponent(userNameLabel)
+                    .addComponent(priceLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameTextFieldSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ratingSpinnerSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(townComboBoxSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(provinceComboBoxSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(subjectComboBoxSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(subjectComboBoxSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(priceSpinnerSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(proximityCheckBox)
@@ -363,7 +383,7 @@ public class UserPanel extends javax.swing.JPanel {
                             .addComponent(titleTextFieldCreatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(subjectComboBoxCreatePanel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(priceSpinnerCreatePanel)
-                            .addComponent(descriptionScrollPaneCreatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE))))
+                            .addComponent(descriptionScrollPaneCreatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))))
                 .addGap(180, 180, 180))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -406,7 +426,7 @@ public class UserPanel extends javax.swing.JPanel {
             editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(editScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+                .addComponent(editScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
                 .addContainerGap())
         );
         editPanelLayout.setVerticalGroup(
@@ -425,8 +445,8 @@ public class UserPanel extends javax.swing.JPanel {
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(adTabbedPaneCustom, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(adTabbedPaneCustom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -517,6 +537,10 @@ public class UserPanel extends javax.swing.JPanel {
         this.calendarButton.addActionListener(al);
     }
 
+    public void addReportsButtonActionListener(ActionListener al) {
+        this.reportsButton.addActionListener(al);
+    }
+
     public void clearAllFields() {
         this.titleTextFieldCreatePanel.setText("");
         this.priceSpinnerCreatePanel.setValue(0);
@@ -569,13 +593,16 @@ public class UserPanel extends javax.swing.JPanel {
     private javax.swing.JLabel informationLabelCreatePanel;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JTextField nameTextFieldSearchPanel;
+    private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel priceLabelCreatePanel;
     private javax.swing.JSpinner priceSpinnerCreatePanel;
+    private javax.swing.JSpinner priceSpinnerSearchPanel;
     private javax.swing.JButton profileButton;
     private javax.swing.JComboBox<String> provinceComboBoxSearchPanel;
     private javax.swing.JLabel provinceLabel;
     private javax.swing.JCheckBox proximityCheckBox;
     private javax.swing.JSpinner ratingSpinnerSearchPanel;
+    private javax.swing.JButton reportsButton;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JButton searchButtonSearchPanel;
     private javax.swing.JPanel searchPanel;

@@ -9,6 +9,7 @@ import com.nicovilab.profeconecta.view.gradientComponents.JPanelGradient;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 import lombok.Data;
@@ -18,13 +19,14 @@ import lombok.Data;
  * @author Nico
  */
 @Data
-public class BookingPanel extends javax.swing.JPanel {
+public class ChatPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CalendarPanel
+     * Creates new form ChatPanel
      */
-    public BookingPanel(MainJFrame parent) {
+    public ChatPanel(MainJFrame parent) {
         initComponents();
+        bookingsScrollPane.setViewportView(bookingsContentPanel);
 
     }
 
@@ -42,20 +44,13 @@ public class BookingPanel extends javax.swing.JPanel {
         profileButton = new IntegratedButton("Mi perfil", false);
         exitButton = new IntegratedButton("Cerrar sesión", false);
         adButton = new IntegratedButton("Anuncios", false);
-        chatButton = new IntegratedButton("Cerrar sesión", false);
-        calendarButton = new IntegratedButton("Calendario", true);
-        reportsButton = new IntegratedButton("Cerrar sesión", false);
+        chatButton = new IntegratedButton("Chat", true);
+        calendarButton = new IntegratedButton("Calendario", false);
+        reportsButton = new IntegratedButton("Informes", false);
         rightPanel = new JPanelGradient(new Color(230, 243, 250), new Color(255,255,255));
-        dateTimePicker = new com.github.lgooddatepicker.components.DateTimePicker();
-        addBookingButton = new javax.swing.JButton();
-        bookingScrollPane = new javax.swing.JScrollPane();
-        bookingTable = new javax.swing.JTable();
-        Separator = new javax.swing.JSeparator();
-        mainLabel = new javax.swing.JLabel();
-        deleteBookingButton = new javax.swing.JButton();
+        bookingsScrollPane = new javax.swing.JScrollPane();
+        bookingsContentPanel = new javax.swing.JPanel();
         informationLabel = new javax.swing.JLabel();
-
-        setPreferredSize(new java.awt.Dimension(861, 575));
 
         leftPanel.setPreferredSize(new java.awt.Dimension(861, 575));
 
@@ -111,10 +106,10 @@ public class BookingPanel extends javax.swing.JPanel {
             }
         });
 
+        reportsButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         reportsButton.setText("Informes");
         reportsButton.setBorder(new LineBorder(Color.BLACK, 1, true));
         reportsButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        reportsButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         reportsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reportsButtonActionPerformed(evt);
@@ -163,34 +158,20 @@ public class BookingPanel extends javax.swing.JPanel {
         rightPanel.setBackground(new java.awt.Color(235, 235, 235));
         rightPanel.setPreferredSize(new java.awt.Dimension(861, 575));
 
-        dateTimePicker.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
+        javax.swing.GroupLayout bookingsContentPanelLayout = new javax.swing.GroupLayout(bookingsContentPanel);
+        bookingsContentPanel.setLayout(bookingsContentPanelLayout);
+        bookingsContentPanelLayout.setHorizontalGroup(
+            bookingsContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 597, Short.MAX_VALUE)
+        );
+        bookingsContentPanelLayout.setVerticalGroup(
+            bookingsContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 511, Short.MAX_VALUE)
+        );
 
-        addBookingButton.setText("Añadir");
-
-        bookingTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(38, 117, 191)));
-        bookingTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Fecha", "Hora inicio", "Hora fin", "Disponible"
-            }
-        ));
-        bookingTable.getColumnModel().getColumn(0).setMinWidth(0);
-        bookingTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        bookingTable.getColumnModel().getColumn(0).setWidth(0);
-        bookingScrollPane.setViewportView(bookingTable);
-
-        mainLabel.setText("Añade cuando estás disponible para reservas");
-        mainLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-
-        deleteBookingButton.setText("Eliminar");
+        bookingsScrollPane.setViewportView(bookingsContentPanel);
 
         informationLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        informationLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
@@ -199,41 +180,21 @@ public class BookingPanel extends javax.swing.JPanel {
             .addGroup(rightPanelLayout.createSequentialGroup()
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rightPanelLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(deleteBookingButton)
-                            .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(bookingScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
-                                .addComponent(Separator))))
+                        .addGap(17, 17, 17)
+                        .addComponent(bookingsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(rightPanelLayout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(mainLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(rightPanelLayout.createSequentialGroup()
-                                .addComponent(dateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addBookingButton))
-                            .addComponent(informationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(72, Short.MAX_VALUE))
+                        .addGap(150, 150, 150)
+                        .addComponent(informationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(mainLabel)
-                .addGap(42, 42, 42)
-                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addBookingButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(informationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Separator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bookingScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(deleteBookingButton)
-                .addGap(28, 28, 28))
+                .addGap(15, 15, 15)
+                .addComponent(bookingsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(informationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -243,12 +204,12 @@ public class BookingPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
+                .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(leftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(leftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+            .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -288,12 +249,8 @@ public class BookingPanel extends javax.swing.JPanel {
         this.chatButton.addActionListener(al);
     }
 
-    public void addBookingButtonActionListener(ActionListener al) {
-        this.addBookingButton.addActionListener(al);
-    }
-
-    public void addDeleteBookingButtonActionListener(ActionListener al) {
-        this.deleteBookingButton.addActionListener(al);
+    public void addCalendarButtonActionListener(ActionListener al) {
+        this.calendarButton.addActionListener(al);
     }
 
     public void addExitButtonActionListener(ActionListener al) {
@@ -302,6 +259,10 @@ public class BookingPanel extends javax.swing.JPanel {
 
     public void addReportsButtonActionListener(ActionListener al) {
         this.reportsButton.addActionListener(al);
+    }
+
+    public JPanel getBookingsContentPanel() {
+        return bookingsContentPanel;
     }
 
     public void setInformationTextField(String text, Color color) {
@@ -317,20 +278,15 @@ public class BookingPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSeparator Separator;
     private javax.swing.JButton adButton;
-    private javax.swing.JButton addBookingButton;
     private javax.swing.JLabel appLogo;
-    private javax.swing.JScrollPane bookingScrollPane;
-    private javax.swing.JTable bookingTable;
+    private javax.swing.JPanel bookingsContentPanel;
+    private javax.swing.JScrollPane bookingsScrollPane;
     private javax.swing.JButton calendarButton;
     private javax.swing.JButton chatButton;
-    private com.github.lgooddatepicker.components.DateTimePicker dateTimePicker;
-    private javax.swing.JButton deleteBookingButton;
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel informationLabel;
     private javax.swing.JPanel leftPanel;
-    private javax.swing.JLabel mainLabel;
     private javax.swing.JButton profileButton;
     private javax.swing.JButton reportsButton;
     private javax.swing.JPanel rightPanel;
